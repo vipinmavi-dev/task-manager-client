@@ -11,3 +11,7 @@ const reportWebVitals = onPerfEntry => {
 };
 
 export default reportWebVitals;
+
+/* this file is for test the peroformance of the app, you can use it to measure the 
+performance of your app and send the results to an analytics endpoint. 
+You can also log results in the console. Learn more: https://bit.ly/CRA-vitals */
