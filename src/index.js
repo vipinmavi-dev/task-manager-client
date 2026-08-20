@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
-import AuthForm from "./components/auth/form/form.tsx";
+import LoginPage from './pages/login/login_page.tsx';
+import './style/global.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <AuthForm/>
-    {/* <h1>Root node</h1> */}
+    <LoginPage/>
   </React.StrictMode>
 );
 

@@ -1,19 +1,18 @@
 import React from "react";
 import Style from "./loginLayout.module.css";
+import { 
+    LoginHeader, 
+    LoginForm, 
+    LoginFooter 
+} from "../index.tsx";
 
 function LoginLayout() {
     return (
         <div className={Style.container}>
             <div className={Style.subContainer}>
-                {/* Header will be here */}
-                <form className={Style.loginForm}>
-                    {/* form elements will be here */}
-                </form>
-                <div className={Style.guestLogin}>
-                    {/*Thematic break will be here*/}
-                    {/* Other login buttons will be here */}
-                    <p>Don't have an account?<span> Sign Up</span>.</p>
-                </div>
+                <LoginHeader/>
+                <LoginForm/>
+                <LoginFooter/>
             </div>
         </div>
     )

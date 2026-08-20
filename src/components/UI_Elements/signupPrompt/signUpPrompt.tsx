@@ -3,7 +3,7 @@ import Style from "./signUpPrompt.module.css";
 
 function SignUpPrompt() {
     return (
-        <p>Don't have an account?<span> Sign Up</span>.</p>
+        <p className={Style}>Don't have an account?<span> Sign Up</span>.</p>
     )
 }
 

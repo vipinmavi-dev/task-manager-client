@@ -1,9 +1,9 @@
 import React from "react";
 import Style from "./otherLoginBtn.module.css";
 
-function OtherLoginBtn() {
+function OtherLoginBtn({value}: {value: string}) {
     return (
-        <button className={Style.Guest_button}>Login With Google</button>
+        <button className={Style.Guest_button}>{value}</button>
     )
 }
 

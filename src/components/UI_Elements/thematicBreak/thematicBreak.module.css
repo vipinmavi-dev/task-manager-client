@@ -1,0 +1,24 @@
+/* ========== Guest login and Form Separation ========== */
+.line_with_text {
+    font-family: sans-serif;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin-top: 45px;
+    margin-bottom: 20px;
+}
+
+.line_with_text::before,
+.line_with_text::after {
+    content: "";
+    flex: 1;
+    border-bottom: 1px solid #e5e5e5;
+    /* line color */
+}
+
+.line_with_text span {
+    padding: 0 10px;
+    /* space around text */
+    color: #62748e;
+    font-weight: bold;
+}
