@@ -1,12 +1,14 @@
 import React from "react";
 import Style from "./label.module.css";
 
-function Label({htmlFor, value }: 
-    {htmlFor: string, value:string}) {
+interface LabelProps {
+    value: string;
+    htmlFor: string;
+}
+
+function Label({ htmlFor, value }: LabelProps) {
     return (
-        <>
-            <label className={Style.label} htmlFor={htmlFor}>{value}</label>
-        </>
+        <label className={Style.label} htmlFor={htmlFor}>{value}</label>
     )
 }
 
