@@ -1,0 +1,32 @@
+/* ========== Global Styles ========== */
+.container {
+    height: 80vh;
+    /* full viewport height */
+    display: flex;
+    /* enable flexbox */
+    justify-content: center;
+    /* horizontal center */
+    align-items: center;
+    /* vertical center */
+}
+
+/* ========== Layout Container ========== */
+.subContainer {
+    width: 400px;
+    height: auto;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 10px 30px;
+}
+.subContainer{
+    position: relative;
+    top: 25px;
+}
+/* ========== Mobile Media ========== */
+@media screen and (max-width: 480px) {
+    .container {
+        height: auto;
+        padding: 20px;
+    }
+}

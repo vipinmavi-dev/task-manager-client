@@ -1,0 +1,13 @@
+/* ========== Page Heading ========== */
+.pageHeading{
+    font-family: sans-serif;
+}
+.pageHeading h2 {
+    font-weight: 400;
+    margin-bottom: 0;
+}
+
+.pageHeading span {
+    color: #717182;
+    font-size: 14px;
+}
