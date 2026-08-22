@@ -1,13 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
-import LoginPage from './pages/login/login_page.tsx';
 import './style/global.css';
+import AppRoutes from './routes.tsx';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
 root.render(
   <React.StrictMode>
-    <LoginPage/>
+    <AppRoutes/>
   </React.StrictMode>
 );
 
