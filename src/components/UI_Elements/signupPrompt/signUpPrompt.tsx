@@ -1,9 +1,15 @@
 import React from "react";
 import Style from "./signUpPrompt.module.css";
-
-function SignUpPrompt() {
+import {Link} from "react-router-dom";
+// todo: define linkPath as union
+interface SignUpPromptProps {
+    promptMessage: string;
+    linkName: string;
+    linkPath: string;
+}
+function SignUpPrompt({ promptMessage, linkName, linkPath }: SignUpPromptProps) {   
     return (
-        <p className={Style}>Don't have an account?<span> Sign Up</span>.</p>
+        <p className={Style.LoginPrompt}>{promptMessage}<Link to={linkPath}>{linkName}</Link>.</p>
     )
 }
 
