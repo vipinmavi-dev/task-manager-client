@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
 import './style/global.css';
-import AppRoutes from './routes.tsx';
+import AppRoutes from './appRoutes.tsx';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
