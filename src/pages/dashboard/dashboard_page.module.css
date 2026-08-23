@@ -595,6 +595,48 @@ a {
 
 /* Mobile */
 @media (max-width: 600px) {
+
+    /* Header */
+    .navbar {
+        height: 64px;
+        padding: 0 16px;
+    }
+
+    .brand {
+        gap: 8px;
+    }
+
+    .brandIcon {
+        width: 36px;
+        height: 36px;
+        border-radius: 10px;
+    }
+
+    .brandName {
+        font-size: 20px;
+        line-height: 1;
+        white-space: nowrap;
+    }
+
+    .navActions {
+        gap: 10px;
+    }
+
+    .signIn {
+        font-size: 15px;
+        white-space: nowrap;
+    }
+
+    .getStarted {
+        min-height: 38px;
+        padding: 0 12px;
+        font-size: 14px;
+        border-radius: 10px;
+        white-space: nowrap;
+    }
+
+
+    /* Hero */
     .hero {
         padding-top: 48px;
     }
@@ -611,6 +653,8 @@ a {
         flex-direction: column;
     }
 
+
+    /* Features */
     .features {
         grid-template-columns: 1fr;
         max-width: 320px;
@@ -620,6 +664,8 @@ a {
         min-height: auto;
     }
 
+
+    /* CTA */
     .cta {
         min-height: 200px;
     }
