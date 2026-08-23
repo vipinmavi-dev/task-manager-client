@@ -1,8 +1,8 @@
 import React from 'react';
 import { RouterProvider, createBrowserRouter, Outlet, Navigate } from 'react-router-dom';
-import {LoginPage, SingUpPage} from "./pages/index.tsx";
 import {LoginLayout} from './components/login/index.tsx';
 import {ROUTES} from './constants/routes.ts';
+import {LoginPage, SingUpPage, DashboardPage} from "./pages/index.tsx";
 
 function AuthLayout() {
     return (
@@ -17,7 +17,7 @@ const router = createBrowserRouter([
         element: <Outlet />,
         loader: ()=>{},
         children: [
-            { path: ROUTES.DEFAULT, element: <h1>Default Route</h1> },
+            { path: ROUTES.DEFAULT, element: <DashboardPage/> },
         ]
     },
     {
