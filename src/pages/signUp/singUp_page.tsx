@@ -16,13 +16,13 @@ function SingUp() {
             <LoginHeader pageTitle="Create an account" 
             subTitle="Enter your details to create your work ticket manager account"/>
             <LoginForm>
-                <Label htmlFor="userName" value="Name" />
+                <Label htmlFor="userName" text="Name" />
                 <Input type="text" placeholder="Jhon smit" id="userName" isRequired={true} />
-                <Label htmlFor="userEmail" value="Email" />
+                <Label htmlFor="userEmail" text="Email" />
                 <Input type="email" placeholder="your-id@example.com" id="userEmail" isRequired={true} />
-                <Label htmlFor="userPassword" value="Password" />
+                <Label htmlFor="userPassword" text="Password" />
                 <Input type="password" placeholder="Password" id="userPassword" isRequired={true}/>
-                <Label htmlFor="confirmPassword" value=" Confirm Password" />
+                <Label htmlFor="confirmPassword" text=" Confirm Password" />
                 <Input type="password" placeholder="Confirm Your Password" id="confirmPassword" isRequired={true}/>
                 <Input type="submit" id="loginSubmit" value="Create My Account"/>
             </LoginForm>

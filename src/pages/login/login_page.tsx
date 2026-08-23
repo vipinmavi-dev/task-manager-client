@@ -18,10 +18,10 @@ function LoginPage() {
             <LoginHeader pageTitle="Work Ticket Manager - Login" 
             subTitle="Sign in to your account to manage your work tickets"/>
             <LoginForm>
-                <Label htmlFor="loginEmail" value="Email" />
-                <Input type="email" placeholder="your-id@example.com" id="loginEmail" isRequired={true} />
-                <Label htmlFor="loginPassword" value="Password" />
-                <Input type="password" placeholder="Password" id="loginPassword" isRequired={true}/>
+                <Label htmlFor="loginEmail" text="Email" />
+                <Input type="email" placeholder="your-id@example.com" id="loginEmail" required={true} />
+                <Label htmlFor="loginPassword" text="Password" />
+                <Input type="password" placeholder="Password" id="loginPassword" required={true}/>
                 <Input type="submit" id="loginSubmit" value="Log In"/>
             </LoginForm>
             <LoginFooter>

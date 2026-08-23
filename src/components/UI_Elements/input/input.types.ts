@@ -3,6 +3,6 @@ export interface InputProps {
     type: Type;
     placeholder?: string;
     id: string;
-    isRequired?: boolean;
+    required?: boolean;
     value?: string;
 }
