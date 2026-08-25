@@ -2,7 +2,12 @@ import React from 'react';
 import { RouterProvider, createBrowserRouter, Outlet, Navigate } from 'react-router-dom';
 import {LoginLayout} from './components/login/index.tsx';
 import {ROUTES} from './constants/routes.ts';
-import {LoginPage, SingUpPage, DashboardPage} from "./pages/index.tsx";
+import {
+    LoginPage, 
+    SingUpPage, 
+    DashboardPage,
+    TaskPage
+} from "./pages/index.tsx";
 
 function AuthLayout() {
     return (
@@ -18,6 +23,7 @@ const router = createBrowserRouter([
         loader: ()=>{},
         children: [
             { path: ROUTES.DEFAULT, element: <DashboardPage/> },
+            { path: "/list", element: <TaskPage/> },
         ]
     },
     {
