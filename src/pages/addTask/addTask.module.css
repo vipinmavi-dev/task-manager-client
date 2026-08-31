@@ -1,0 +1,496 @@
+/* =========================================
+   MODAL OVERLAY
+========================================= */
+
+.overlay {
+    position: fixed;
+    inset: 0;
+  
+    z-index: 1000;
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    padding: 20px;
+  
+    box-sizing: border-box;
+  
+    background: rgba(31, 34, 39, 0.45);
+  
+    backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(7px);
+  }
+  
+  
+  /* =========================================
+     MODAL
+  ========================================= */
+  
+  .modal {
+    width: 100%;
+    max-width: 443px;
+  
+    box-sizing: border-box;
+  
+    overflow: hidden;
+  
+    background: #ffffff;
+  
+    border-radius: 15px;
+  
+    box-shadow:
+      0 24px 60px rgba(25, 32, 45, 0.22),
+      0 4px 14px rgba(25, 32, 45, 0.08);
+  }
+  
+  
+  /* =========================================
+     MODAL HEADER
+  ========================================= */
+  
+  .modalHeader {
+    min-height: 63px;
+  
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  
+    box-sizing: border-box;
+  
+    padding: 0 23px;
+  
+    border-bottom: 1px solid #edf0f4;
+  }
+  
+  .modalHeader h2 {
+    margin: 0;
+  
+    color: #172033;
+  
+    font-family:
+      Georgia,
+      "Times New Roman",
+      serif;
+  
+    font-size: 18px;
+    line-height: 1.2;
+  
+    font-weight: 700;
+  }
+  
+  .closeButton {
+    width: 28px;
+    height: 28px;
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    padding: 0;
+  
+    border: 0;
+  
+    background: transparent;
+  
+    color: #9aa6b6;
+  
+    font-size: 27px;
+    font-weight: 300;
+  
+    line-height: 1;
+  
+    cursor: pointer;
+  
+    transition:
+      color 0.2s ease,
+      background 0.2s ease;
+  }
+  
+  .closeButton:hover {
+    color: #4d5a6d;
+  
+    background: #f4f6f8;
+  
+    border-radius: 6px;
+  }
+  
+  
+  /* =========================================
+     FORM
+  ========================================= */
+  
+  .form {
+    padding: 21px 23px 19px;
+  }
+  
+  
+  /* =========================================
+     FORM GROUP
+  ========================================= */
+  
+  .formGroup {
+    display: flex;
+    flex-direction: column;
+  
+    gap: 7px;
+  
+    margin-bottom: 18px;
+  }
+  
+  .formGroup label,
+  .label {
+    color: #46546a;
+  
+    font-size: 12px;
+    font-weight: 600;
+  
+    line-height: 1.2;
+  }
+  
+  .required {
+    color: #e54848;
+  }
+  
+  
+  /* =========================================
+     INPUT
+  ========================================= */
+  
+  .input {
+    width: 100%;
+    height: 40px;
+  
+    box-sizing: border-box;
+  
+    padding: 0 14px;
+  
+    border: 1px solid #dfe5ec;
+  
+    border-radius: 13px;
+  
+    outline: none;
+  
+    background: #ffffff;
+  
+    color: #27344a;
+  
+    font-family: inherit;
+  
+    font-size: 13px;
+  
+    transition:
+      border-color 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+  
+  .input::placeholder {
+    color: #9ba3ad;
+  }
+  
+  .input:focus {
+    border-color: #4385ff;
+  
+    box-shadow:
+      0 0 0 1px #4385ff;
+  }
+  
+  .titleInput {
+    height: 44px;
+  }
+  
+  
+  /* =========================================
+     TEXTAREA
+  ========================================= */
+  
+  .textarea {
+    width: 100%;
+    min-height: 80px;
+  
+    box-sizing: border-box;
+  
+    resize: vertical;
+  
+    padding: 11px 14px;
+  
+    border: 1px solid #dfe5ec;
+  
+    border-radius: 13px;
+  
+    outline: none;
+  
+    background: #ffffff;
+  
+    color: #27344a;
+  
+    font-family: inherit;
+  
+    font-size: 13px;
+  
+    line-height: 1.4;
+  
+    transition:
+      border-color 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+  
+  .textarea::placeholder {
+    color: #9ba3ad;
+  }
+  
+  .textarea:focus {
+    border-color: #4385ff;
+  
+    box-shadow:
+      0 0 0 1px #4385ff;
+  }
+  
+  
+  /* =========================================
+     PRIORITY
+  ========================================= */
+  
+  .priorityGroup {
+    display: grid;
+  
+    grid-template-columns:
+      repeat(3, minmax(0, 1fr));
+  
+    gap: 7px;
+  }
+  
+  .priorityButton {
+    height: 39px;
+  
+    border: 1px solid #e1e6ed;
+  
+    border-radius: 13px;
+  
+    background: #f8fafc;
+  
+    color: #68758a;
+  
+    font-family: inherit;
+  
+    font-size: 12px;
+    font-weight: 600;
+  
+    cursor: pointer;
+  
+    transition:
+      border-color 0.2s ease,
+      background 0.2s ease,
+      color 0.2s ease;
+  }
+  
+  .priorityButton:hover {
+    border-color: #cbd4df;
+  
+    background: #f4f6f9;
+  }
+  
+  
+  /* =========================================
+     ACTIVE PRIORITY
+  ========================================= */
+  
+  .activePriority {
+    border-color: #f0d47b;
+  
+    background: #fffdf3;
+  
+    color: #c66a00;
+  }
+  
+  .activePriority:hover {
+    border-color: #f0d47b;
+  
+    background: #fffdf3;
+  
+    color: #c66a00;
+  }
+  
+  
+  /* =========================================
+     FORM ACTIONS
+  ========================================= */
+  
+  .formActions {
+    display: grid;
+  
+    grid-template-columns:
+      1fr
+      1fr;
+  
+    gap: 11px;
+  
+    margin-top: 2px;
+  }
+  
+  .cancelButton,
+  .addButton {
+    height: 41px;
+  
+    border-radius: 12px;
+  
+    font-family: inherit;
+  
+    font-size: 12px;
+    font-weight: 700;
+  
+    cursor: pointer;
+  
+    transition:
+      background 0.2s ease,
+      border-color 0.2s ease,
+      transform 0.2s ease;
+  }
+  
+  
+  /* =========================================
+     CANCEL
+  ========================================= */
+  
+  .cancelButton {
+    border: 1px solid #e0e5eb;
+  
+    background: #ffffff;
+  
+    color: #4d5a6e;
+  }
+  
+  .cancelButton:hover {
+    background: #f7f8fa;
+  
+    border-color: #d5dce5;
+  }
+  
+  
+  /* =========================================
+     ADD TASK
+  ========================================= */
+  
+  .addButton {
+    border: 1px solid transparent;
+  
+    background:
+      linear-gradient(
+        100deg,
+        #a9c7ff,
+        #d087f3
+      );
+  
+    color: #ffffff;
+  
+    box-shadow:
+      0 3px 8px rgba(154, 139, 242, 0.2);
+  }
+  
+  .addButton:hover {
+    transform: translateY(-1px);
+  
+    box-shadow:
+      0 5px 12px rgba(154, 139, 242, 0.28);
+  }
+  
+  .addButton:active {
+    transform: translateY(0);
+  }
+  
+  
+  /* =========================================
+     TABLET
+  ========================================= */
+  
+  @media (max-width: 600px) {
+    .overlay {
+      padding: 16px;
+    }
+  
+    .modal {
+      max-width: 100%;
+    }
+  
+    .modalHeader {
+      padding: 0 19px;
+    }
+  
+    .form {
+      padding: 19px;
+    }
+  }
+  
+  
+  /* =========================================
+     MOBILE
+  ========================================= */
+  
+  @media (max-width: 430px) {
+    .overlay {
+      align-items: center;
+  
+      padding: 12px;
+    }
+  
+    .modal {
+      border-radius: 13px;
+    }
+  
+    .modalHeader {
+      min-height: 58px;
+  
+      padding: 0 17px;
+    }
+  
+    .modalHeader h2 {
+      font-size: 17px;
+    }
+  
+    .form {
+      padding: 18px 17px 17px;
+    }
+  
+    .formGroup {
+      margin-bottom: 16px;
+    }
+  
+    .priorityGroup {
+      gap: 6px;
+    }
+  
+    .priorityButton {
+      height: 38px;
+    }
+  
+    .formActions {
+      gap: 8px;
+    }
+  }
+  
+  
+  /* =========================================
+     SMALL MOBILE
+  ========================================= */
+  
+  @media (max-width: 340px) {
+    .overlay {
+      padding: 8px;
+    }
+  
+    .modalHeader {
+      padding: 0 14px;
+    }
+  
+    .form {
+      padding: 16px 14px;
+    }
+  
+    .formActions {
+      grid-template-columns: 1fr;
+    }
+  
+    .addButton {
+      order: -1;
+    }
+  }
