@@ -6,7 +6,8 @@ import {
     LoginPage, 
     SingUpPage, 
     DashboardPage,
-    TaskPage
+    TaskPage,
+    NewTaskPage
 } from "./pages/index.tsx";
 
 function AuthLayout() {
@@ -24,6 +25,7 @@ const router = createBrowserRouter([
         children: [
             { path: ROUTES.DEFAULT, element: <DashboardPage/> },
             { path: "/list", element: <TaskPage/> },
+            { path: "/add", element: <NewTaskPage/> },
         ]
     },
     {
@@ -31,7 +33,7 @@ const router = createBrowserRouter([
         element: AuthLayout(),
         loader: ()=>{},
         children: [
-            {index:true, element:<Navigate to={ROUTES.LOGIN} replace/>},
+            { index:true, element:<Navigate to={ROUTES.LOGIN} replace/> },
             { path: ROUTES.LOGIN, element: <LoginPage/> },
             { path: ROUTES.SIGNUP, element: <SingUpPage/> },
         ]
