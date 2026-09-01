@@ -84,7 +84,9 @@ function TaskManager() {
         <div className={styles.headerInner}>
           <div className={styles.headerLeft}>
             <button className={styles.backButton} aria-label="Go back">
-              ←
+              <a href="/">
+                ←
+              </a>
             </button>
 
             <div className={styles.logo}>
@@ -94,10 +96,12 @@ function TaskManager() {
             <h1 className={styles.pageTitle}>Task Manager</h1>
           </div>
 
-          <button className={styles.newTaskButton}>
-            <span className={styles.plusIcon}>+</span>
-            <span>New Task</span>
-          </button>
+          <a href="/add">
+            <button className={styles.newTaskButton}>
+              <span className={styles.plusIcon}>+</span>
+              <span>New Task</span>
+            </button>
+          </a>
         </div>
       </header>
 
@@ -190,41 +194,55 @@ function TaskManager() {
 
               <div className={styles.badges}>
                 <span
-                  className={`${styles.statusBadge} ${
-                    styles[
-                      task.status
-                        .toLowerCase()
-                        .replace(" ", "")
-                    ]
-                  }`}
+                  className={`${styles.statusBadge} ${styles[
+                    task.status
+                      .toLowerCase()
+                      .replace(" ", "")
+                  ]
+                    }`}
                 >
                   <span className={styles.badgeIcon}>
                     {task.status === "Completed"
                       ? "✓"
                       : task.status === "Delayed"
-                      ? "!"
-                      : task.status === "In Progress"
-                      ? "↶"
-                      : "◷"}
+                        ? "!"
+                        : task.status === "In Progress"
+                          ? "↶"
+                          : "◷"}
                   </span>
 
                   {task.status}
                 </span>
 
                 <span
-                  className={`${styles.priorityBadge} ${
-                    styles[task.priority.toLowerCase()]
-                  }`}
+                  className={`${styles.priorityBadge} ${styles[task.priority.toLowerCase()]
+                    }`}
                 >
                   {task.priority}
                 </span>
               </div>
 
-              <button className={styles.statusButton}>
+              {/* <button className={styles.statusButton}>
                 <span>Change status</span>
                 <span className={styles.chevron}>⌄</span>
-              </button>
+              </button> */}
+              {/*-------------- Start ------------*/}
+              <div className={styles.selectWrapper}>
+                <label htmlFor="status" className={styles.label}>
+                  Status
+                </label>
 
+                <select id="status" className={styles.select} defaultValue="">
+                  <option value="" disabled>
+                    Select status
+                  </option>
+                  <option value="all">All</option>
+                  <option value="pending">Pending</option>
+                  <option value="completed">Completed</option>
+                  <option value="cancelled">Cancelled</option>
+                </select>
+              </div>
+              {/*-------------- End ------------*/}
               <div className={styles.taskDates}>
                 <span>
                   Created {task.created}

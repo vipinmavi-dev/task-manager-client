@@ -41,14 +41,14 @@ function DashboardPage() {
 
                     {/* <!-- Navigation actions --> */}
                     <div className={Style.navActions}>
-                        <a href="/login" className={Style.signIn}>
+                        <a href="/auth/login" className={Style.signIn}>
                             <span className={Style.signInIcon}>
                                 {/* <!-- icon --> */}
                             </span>
                             <span>Sign in</span>
                         </a>
 
-                        <a href="/signup" className={Style.getStarted}>
+                        <a href="/auth/signup" className={Style.getStarted}>
                             Create free account
                         </a>
                     </div>
@@ -83,12 +83,12 @@ function DashboardPage() {
 
                         <div className={Style.heroActions}>
 
-                            <a href="/signup" className={Style.primaryButton}>
+                            <a href="/list" className={Style.primaryButton}>
                                 Try it free
                                 <span>→</span>
                             </a>
 
-                            <a href="/signup" className={Style.secondaryLink}>
+                            <a href="/auth/signup" className={Style.secondaryLink}>
                                 Create a free account →
                             </a>
 
@@ -212,12 +212,12 @@ function DashboardPage() {
 
                         <div className={Style.ctaActions}>
 
-                            <a href="/signup" className={Style.ctaPrimary}>
+                            <a href="/auth/signup" className={Style.ctaPrimary}>
                                 Sign up — it's free
                                 <span>→</span>
                             </a>
 
-                            <a href="/guest" className={Style.ctaSecondary}>
+                            <a href="/list" className={Style.ctaSecondary}>
                                 Continue as Guest
                             </a>
 

@@ -16,6 +16,7 @@ function NewTask() {
   const handleClose = () => {
     // Add your modal close logic here.
     console.log("Close modal");
+    window.location.href = "/list"; // Redirect to home page or any other page
   };
 
   return (

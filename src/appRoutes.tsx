@@ -24,8 +24,8 @@ const router = createBrowserRouter([
         loader: ()=>{},
         children: [
             { path: ROUTES.DEFAULT, element: <DashboardPage/> },
-            { path: "/list", element: <TaskPage/> },
-            { path: "/add", element: <NewTaskPage/> },
+            { path: ROUTES.LIST, element: <TaskPage/> },
+            { path: ROUTES.ADD, element: <NewTaskPage/> },
         ]
     },
     {
