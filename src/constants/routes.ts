@@ -4,6 +4,8 @@ export const ROUTES = {
     LOGIN: "/auth/login",
     SIGNUP: "/auth/signup",
     DASHBOARD: "/dashboard",
+    LIST: "/list",
+    ADD: "/add",
     TICKET_DETAILS: "/ticket/:id",
     CREATE_TICKET: "/ticket/create",
     NOT_FOUND: "*"
