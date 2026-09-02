@@ -1,29 +1,20 @@
 /* =========================================
      REGISTER
   ========================================= */
-  
-  .registerText {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  
-    gap: 3px;
-  
-    margin-top: 15px;
-  
-    color: #59657a;
-  
-    font-size: 8px;
-  }
-  
-  .registerText a {
-    color: #2868ff;
-  
-    text-decoration: none;
-  
-    font-weight: 600;
-  }
-  
-  .registerText a:hover {
-    text-decoration: underline;
-  }
+.registerText {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  margin-top: 15px;
+  color: #59657a;
+  font-size: 8px;
+}
+.registerText a {
+  color: #2868ff;
+  text-decoration: none;
+  font-weight: 600;
+}
+.registerText a:hover {
+  text-decoration: underline;
+}
