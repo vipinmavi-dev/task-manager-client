@@ -1,5 +1,5 @@
 import React from "react";
-import { ROUTES } from "../../constants/routes.ts";
+// import { ROUTES } from "../../constants/routes.ts";
 import {
     Header,
     Form,
@@ -27,13 +27,13 @@ function LoginPage() {
                             <Label htmlFor="userEmail" text="Email address" />
                             <Input type="email" placeholder="you@example.com" id="userEmail" required={true} />
                         </InputFieldWrapper> 
-                        <PasswordFieldWrapper labelText={"Password"} id="password1" required={true} showForgot={true} /> {/* Password */}
+                        <PasswordFieldWrapper labelText={"Password"} id="password" required={true} showForgot={true} /> {/* Password */}
                         <SubmitButton text="Sign in" icon="↪" /> {/* Sign In */}
                     </>
                 }
                 loginPrompt={
                     <>
-                        <Prompt /> {/* Register */}
+                        <Prompt message="Don't have an account?" linkText="Create one" linkTo="/auth/signup"/> {/* Register */}
                     </>
                 }
             />

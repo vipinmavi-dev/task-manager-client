@@ -1,13 +1,14 @@
 import React from "react";
 import Style from "./authPrompt.module.css";
 
-function AuthPrompt() {
+function AuthPrompt({message, linkText, linkTo}: 
+    {message:string, linkText:string, linkTo:string}) {
     return (
         <div className={Style.registerText}>
-            <span>Don't have an account?</span>
+            <span>{message}</span>
 
-            <a href="/singup">
-                Create one
+            <a href={linkTo}>
+                {linkText}
             </a>
         </div>
     )
