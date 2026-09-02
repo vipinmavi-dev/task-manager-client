@@ -3,8 +3,13 @@ import Style from "./formPasswordField.module.css";
 import { Input, Label } from "../../../UI_Elements/index.tsx";
 import { ForgotPassword } from "../../index.tsx";
 
-function PasswordFieldWrapper({ labelText, id, required, showForgot=false }: 
-    { labelText: string, id: string, required: boolean, showForgot: boolean }) {
+interface PasswordFieldWrapperProps { 
+    labelText: string, 
+    id: string, 
+    required: boolean, 
+    showForgot: boolean 
+}
+function PasswordFieldWrapper({ labelText, id, required, showForgot=false }: PasswordFieldWrapperProps) {
     return (
         <div className={Style.formGroup}>
             <div className={Style.passwordHeader}>

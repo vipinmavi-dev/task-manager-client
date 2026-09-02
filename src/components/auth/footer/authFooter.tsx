@@ -5,13 +5,9 @@ function Footer() {
     return (
         <div className={Style.guestText}>
             <span>Just browsing?</span>
-
-            {/* <a>
-                        Continue as Guest
-                    </a> */}
-            <span>
+            <a href="/list">
                 Continue as Guest
-            </span>
+            </a>
         </div>
     )
 }

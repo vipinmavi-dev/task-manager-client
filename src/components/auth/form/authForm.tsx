@@ -1,7 +1,12 @@
 import React from "react";
 import Style from "./authForm.module.css";
 
-function Form({formContent, loginPrompt}: {formContent?: React.ReactNode, loginPrompt?: React.ReactNode}) {
+interface FormProps {
+    formContent?: React.ReactNode, 
+    loginPrompt?: React.ReactNode
+}
+
+function Form({formContent, loginPrompt}: FormProps) {
     return (
         <div className={Style.loginCard}>
             <form>

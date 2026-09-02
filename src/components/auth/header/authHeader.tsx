@@ -1,7 +1,12 @@
 import React from "react";
 import Style from "./authHeader.module.css";
 
-function AuthHeader({ pageTitle, subTitle }: { pageTitle: string, subTitle: string }) {
+interface AuthHeaderProps { 
+    pageTitle: string, 
+    subTitle: string 
+}
+
+function AuthHeader({ pageTitle, subTitle }: AuthHeaderProps) {
     return (
         <>
             <div className={Style.logo}>

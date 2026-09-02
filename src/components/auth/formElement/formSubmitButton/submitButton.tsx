@@ -1,7 +1,12 @@
 import React from "react";
 import Style from "./submitButton.module.css";
 
-function SubmitButton({ text, icon }: { text: string, icon: string }) {
+interface SubmitButtonProps { 
+    text: string, 
+    icon: string 
+}
+
+function SubmitButton({ text, icon }: SubmitButtonProps) {
     return (
         <button
             type="submit"
