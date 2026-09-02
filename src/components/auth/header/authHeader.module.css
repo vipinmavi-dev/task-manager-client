@@ -1,0 +1,65 @@
+.heading {
+    text-align: center;
+  
+    margin-bottom: 22px;
+  }
+  
+  .heading h1 {
+    margin: 0 0 4px;
+  
+    color: #121b2d;
+  
+    font-size: 21px;
+    line-height: 1.25;
+  
+    font-weight: 700;
+  }
+  
+  .heading p {
+    margin: 0;
+  
+    color: #59657a;
+  
+    font-size: 10px;
+  
+    line-height: 1.4;
+  }
+    /* =========================================
+     LOGO
+  ========================================= */
+  
+  .logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    margin-bottom: 13px;
+  }
+  
+  .logoIcon {
+    width: 38px;
+    height: 38px;
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    border-radius: 10px;
+  
+    background:
+      linear-gradient(
+        135deg,
+        #3265ff,
+        #9c21f4
+      );
+  
+    color: #ffffff;
+  
+    font-size: 24px;
+    font-weight: 700;
+  
+    line-height: 1;
+  
+    box-shadow:
+      0 5px 12px rgba(93, 75, 232, 0.2);
+  }

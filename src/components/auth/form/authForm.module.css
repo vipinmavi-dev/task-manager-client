@@ -1,0 +1,84 @@
+.loginCard {
+    width: 100%;
+  
+    box-sizing: border-box;
+  
+    padding: 21px 21px 19px;
+  
+    background: #ffffff;
+  
+    border-radius: 9px;
+  
+    box-shadow:
+      0 10px 24px rgba(35, 43, 63, 0.12),
+      0 2px 5px rgba(35, 43, 63, 0.04);
+  }
+  
+  
+  /* =========================================
+     FORM GROUP
+  ========================================= */
+  
+  .formGroup {
+    width: 100%;
+  
+    display: flex;
+    flex-direction: column;
+  
+    gap: 5px;
+  
+    margin-bottom: 13px;
+  }
+  
+  .formGroup label {
+    color: #46536a;
+  
+    font-size: 9px;
+  
+    font-weight: 600;
+  
+    line-height: 1.2;
+  }
+  
+  
+  /* =========================================
+     EMAIL INPUT
+  ========================================= */
+  
+  .formGroup > input {
+    width: 100%;
+    height: 29px;
+  
+    box-sizing: border-box;
+  
+    padding: 0 10px;
+  
+    border: 1px solid #cfd7e1;
+  
+    border-radius: 7px;
+  
+    outline: none;
+  
+    background: #ffffff;
+  
+    color: #26344a;
+  
+    font-family: inherit;
+  
+    font-size: 9px;
+  
+    transition:
+      border-color 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+  
+  .formGroup > input::placeholder {
+    color: #9ca5b2;
+  }
+  
+  .formGroup > input:focus {
+    border-color: #4c88ff;
+  
+    box-shadow:
+      0 0 0 1px #4c88ff;
+  }
