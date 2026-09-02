@@ -1,0 +1,29 @@
+  /* =========================================
+     GUEST
+  ========================================= */
+  
+  .guestText {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    gap: 3px;
+  
+    margin-top: 12px;
+  
+    color: #9aa4b4;
+  
+    font-size: 9px;
+  }
+  
+  .guestText a {
+    color: #445168;
+  
+    text-decoration: none;
+  
+    font-weight: 600;
+  }
+  
+  .guestText a:hover {
+    text-decoration: underline;
+  }

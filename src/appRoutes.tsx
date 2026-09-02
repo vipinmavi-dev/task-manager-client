@@ -1,6 +1,6 @@
 import React from 'react';
 import { RouterProvider, createBrowserRouter, Outlet, Navigate } from 'react-router-dom';
-// import {LoginLayout} from './components/login/index.tsx';
+import {Layout} from './components/auth/index.tsx';
 import {ROUTES} from './constants/routes.ts';
 import {
     LoginPage, 
@@ -12,10 +12,9 @@ import {
 
 function AuthLayout() {
     return (
-    //   <LoginLayout>
-    //     <Outlet />
-    //   </LoginLayout>
-    <Outlet />
+      <Layout>
+        <Outlet />
+      </Layout>
     ) 
   }
 const router = createBrowserRouter([
