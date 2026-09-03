@@ -3,19 +3,25 @@ import Style from "./formPasswordField.module.css";
 import { Input, Label } from "../../../UI_Elements/index.tsx";
 import { ForgotPassword } from "../../index.tsx";
 
+type ForgotPasswordProps = {
+    willShow: true,
+    linkURL: string
+} | {
+    willShow: false
+}
 interface PasswordFieldWrapperProps { 
     labelText: string, 
     id: string, 
     required: boolean, 
-    showForgot: boolean 
+    forgotPasswordProps: ForgotPasswordProps 
 }
-function PasswordFieldWrapper({ labelText, id, required, showForgot=false }: PasswordFieldWrapperProps) {
+function PasswordFieldWrapper({ labelText, id, required, forgotPasswordProps={willShow:false} }: PasswordFieldWrapperProps) {
     return (
         <div className={Style.formGroup}>
             <div className={Style.passwordHeader}>
                 <Label htmlFor={id} text={labelText} />
 
-                {showForgot && <ForgotPassword/>}
+                {forgotPasswordProps.willShow && <ForgotPassword linkURL={forgotPasswordProps?.linkURL}/>}
             </div>
 
             <div className={Style.passwordInput}>

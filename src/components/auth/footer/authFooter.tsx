@@ -1,12 +1,12 @@
 import React from "react";
 import Style from "./authFooter.module.css";
 
-function Footer() {
+function Footer({linkText, linkURL, labelMessage}: {linkText: string, linkURL: string, labelMessage?: string}) {
     return (
         <div className={Style.guestText}>
-            <span>Just browsing?</span>
-            <a href="/list">
-                Continue as Guest
+            {labelMessage && <span>{labelMessage}</span>}
+            <a href={linkURL}>
+                {linkText}
             </a>
         </div>
     )

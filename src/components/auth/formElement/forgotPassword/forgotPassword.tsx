@@ -1,9 +1,9 @@
 import React from "react";
 import Style from "./forgotPassword.module.css";
 
-function ForgotPassword() {
+function ForgotPassword({linkURL}: {linkURL: string}) {
     return (
-        <a href="/forgot" className={Style.forgotLink}>
+        <a href={linkURL} className={Style.forgotLink}>
             Forgot password?
         </a>
     )
