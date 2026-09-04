@@ -19,6 +19,7 @@
     font-weight: 500;
     text-decoration: none;
     transition: color 0.2s ease;
+    white-space: nowrap;
 }
 
 .signIn:hover {
@@ -49,7 +50,7 @@
         #315efb,
         #9b2cff
     );
-
+    white-space: nowrap;
     color: #ffffff;
 
     font-size: 15px;
