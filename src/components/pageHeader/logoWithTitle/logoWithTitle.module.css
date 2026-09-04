@@ -1,0 +1,21 @@
+.logo {
+    width: 35px;
+    height: 35px;
+    border-radius: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg,
+            #5b5cf0,
+            #8a2be2);
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.pageTitle {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 700;
+    color: #182033;
+}

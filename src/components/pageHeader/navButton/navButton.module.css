@@ -1,0 +1,71 @@
+/* =========================
+   Right side navigation
+========================= */
+.navActions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+/* =========================
+   Sign in
+========================= */
+.signIn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #374151;
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.signIn:hover {
+    color: #111827;
+}
+
+.signInIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+/* =========================
+   Get Started button
+========================= */
+
+.getStarted {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 40px;
+    padding: 0 18px;
+
+    border-radius: 10px;
+
+    background: linear-gradient(
+        135deg,
+        #315efb,
+        #9b2cff
+    );
+
+    color: #ffffff;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    box-shadow: 0 4px 10px rgba(49, 94, 251, 0.25);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.getStarted:hover {
+    transform: translateY(-1px);
+
+    box-shadow: 0 6px 14px rgba(49, 94, 251, 0.3);
+}

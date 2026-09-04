@@ -1,61 +1,24 @@
 import React from "react"
 import Style from "./dashboard_page.module.css"
-
+import { ROUTES } from "../../constants/routes.ts";
+import PageHeader from "../../components/pageHeader/header/pageHeader.tsx";
+import NavButton from "../../components/pageHeader/navButton/navButton.tsx";
+const navButtons = [
+    {
+      buttonText: "Sign in",
+      redirectTo: ROUTES.LOGIN,
+      className: "signIn"
+    },
+    {
+      buttonText: "Create free account",
+      redirectTo: ROUTES.SIGNUP,
+      className: "getStarted"
+    }
+  ]
 function DashboardPage() {
     return (
         <div>
-            <header className={Style.siteHeader}>
-                <nav className={Style.navbar}>
-
-                    <a href="/" className={Style.brand}>
-                        <span className={Style.brandIcon}>
-                            <svg
-                                width="28"
-                                height="28"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <rect
-                                    x="3"
-                                    y="3"
-                                    width="18"
-                                    height="18"
-                                    rx="2"
-                                    stroke="white"
-                                    stroke-width="2"
-                                />
-
-                                <path
-                                    d="M7 12L10.5 15.5L17 8.5"
-                                    stroke="white"
-                                    stroke-width="2"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                />
-                            </svg>
-                        </span>
-
-                        <span className={Style.brandName}>Task Hub</span>
-                    </a>
-
-                    {/* <!-- Navigation actions --> */}
-                    <div className={Style.navActions}>
-                        <a href="/auth/login" className={Style.signIn}>
-                            <span className={Style.signInIcon}>
-                                {/* <!-- icon --> */}
-                            </span>
-                            <span>Sign in</span>
-                        </a>
-
-                        <a href="/auth/signup" className={Style.getStarted}>
-                            Create free account
-                        </a>
-                    </div>
-
-                </nav>
-            </header>
-
+            <PageHeader siteName="Task Hub" isRedirectToBackPage={false} NavButton={<NavButton navButtons={navButtons} />}/>
             <main>
 
                 {/* <!-- =========================

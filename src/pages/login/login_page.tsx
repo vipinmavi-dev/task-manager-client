@@ -9,9 +9,9 @@ import {
     Prompt,
     Footer
 } from "../../components/auth/index.tsx";
-import { 
-    Input, 
-    Label 
+import {
+    Input,
+    Label
 } from "../../components/UI_Elements/index.tsx";
 function LoginPage() {
     const forgotPasswordProps = {
@@ -30,18 +30,18 @@ function LoginPage() {
                         <InputFieldWrapper> {/* Email */}
                             <Label htmlFor="userEmail" text="Email address" />
                             <Input type="email" placeholder="you@example.com" id="userEmail" required={true} />
-                        </InputFieldWrapper> 
+                        </InputFieldWrapper>
                         <PasswordFieldWrapper labelText={"Password"} id="password" required={true} forgotPasswordProps={forgotPasswordProps} /> {/* Password */}
                         <SubmitButton text="Sign in" icon="↪" /> {/* Sign In */}
                     </>
                 }
                 loginPrompt={
                     <>
-                        <Prompt message="Don't have an account?" linkText="Create one" linkTo={ROUTES.SIGNUP}/> {/* Register */}
+                        <Prompt message="Don't have an account?" linkText="Create one" linkTo={ROUTES.SIGNUP} /> {/* Register */}
                     </>
                 }
             />
-            <Footer linkText="Continue as Guest" linkURL={ROUTES.LIST} labelMessage="Just browsing?"/> {/* Guest */}
+            <Footer linkText="Continue as Guest" linkURL={ROUTES.LIST} labelMessage="Just browsing?" /> {/* Guest */}
         </>
     )
 }
