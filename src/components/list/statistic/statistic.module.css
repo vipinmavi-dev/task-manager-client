@@ -78,3 +78,71 @@
     color: #8791a5;
     font-weight: 500;
   }
+  /* =========================
+     Tablet / iPad
+  ========================= */
+  @media (max-width: 1024px) {
+  
+    .statisticsGrid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  
+    .statCard {
+      min-height: 74px;
+    }
+  }
+  
+  /* =========================
+     Small Tablet
+  ========================= */
+  
+  @media (max-width: 768px) {
+  
+    .statisticsGrid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  /* =========================
+     Mobile
+  ========================= */
+  
+  @media (max-width: 576px) {
+    .statisticsGrid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 7px;
+      display: none;
+    }
+  
+    .statCard {
+      min-height: 68px;
+      padding: 12px;
+      gap: 9px;
+      border-radius: 13px;
+    }
+  
+    .statIcon {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      font-size: 18px;
+    }
+  
+    .statValue {
+      font-size: 20px;
+    }
+  
+    .statLabel {
+      font-size: 11px;
+    }
+  }
+  
+  /* =========================
+     Very Small Mobile
+  ========================= */
+  
+  @media (max-width: 380px) {
+    .statisticsGrid {
+      grid-template-columns: 1fr;
+    }
+  }
