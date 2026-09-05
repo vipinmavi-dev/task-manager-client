@@ -5,6 +5,7 @@
   .filterContainer {
     min-height: 66px;
     padding: 12px;
+    
   
     display: flex;
     align-items: center;
@@ -91,4 +92,68 @@
   
     outline: none;
     cursor: pointer;
+  }
+  
+  /* =========================
+     Small Tablet
+  ========================= */
+  
+  @media (max-width: 768px) {
+  
+    .filterContainer {
+      flex-wrap: wrap;
+    }
+  
+    .searchWrapper {
+      flex-basis: calc(100% - 35px);
+    }
+  
+    .filterIcon {
+      order: 2;
+    }
+  
+    .filterSelect {
+      flex: 1;
+      width: auto;
+    }
+  }
+  
+  /* =========================
+     Mobile
+  ========================= */
+  
+  @media (max-width: 576px) {
+  
+    .filterContainer {
+      padding: 10px;
+      gap: 8px;
+      border-radius: 13px;
+      margin-bottom: 16px;
+    }
+  
+    .searchWrapper {
+      flex-basis: 100%;
+    }
+  
+    .filterIcon {
+      display: none;
+    }
+  
+    .filterSelect {
+      flex: 1;
+      min-width: 0;
+      font-size: 13px;
+    }
+  }
+  
+  /* =========================
+     Very Small Mobile
+  ========================= */
+  
+  @media (max-width: 380px) {
+  
+    .filterSelect {
+      font-size: 12px;
+      padding: 0 8px;
+    }
   }

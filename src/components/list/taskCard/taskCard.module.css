@@ -218,3 +218,73 @@
     font-size: 14px;
     padding: 10px;
   }
+  /* =========================
+     Tablet / iPad
+  ========================= */
+  @media (max-width: 1024px) {
+  
+    .taskGrid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  /* =========================
+     Small Tablet
+  ========================= */
+  
+  @media (max-width: 768px) {
+    .taskGrid {
+      gap: 14px;
+    }
+  }
+  
+  /* =========================
+     Mobile
+  ========================= */
+  
+  @media (max-width: 576px) {
+    .taskGrid {
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+  
+    .taskCard {
+      min-height: 260px;
+      padding: 18px;
+    }
+  
+    .taskTopBorder {
+      top: 18px;
+      left: 18px;
+    }
+  
+    .taskHeader {
+      margin-top: 17px;
+    }
+  
+    .taskTitle {
+      font-size: 15px;
+    }
+  
+    .taskDescription {
+      margin-top: 14px;
+      font-size: 13px;
+    }
+  
+    .taskDates {
+      font-size: 10px;
+    }
+  }
+  
+  /* =========================
+     Very Small Mobile
+  ========================= */
+  
+  @media (max-width: 380px) {
+  
+    .taskDates {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 4px;
+    }
+  }
