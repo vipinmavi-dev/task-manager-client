@@ -5,20 +5,20 @@ import PageHeader from "../../components/pageHeader/header/pageHeader.tsx";
 import NavButton from "../../components/pageHeader/navButton/navButton.tsx";
 const navButtons = [
     {
-      buttonText: "Sign in",
-      redirectTo: ROUTES.LOGIN,
-      className: "signIn"
+        buttonText: "Sign in",
+        redirectTo: ROUTES.LOGIN,
+        className: "signIn"
     },
     {
-      buttonText: "Create free account",
-      redirectTo: ROUTES.SIGNUP,
-      className: "getStarted"
+        buttonText: "Create free account",
+        redirectTo: ROUTES.SIGNUP,
+        className: "getStarted"
     }
-  ]
+]
 function DashboardPage() {
     return (
         <div>
-            <PageHeader siteName="Task Hub" isRedirectToBackPage={false} NavButton={<NavButton navButtons={navButtons} />}/>
+            <PageHeader siteName="Task Hub" isRedirectToBackPage={false} NavButton={<NavButton navButtons={navButtons} />} />
             <main>
 
                 {/* <!-- =========================
