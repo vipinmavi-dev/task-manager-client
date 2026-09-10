@@ -1,10 +1,8 @@
 import React from "react";
-import LoginPage from "../pages/index.tsx";
+import { LoginPage } from "../pages/index.tsx";
 
 function Login_controller() {
-    return (
-
-    )
+    return <LoginPage />
 }
 
 export default Login_controller;

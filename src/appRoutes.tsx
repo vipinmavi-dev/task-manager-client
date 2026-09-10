@@ -10,6 +10,9 @@ import {
     NewTaskPage,
     ForgotPasswordPage
 } from "./pages/index.tsx";
+import { 
+    LoginController,
+} from "./controller/index.tsx";
 
 function AuthLayout() {
     return (
@@ -35,7 +38,7 @@ const router = createBrowserRouter([
         loader: ()=>{},
         children: [
             { index:true, element:<Navigate to={ROUTES.LOGIN} replace/> },
-            { path: ROUTES.LOGIN, element: <LoginPage/> },
+            { path: ROUTES.LOGIN, element: <LoginController/> },
             { path: ROUTES.SIGNUP, element: <SingUpPage/> },
             { path: ROUTES.FORGOT_PASSWORD, element: <ForgotPasswordPage/> },
         ]
