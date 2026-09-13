@@ -3,8 +3,6 @@ import { RouterProvider, createBrowserRouter, Outlet, Navigate } from 'react-rou
 import {Layout} from './components/auth/index.tsx';
 import {ROUTES} from './constants/routes.ts';
 import {
-    LoginPage, 
-    SingUpPage, 
     DashboardPage,
     TaskPage,
     NewTaskPage,
@@ -12,6 +10,7 @@ import {
 } from "./pages/index.tsx";
 import { 
     LoginController,
+    SignUpController
 } from "./controller/index.tsx";
 
 function AuthLayout() {
@@ -39,7 +38,7 @@ const router = createBrowserRouter([
         children: [
             { index:true, element:<Navigate to={ROUTES.LOGIN} replace/> },
             { path: ROUTES.LOGIN, element: <LoginController/> },
-            { path: ROUTES.SIGNUP, element: <SingUpPage/> },
+            { path: ROUTES.SIGNUP, element: <SignUpController/> },
             { path: ROUTES.FORGOT_PASSWORD, element: <ForgotPasswordPage/> },
         ]
     },
