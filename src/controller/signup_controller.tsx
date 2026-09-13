@@ -3,14 +3,12 @@ import {useNavigate} from "react-router-dom";
 import { SingUpPage } from "../pages/index.tsx";
 import { validatePassword } from "../utils/validation.ts";
 import { signupUser } from "../services/auth.service.ts";
-import { toast } from 'react-toastify';
+import { FailedToast } from "../utils/toast.ts";
 import { ROUTES } from "../constants/routes.ts";
 
 function SingUpController() {
     const [form, setFormData] = useState({});
     const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-    const SuccessToad = (mes:string) => toast.success(mes);
-    const FailedToad = (mes:string) => toast.error(mes);
     const navigate = useNavigate();
 
     // Handle input change    
@@ -51,11 +49,12 @@ function SingUpController() {
         var res;
         try {
             res = await signupUser(payload);
-            SuccessToad(res.message); 
-            navigate(ROUTES.LOGIN);
+            navigate(ROUTES.LOGIN, {
+                state: { message: "Account created successfully! Please login." }
+            });
         } catch (error) {
-            console.log(error.toJSON().message);
-            FailedToad(error.message);
+            if(error?.response)FailedToast(error?.response?.data?.message || "Something went wrong!"); // Server respond with error status
+            else FailedToast(error.message); // Network error
         }
 
     }
