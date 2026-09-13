@@ -24,7 +24,7 @@ function SingUp({ form, handleChange, signUpUser }:
         <>
             <Header pageTitle={"Create an account"} subTitle={"Join Productivity Hub for free"} />
             <Form
-                signUpUser={signUpUser}
+                submitHandler={signUpUser}
                 formContent={
                     <>
                         <InputFieldWrapper> {/* Full name */}

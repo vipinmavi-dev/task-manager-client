@@ -4,13 +4,13 @@ import Style from "./authForm.module.css";
 interface FormProps {
     formContent?: React.ReactNode, 
     loginPrompt?: React.ReactNode,
-    signUpUser?: (e: React.FormEvent<HTMLFormElement>) => void
+    submitHandler?: (e: React.FormEvent<HTMLFormElement>) => void
 }
 
-function Form({formContent, loginPrompt, signUpUser}: FormProps) {
+function Form({formContent, loginPrompt, submitHandler}: FormProps) {
     return (
         <div className={Style.loginCard}>
-            <form onSubmit={signUpUser}>
+            <form onSubmit={submitHandler}>
                 {formContent}
             </form>
             {loginPrompt}

@@ -13,7 +13,14 @@ import {
     Input,
     Label
 } from "../../components/UI_Elements/index.tsx";
-function LoginPage() {
+function LoginPage({handleChange, form, userLogin}: {
+    handleChange: (e:React.ChangeEvent<HTMLInputElement>)=>void,
+    form: {
+        email: string;
+        password: string;
+    },
+    userLogin : (e: React.FormEvent<HTMLFormElement>)=>void
+}) {
     const forgotPasswordProps = {
         willShow: true,
         linkURL: ROUTES.FORGOT_PASSWORD
@@ -25,13 +32,26 @@ function LoginPage() {
 
             {/* Login Card */}
             <Form
+                submitHandler={userLogin}
                 formContent={
                     <>
                         <InputFieldWrapper> {/* Email */}
-                            <Label htmlFor="userEmail" text="Email address" />
-                            <Input type="email" placeholder="you@example.com" id="userEmail" required={true} />
+                            <Label htmlFor="email" text="Email address" />
+                            <Input 
+                                type="email" 
+                                placeholder="you@example.com" 
+                                id="email" 
+                                required={true} 
+                                value={form.email} 
+                                handleChange= {handleChange}
+                            />
                         </InputFieldWrapper>
-                        <PasswordFieldWrapper labelText={"Password"} id="password" required={true} forgotPasswordProps={forgotPasswordProps} /> {/* Password */}
+                        <PasswordFieldWrapper 
+                            id="password" 
+                            form={form}
+                            handleChange={handleChange}
+                            forgotPasswordProps={forgotPasswordProps} 
+                        /> {/* Password */}
                         <SubmitButton text="Sign in" icon="↪" /> {/* Sign In */}
                     </>
                 }

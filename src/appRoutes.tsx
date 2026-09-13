@@ -3,12 +3,12 @@ import { RouterProvider, createBrowserRouter, Outlet, Navigate } from 'react-rou
 import {Layout} from './components/auth/index.tsx';
 import {ROUTES} from './constants/routes.ts';
 import {
-    DashboardPage,
-    TaskPage,
     NewTaskPage,
     ForgotPasswordPage
 } from "./pages/index.tsx";
 import { 
+    TaskListController,
+    DashboardController,
     LoginController,
     SignUpController
 } from "./controller/index.tsx";
@@ -26,8 +26,8 @@ const router = createBrowserRouter([
         element: <Outlet />,
         loader: ()=>{},
         children: [
-            { path: ROUTES.DEFAULT, element: <DashboardPage/> },
-            { path: ROUTES.LIST, element: <TaskPage/> },
+            { path: ROUTES.DEFAULT, element: <DashboardController/> },
+            { path: ROUTES.LIST, element: <TaskListController/> },
             { path: ROUTES.ADD, element: <NewTaskPage/> },
         ]
     },
