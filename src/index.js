@@ -3,12 +3,14 @@ import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
 import './style/global.css';
 import AppRoutes from './appRoutes.tsx';
+import { ToastContainer } from 'react-toastify';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
   <React.StrictMode>
-    <AppRoutes/>
+    <ToastContainer/>
+      <AppRoutes/>
   </React.StrictMode>
 );
 

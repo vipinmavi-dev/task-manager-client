@@ -9,23 +9,36 @@ type ForgotPasswordProps = {
 } | {
     willShow: false
 }
-interface PasswordFieldWrapperProps { 
-    labelText: string, 
-    id: string, 
-    required: boolean, 
-    forgotPasswordProps: ForgotPasswordProps 
+interface PasswordFieldWrapperProps {
+    id: string,
+    form: any,
+    handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
+    forgotPasswordProps?: ForgotPasswordProps
 }
-function PasswordFieldWrapper({ labelText, id, required, forgotPasswordProps={willShow:false} }: PasswordFieldWrapperProps) {
+function PasswordFieldWrapper({
+    id,
+    forgotPasswordProps = { willShow: false },
+    form,
+    handleChange
+}: PasswordFieldWrapperProps) {
     return (
         <div className={Style.formGroup}>
+            {/* Forgot password button */}
             <div className={Style.passwordHeader}>
-                <Label htmlFor={id} text={labelText} />
+                <Label htmlFor="password" text="Password" />
 
-                {forgotPasswordProps.willShow && <ForgotPassword linkURL={forgotPasswordProps?.linkURL}/>}
+                {forgotPasswordProps.willShow && <ForgotPassword linkURL={forgotPasswordProps?.linkURL} />}
             </div>
-
+            {/* Password input field with show & hide toggle button */}
             <div className={Style.passwordInput}>
-                <Input type="password" placeholder="••••••••" id={id} required={required} />
+                <Input
+                    type="password"
+                    placeholder="••••••••"
+                    id={id}
+                    required={true}
+                    value={form?.[id]} 
+                    handleChange={handleChange} 
+                />
 
                 <button
                     type="button"
