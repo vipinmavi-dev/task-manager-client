@@ -52,6 +52,7 @@ function SingUpController() {
             navigate(ROUTES.LOGIN, {
                 state: { message: "Account created successfully! Please login." }
             });
+            console.log(res);
         } catch (error) {
             if(error?.response)FailedToast(error?.response?.data?.message || "Something went wrong!"); // Server respond with error status
             else FailedToast(error.message); // Network error
