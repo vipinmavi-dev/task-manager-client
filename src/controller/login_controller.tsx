@@ -4,8 +4,11 @@ import { LoginPage } from "../pages/index.tsx";
 import { loginUser } from "../services/auth.service.ts";
 import { SuccessToast, FailedToast } from "../utils/toast.ts";
 import { ROUTES } from "../constants/routes.ts";
+import { useDispatch } from "react-redux";
+import { loginSuccess } from "../redux/auth/auth.ts";
 
 function Login_controller() {
+    const dispatch = useDispatch();
     const location = useLocation();
     const navigate = useNavigate();
     const hasShown = useRef(false);
@@ -39,8 +42,15 @@ function Login_controller() {
             password: form?.password
         }
         try {
-            await loginUser(payload);
-            // TODO: Store user and continue to Task operation
+            const user = await loginUser(payload);
+            dispatch(loginSuccess({
+                data: user.data?.data
+            }));
+            localStorage.setItem("User", JSON.stringify({
+                data: user.data?.data,
+                isAuthenticated: true
+            }));
+            
             navigate(ROUTES.LIST, {
                 state: { message: "Login successful! Welcome back."}
             })

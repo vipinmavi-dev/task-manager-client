@@ -11,7 +11,6 @@ interface NavButtonsProps {
   navButtons: NavButtonProps[];
 }
 function NavButton({ navButtons }: NavButtonsProps) {
-  console.log(navButtons);
   return (
     <div className={Style.navActions}>
       {navButtons.map((button) => (

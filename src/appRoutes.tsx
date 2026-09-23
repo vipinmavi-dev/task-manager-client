@@ -1,7 +1,9 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { RouterProvider, createBrowserRouter, Outlet, Navigate } from 'react-router-dom';
 import {Layout} from './components/auth/index.tsx';
 import {ROUTES} from './constants/routes.ts';
+import { loginSuccess } from './redux/auth/auth.ts';
 import {
     NewTaskPage,
     ForgotPasswordPage
@@ -33,7 +35,7 @@ const router = createBrowserRouter([
     },
     {
         path: ROUTES.AUTH,
-        element: AuthLayout(),
+        element: <AuthLayout/>,
         loader: ()=>{},
         children: [
             { index:true, element:<Navigate to={ROUTES.LOGIN} replace/> },
@@ -44,5 +46,27 @@ const router = createBrowserRouter([
     },
 ]);
 export default function AppRoutes() {
+    // Sync the User state from localStorage to Redux store on app load
+    const dispatch = useDispatch();
+    const isLogin = useSelector((state: any) => state.User.isAuthenticated);
+
+    useEffect(() => {
+        if (isLogin) return;
+
+        const storedUser = localStorage.getItem('User');
+        const user = storedUser
+                    ? JSON.parse(storedUser)
+                    : null;
+        if (!user) return;
+
+        try {
+            dispatch(loginSuccess({
+                data: user.data,
+                isAuthenticated: user.isAuthenticated,
+            }));
+        } catch {
+            localStorage.removeItem('User');
+        }
+    }, [isLogin, dispatch]);
     return <RouterProvider router={router} />;
 }
