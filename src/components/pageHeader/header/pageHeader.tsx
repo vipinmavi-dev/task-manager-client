@@ -7,7 +7,6 @@ import LogoWithTitle from "../logoWithTitle/logoWithTitle.tsx";
 
 function PageHeader({ isRedirectToBackPage = true, siteName, NavButton }: 
   { isRedirectToBackPage?: boolean, siteName: string, NavButton: React.ReactNode }) {
-    console.log(siteName);
   return (
     <header className={Style.header}>
       <div className={Style.headerInner}>

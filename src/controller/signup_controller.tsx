@@ -46,13 +46,12 @@ function SingUpController() {
         // todo: Prevent the multiple request in very short time
         e.preventDefault();
         const {confirmPassword, ...payload} = form;
-        var res;
+        
         try {
-            res = await signupUser(payload);
+            await signupUser(payload);
             navigate(ROUTES.LOGIN, {
                 state: { message: "Account created successfully! Please login." }
             });
-            console.log(res);
         } catch (error) {
             if(error?.response)FailedToast(error?.response?.data?.message || "Something went wrong!"); // Server respond with error status
             else FailedToast(error.message); // Network error

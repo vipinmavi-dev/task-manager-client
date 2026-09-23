@@ -2,42 +2,42 @@ import React from "react";
 import Style from "./taskCard.module.css";
 const tasks = [
     {
-      title: "Complete project documentation",
+      name: "Complete project documentation",
       description:
         "Write up the full technical spec and API reference for the v2 release.",
       status: "In Progress",
       priority: "High",
-      created: "2026-04-05",
-      updated: "2026-04-07",
+      created_at: "2026-04-05",
+      updated_at: "2026-04-07",
       color: "red",
     },
     {
-      title: "Review code changes",
+      name: "Review code changes",
       description: "Go through the open PRs and leave actionable feedback.",
       status: "To Do",
       priority: "Medium",
-      created: "2026-04-06",
-      updated: "2026-04-06",
+      created_at: "2026-04-06",
+      updated_at: "2026-04-06",
       color: "yellow",
     },
     {
-      title: "Fix login redirect bug",
+      name: "Fix login redirect bug",
       description:
         "Users are being sent to /home instead of /dashboard after OAuth.",
       status: "Completed",
       priority: "High",
-      created: "2026-04-03",
-      updated: "2026-04-08",
+      created_at: "2026-04-03",
+      updated_at: "2026-04-08",
       color: "red",
     },
     {
-      title: "Update dependencies",
+      name: "Update dependencies",
       description:
         "Bump all packages to latest stable and resolve any breaking changes.",
       status: "Delayed",
       priority: "Low",
-      created: "2026-04-01",
-      updated: "2026-04-05",
+      created_at: "2026-04-01",
+      updated_at: "2026-04-05",
       color: "green",
     },
 ];
@@ -46,19 +46,19 @@ function TaskCard() {
     return (
         <section className={Style.taskGrid}>
           {tasks.map((task) => (
-            <article className={Style.taskCard} key={task.title}>
+            <article className={Style.taskCard} key={task.name}>
               <div
                 className={`${Style.taskTopBorder} ${Style[task.color]}`}
               />
 
               <div className={Style.taskHeader}>
                 <h2 className={Style.taskTitle}>
-                  {task.title}
+                  {task.name}
                 </h2>
 
                 <button
                   className={Style.deleteButton}
-                  aria-label={`Delete ${task.title}`}
+                  aria-label={`Delete ${task.name}`}
                 >
                   ♧
                 </button>
@@ -121,11 +121,11 @@ function TaskCard() {
               {/*-------------- End ------------*/}
               <div className={Style.taskDates}>
                 <span>
-                  Created {task.created}
+                  Created {task.created_at}
                 </span>
 
                 <span>
-                  Updated {task.updated}
+                  Updated {task.updated_at}
                 </span>
               </div>
             </article>
