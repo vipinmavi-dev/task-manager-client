@@ -1,22 +1,32 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Styles from "./addTask.module.css";
 
-type Priority = "Low" | "Medium" | "High";
+type NewTaskProps = {
+    handleInputChange: (
+        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    ) => void;
 
-function NewTask() {
-  const [priority, setPriority] = useState<Priority>("Medium");
+    handleSubmit: (
+        e: React.SubmitEvent<HTMLFormElement>
+    ) => void;
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+    form: {
+        name: string;
+        description: string;
+        priority_id: Number;
+    }
+};
 
-    // Add your task submission logic here.
-    console.log("Task submitted with priority:", priority);
-  };
-
+function NewTask({
+    handleInputChange,
+    handleSubmit,
+    form
+}: NewTaskProps) {
+  
+  const navigate = useNavigate();
   const handleClose = () => {
-    // Add your modal close logic here.
-    console.log("Close modal");
-    window.location.href = "/list"; // Redirect to home page or any other page
+    navigate("/list");
   };
 
   return (
@@ -54,12 +64,14 @@ function NewTask() {
 
             <input
               id="taskTitle"
-              name="title"
+              name="name"
               type="text"
               placeholder="What needs to be done?"
               className={`${Styles.input} ${Styles.titleInput}`}
               autoFocus
               required
+              value= {form.name}
+              onChange={handleInputChange}
             />
           </div>
 
@@ -75,6 +87,8 @@ function NewTask() {
               placeholder="Add details (optional)"
               className={Styles.textarea}
               rows={3}
+              value= {form.description}
+              onChange={handleInputChange}
             />
           </div>
 
@@ -85,17 +99,20 @@ function NewTask() {
             </span>
 
             <div className={Styles.priorityGroup}>
-              {(["Low", "Medium", "High"] as Priority[]).map(
-                (item) => (
+              {(["Low", "Medium", "High"]).map(
+                (item, index) => (
                   <button
                     key={item}
                     type="button"
+                    name="priority_id"
+                    placeholder={index + 1+" / "+ form.priority_id +"/ "+ item}
+                    value={index+1}
                     className={`${Styles.priorityButton} ${
-                      priority === item
-                        ? Styles.activePriority
+                      form.priority_id == index + 1
+                        ? Styles[item]
                         : ""
                     }`}
-                    onClick={() => setPriority(item)}
+                    onClick={handleInputChange}
                   >
                     {item}
                   </button>

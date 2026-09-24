@@ -1,54 +1,41 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Style from "./taskCard.module.css";
-const tasks = [
-    {
-      name: "Complete project documentation",
-      description:
-        "Write up the full technical spec and API reference for the v2 release.",
-      status: "In Progress",
-      priority: "High",
-      created_at: "2026-04-05",
-      updated_at: "2026-04-07",
-      color: "red",
-    },
-    {
-      name: "Review code changes",
-      description: "Go through the open PRs and leave actionable feedback.",
-      status: "To Do",
-      priority: "Medium",
-      created_at: "2026-04-06",
-      updated_at: "2026-04-06",
-      color: "yellow",
-    },
-    {
-      name: "Fix login redirect bug",
-      description:
-        "Users are being sent to /home instead of /dashboard after OAuth.",
-      status: "Completed",
-      priority: "High",
-      created_at: "2026-04-03",
-      updated_at: "2026-04-08",
-      color: "red",
-    },
-    {
-      name: "Update dependencies",
-      description:
-        "Bump all packages to latest stable and resolve any breaking changes.",
-      status: "Delayed",
-      priority: "Low",
-      created_at: "2026-04-01",
-      updated_at: "2026-04-05",
-      color: "green",
-    },
-];
 
-function TaskCard() {
+const StatusHash = {
+    "todo": "To Do",
+    "in_progress": "In Progress",
+    "completed": "Completed",
+    "delayed": "Delayed",
+    "cancelled": "Cancelled",
+}
+const PriorityColorHash = {
+    low: "green",
+    medium: "yellow",
+    high: "red"
+}
+const PriorityHash = {
+    low: "Low",
+    medium: "Medium",
+    high: "High"
+}
+function TaskCard({APItasks}: any) {
+    var tasks;
+    useEffect(() => {
+      tasks = APItasks?.map((task)=>{
+        return {
+          ...task,
+          status: StatusHash[task.status],
+          color: PriorityColorHash[task.priority]
+        }
+      })
+    },[])
+
     return (
         <section className={Style.taskGrid}>
-          {tasks.map((task) => (
+          {APItasks?.map((task) => (
             <article className={Style.taskCard} key={task.name}>
               <div
-                className={`${Style.taskTopBorder} ${Style[task.color]}`}
+                className={`${Style.taskTopBorder} ${Style[PriorityColorHash[task.priority]]}`}
               />
 
               <div className={Style.taskHeader}>
@@ -87,14 +74,14 @@ function TaskCard() {
                           : "◷"}
                   </span>
 
-                  {task.status}
+                  {StatusHash[task.status]}
                 </span>
 
                 <span
                   className={`${Style.priorityBadge} ${Style[task.priority.toLowerCase()]
                     }`}
                 >
-                  {task.priority}
+                  {PriorityHash[task.priority]}
                 </span>
               </div>
 
@@ -108,14 +95,15 @@ function TaskCard() {
                   Status
                 </label>
 
-                <select id="status" className={Style.select} defaultValue="">
+                <select id="status" className={Style.select} value={StatusHash[task.status]}>
                   <option value="" disabled>
                     Select status
                   </option>
-                  <option value="all">All</option>
-                  <option value="pending">Pending</option>
-                  <option value="completed">Completed</option>
-                  <option value="cancelled">Cancelled</option>
+                  {Object.entries(StatusHash).map(([value, label]) => (
+                      <option key={value} value={value}>
+                          {label}
+                      </option>
+                  ))}
                 </select>
               </div>
               {/*-------------- End ------------*/}

@@ -1,6 +1,6 @@
 import React from "react";
 import Style from "./navButton.module.css";
-
+import { useNavigate } from "react-router-dom";
 interface NavButtonProps {
   buttonText: string;
   redirectTo: string;
@@ -11,16 +11,17 @@ interface NavButtonsProps {
   navButtons: NavButtonProps[];
 }
 function NavButton({ navButtons }: NavButtonsProps) {
+  const navigate = useNavigate();
   return (
     <div className={Style.navActions}>
       {navButtons.map((button) => (
-        <a
+        <span
           key={button.redirectTo}
-          href={button.redirectTo}
+          onClick={() => {navigate(button.redirectTo)}}
           className={Style[button.className]}
         >
           {button.buttonText}
-        </a>
+        </span>
       ))}
     </div>
   )
