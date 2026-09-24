@@ -15,7 +15,7 @@ const navButtons = [
     className: "getStarted"
   }
 ]
-function TaskManager() {
+function TaskManager(props: any) {
   return (
     <main className={styles.page}>
       {/* Header */}
@@ -35,7 +35,7 @@ function TaskManager() {
         </div>
 
         {/* Task Grid */}
-        <TaskCard/>
+        <TaskCard APItasks= {props.APItasks}/>
       </div>
     </main>
   );

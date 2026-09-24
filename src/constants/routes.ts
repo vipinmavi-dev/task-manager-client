@@ -11,3 +11,7 @@ export const ROUTES = {
     CREATE_TICKET: "/ticket/create",
     NOT_FOUND: "*"
 }as const;
+
+export const API_ROUTES = {
+    TASK: "/api/tasks",
+}

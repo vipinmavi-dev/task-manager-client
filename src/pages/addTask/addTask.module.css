@@ -295,20 +295,37 @@
      ACTIVE PRIORITY
   ========================================= */
   
-  .activePriority {
-    border-color: #f0d47b;
-  
+  .Low {
+    border-color: #efda94;
     background: #fffdf3;
-  
     color: #c66a00;
   }
-  
-  .activePriority:hover {
-    border-color: #f0d47b;
-  
+  .Low:hover {
+    border-color: #efda94;
     background: #fffdf3;
-  
     color: #c66a00;
+  }
+  .Medium {
+    border-color: #ace2ae;
+    background: #fffdf3;
+    color: #7fb181;
+  }
+  
+  .Medium:hover {
+    border-color: #ace2ae;
+    background: #fffdf3;
+    color: #7fb181;
+  }
+  .High {
+    border-color: #f59e9e;
+    background: #fffdf3;
+    color: #f46b6b;
+  }
+  
+  .High:hover {
+    border-color: #f59e9e;
+    background: #fffdf3;
+    color: #f46b6b;
   }
   
   
@@ -377,8 +394,8 @@
     background:
       linear-gradient(
         100deg,
-        #a9c7ff,
-        #d087f3
+        #1969fd,
+        #ac2de7
       );
   
     color: #ffffff;
