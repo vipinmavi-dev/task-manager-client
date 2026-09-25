@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import Styles from "./addTask.module.css";
 
@@ -108,7 +108,7 @@ function NewTask({
                     placeholder={index + 1+" / "+ form.priority_id +"/ "+ item}
                     value={index+1}
                     className={`${Styles.priorityButton} ${
-                      form.priority_id == index + 1
+                      Number(form.priority_id) === index + 1
                         ? Styles[item]
                         : ""
                     }`}

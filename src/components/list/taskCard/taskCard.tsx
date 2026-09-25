@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Style from "./taskCard.module.css";
 
 const StatusHash = {
@@ -18,18 +18,7 @@ const PriorityHash = {
     medium: "Medium",
     high: "High"
 }
-function TaskCard({APItasks}: any) {
-    var tasks;
-    useEffect(() => {
-      tasks = APItasks?.map((task)=>{
-        return {
-          ...task,
-          status: StatusHash[task.status],
-          color: PriorityColorHash[task.priority]
-        }
-      })
-    },[])
-
+function TaskCard({APItasks, updateTask, Statuses, deleteTaskHandler}: any) {
     return (
         <section className={Style.taskGrid}>
           {APItasks?.map((task) => (
@@ -46,6 +35,7 @@ function TaskCard({APItasks}: any) {
                 <button
                   className={Style.deleteButton}
                   aria-label={`Delete ${task.name}`}
+                  onClick={() => deleteTaskHandler(task.id)}
                 >
                   ♧
                 </button>
@@ -95,13 +85,13 @@ function TaskCard({APItasks}: any) {
                   Status
                 </label>
 
-                <select id="status" className={Style.select} value={StatusHash[task.status]}>
+                <select onChange={updateTask} id="status" className={Style.select} value={task.status_id}>
                   <option value="" disabled>
                     Select status
                   </option>
-                  {Object.entries(StatusHash).map(([value, label]) => (
-                      <option key={value} value={value}>
-                          {label}
+                  {Statuses.map((status, index) => (
+                      <option key={index} name={task.id} value={status.id}>
+                          {StatusHash[status.name]}
                       </option>
                   ))}
                 </select>

@@ -5,7 +5,6 @@ import {Layout} from './components/auth/index.tsx';
 import {ROUTES} from './constants/routes.ts';
 import { loginSuccess } from './redux/auth/auth.ts';
 import {
-    NewTaskPage,
     ForgotPasswordPage
 } from "./pages/index.tsx";
 import { 
@@ -13,7 +12,7 @@ import {
     DashboardController,
     LoginController,
     SignUpController,
-    AddTask_Controller
+    AddTaskController
 } from "./controller/index.tsx";
 
 function AuthLayout() {
@@ -31,7 +30,7 @@ const router = createBrowserRouter([
         children: [
             { path: ROUTES.DEFAULT, element: <DashboardController/> },
             { path: ROUTES.LIST, element: <TaskListController/> },
-            { path: ROUTES.ADD, element: <AddTask_Controller/> },
+            { path: ROUTES.ADD, element: <AddTaskController/> },
         ]
     },
     {

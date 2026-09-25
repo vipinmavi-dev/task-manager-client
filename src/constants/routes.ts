@@ -14,4 +14,5 @@ export const ROUTES = {
 
 export const API_ROUTES = {
     TASK: "/api/tasks",
+    STATUS: "/api/status",
 }
