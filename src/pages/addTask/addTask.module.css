@@ -449,6 +449,9 @@
   
       padding: 12px;
     }
+    .input {
+      font-size: 16px
+    }
   
     .modal {
       border-radius: 13px;

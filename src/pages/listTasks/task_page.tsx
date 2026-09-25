@@ -35,7 +35,12 @@ function TaskManager(props: any) {
         </div>
 
         {/* Task Grid */}
-        <TaskCard APItasks= {props.APItasks}/>
+        <TaskCard 
+          APItasks= {props.APItasks} 
+          updateTask={props.updateTask}
+          Statuses={props.Statuses}
+          deleteTaskHandler={props.deleteTaskHandler}
+        />
       </div>
     </main>
   );

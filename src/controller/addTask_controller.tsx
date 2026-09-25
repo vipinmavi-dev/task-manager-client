@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import AddTask_View from "../pages/addTask/addTask_page.tsx";
+import AddTaskView from "../pages/addTask/addTask_page.tsx";
 import { addTask } from "../services/task.service.ts";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../constants/routes.ts";
@@ -38,7 +38,7 @@ const AddTask_Controller = () => {
         setForm({ ...form, [name]: value });
     }
     
-    return <AddTask_View 
+    return <AddTaskView 
                 handleInputChange={handleInputChange} 
                 handleSubmit={handleSubmit}
                 form={form}
