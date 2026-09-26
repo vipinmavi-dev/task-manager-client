@@ -50,7 +50,7 @@ function TaskListConroller() {
             console.error('Error updating task:', error);
         }
     }, [fetchTasks]); // Add fetchTasks as a dependency
-    const getStatuses = async ()=>{
+    const getStatuses = useCallback(async ()=>{
         try {
             const response = await getStatus();
             if (response.data.success) {
@@ -61,7 +61,7 @@ function TaskListConroller() {
         } catch (error) {
             console.error('Failed to fetch statuses', error);
         }
-    }
+    }, [dispatch]); // Add dispatch as a dependency
     const deleteTaskHandler = async (taskId: number) => {
         let decisson = window.confirm("Are you sure you want to delete this task?");
         if (!decisson) {
@@ -85,7 +85,7 @@ function TaskListConroller() {
             SuccessToast(location.state.message);
             hasShown.current = true;
         }
-    }, [location?.state, fetchTasks]); // Add fetchTasks to the dependency array
+    }, [location?.state, fetchTasks, getStatuses]); // Add fetchTasks to the dependency array
 
     return <TaskListPage 
                 Statuses={Statuses}
