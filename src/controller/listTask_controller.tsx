@@ -1,4 +1,4 @@
-import React,{useEffect, useRef, useCallback} from "react";
+import React,{useEffect, useRef, useCallback, useState} from "react";
 import { TaskListPage } from "../pages/index.tsx";
 import { useLocation } from "react-router-dom";
 import { SuccessToast } from "../utils/toast.ts";
@@ -6,6 +6,7 @@ import { getTasks, putTask, getStatus, deleteTask } from "../services/task.servi
 import { useDispatch, useSelector } from "react-redux";
 import { setTasks } from "../redux/task/task.ts";
 import { setStatus } from "../redux/status/status.redux.ts";
+import AddTask_Controller from "./addTask_controller.tsx";
 
 interface Task<T> {
     success: boolean;
@@ -23,6 +24,7 @@ interface Data {
 }
 function TaskListConroller() {
     const dispatch = useDispatch();
+    const [showAddTask, setShowAddTask] = useState(false);
     const APItasks = useSelector((state: any) => state.Tasks.data);
     const Statuses = useSelector((state: any) => state.Status.data);
     const location = useLocation();
@@ -86,13 +88,20 @@ function TaskListConroller() {
             hasShown.current = true;
         }
     }, [location?.state, fetchTasks, getStatuses]); // Add fetchTasks to the dependency array
+    const modalCloseHandler = () => {
+        setShowAddTask(false);
+    }
 
-    return <TaskListPage 
+    return <TaskListPage
                 Statuses={Statuses}
                 APItasks={APItasks} 
                 updateTask={updateTask} 
                 deleteTaskHandler={deleteTaskHandler}
-            />;
+                showAddTask={showAddTask}
+                setShowAddTask={setShowAddTask}
+            >
+                <AddTask_Controller modalCloseHandler={modalCloseHandler} />
+            </TaskListPage>
 }
 
 export default TaskListConroller;

@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../constants/routes.ts";
 // type Priority = "Low" | "Medium" | "High";
 
-const AddTask_Controller = () => {
+const AddTask_Controller = ({modalCloseHandler}:{modalCloseHandler: (a:boolean)=>void}) => {
     const navigate = useNavigate();
     const [form, setForm] = useState({
         name: "",
@@ -42,6 +42,7 @@ const AddTask_Controller = () => {
                 handleInputChange={handleInputChange} 
                 handleSubmit={handleSubmit}
                 form={form}
+                handleClose={()=>modalCloseHandler(false)}
             />
 }
 export default AddTask_Controller;

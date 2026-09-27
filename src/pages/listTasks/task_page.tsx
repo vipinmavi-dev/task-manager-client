@@ -8,14 +8,18 @@ import {
 } from "../../components/list/index.tsx";
 import PageHeader from "../../components/pageHeader/header/pageHeader.tsx";
 import NavButton from "../../components/pageHeader/navButton/navButton.tsx";
-const navButtons = [
-  {
-    buttonText: "+ New Task",
-    redirectTo: ROUTES.ADD,
-    className: "getStarted"
-  }
-]
+import { useNavigate } from "react-router-dom";
+
 function TaskManager(props: any) {
+  const navigate = useNavigate();
+  const navButtons = [
+    {
+      buttonText: "+ New Task",
+      // redirectTo: ROUTES.ADD,
+      method: () => {props.setShowAddTask(true)},
+      className: "getStarted"
+    }
+  ]
   return (
     <main className={styles.page}>
       {/* Header */}
@@ -42,6 +46,7 @@ function TaskManager(props: any) {
           deleteTaskHandler={props.deleteTaskHandler}
         />
       </div>
+      {props.showAddTask && props.children}
     </main>
   );
 }
