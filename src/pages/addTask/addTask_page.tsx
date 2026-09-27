@@ -1,5 +1,4 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import Styles from "./addTask.module.css";
 
 type NewTaskProps = {
@@ -16,18 +15,15 @@ type NewTaskProps = {
         description: string;
         priority_id: Number;
     }
+    modalHandler:()=>void;
 };
 
 function NewTask({
     handleInputChange,
     handleSubmit,
-    form
+    form,
+    modalHandler
 }: NewTaskProps) {
-  
-  const navigate = useNavigate();
-  const handleClose = () => {
-    navigate("/list");
-  };
 
   return (
     <div className={Styles.overlay}>
@@ -44,7 +40,7 @@ function NewTask({
           <button
             type="button"
             className={Styles.closeButton}
-            onClick={handleClose}
+            onClick={modalHandler}
             aria-label="Close"
           >
             ×
@@ -126,7 +122,7 @@ function NewTask({
             <button
               type="button"
               className={Styles.cancelButton}
-              onClick={handleClose}
+              onClick={modalHandler}
             >
               Cancel
             </button>

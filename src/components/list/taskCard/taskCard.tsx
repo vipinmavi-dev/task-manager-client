@@ -1,5 +1,6 @@
 import React from "react";
 import Style from "./taskCard.module.css";
+import { Pencil, Trash2 } from "lucide-react";
 
 const StatusHash = {
     "todo": "To Do",
@@ -18,7 +19,13 @@ const PriorityHash = {
     medium: "Medium",
     high: "High"
 }
-function TaskCard({APItasks, updateTask, Statuses, deleteTaskHandler}: any) {
+function TaskCard({
+  APItasks, 
+  updateTask, 
+  Statuses, 
+  deleteTaskHandler, 
+  modalHandler
+}: any) {
     return (
         <section className={Style.taskGrid}>
           {APItasks?.map((task) => (
@@ -32,13 +39,22 @@ function TaskCard({APItasks, updateTask, Statuses, deleteTaskHandler}: any) {
                   {task.name}
                 </h2>
 
-                <button
-                  className={Style.deleteButton}
-                  aria-label={`Delete ${task.name}`}
-                  onClick={() => deleteTaskHandler(task.id)}
-                >
-                  ♧
-                </button>
+                <div>
+                  <button
+                    onClick={() => modalHandler(true)}
+                    aria-label={`Edit ${task.name}`}
+                    className={Style.editButton}
+                  >
+                    <Pencil size={16}/>
+                  </button>
+                  <button
+                    aria-label={`Delete ${task.name}`}
+                    onClick={() => deleteTaskHandler(task.id)}
+                    className={Style.deleteButton}
+                  >
+                    <Trash2 size={16}/>
+                  </button>
+                </div>
               </div>
 
               <p className={Style.taskDescription}>

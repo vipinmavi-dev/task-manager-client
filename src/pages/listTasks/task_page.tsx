@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "./taskPage.module.css";
-import { ROUTES } from "../../constants/routes.ts";
 import {
   Statistics,
   SearchFilter,
@@ -8,18 +7,12 @@ import {
 } from "../../components/list/index.tsx";
 import PageHeader from "../../components/pageHeader/header/pageHeader.tsx";
 import NavButton from "../../components/pageHeader/navButton/navButton.tsx";
-const navButtons = [
-  {
-    buttonText: "+ New Task",
-    redirectTo: ROUTES.ADD,
-    className: "getStarted"
-  }
-]
+
 function TaskManager(props: any) {
   return (
     <main className={styles.page}>
       {/* Header */}
-      <PageHeader siteName="Task Manager" NavButton={<NavButton navButtons={navButtons} />}/>
+      <PageHeader siteName="Task Manager" NavButton={<NavButton navButtons={props.navButtons} />}/>
 
       <div className={styles.container}>
         {/* Statistics */}
@@ -40,8 +33,10 @@ function TaskManager(props: any) {
           updateTask={props.updateTask}
           Statuses={props.Statuses}
           deleteTaskHandler={props.deleteTaskHandler}
+          modalHandler={props.modalHandler}
         />
       </div>
+      {props.showAddTask && props.children}
     </main>
   );
 }

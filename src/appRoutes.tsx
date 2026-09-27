@@ -12,7 +12,6 @@ import {
     DashboardController,
     LoginController,
     SignUpController,
-    AddTaskController
 } from "./controller/index.tsx";
 
 function AuthLayout() {
@@ -30,7 +29,6 @@ const router = createBrowserRouter([
         children: [
             { path: ROUTES.DEFAULT, element: <DashboardController/> },
             { path: ROUTES.LIST, element: <TaskListController/> },
-            { path: ROUTES.ADD, element: <AddTaskController/> },
         ]
     },
     {
