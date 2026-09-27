@@ -15,14 +15,14 @@ type NewTaskProps = {
         description: string;
         priority_id: Number;
     }
-    handleClose:()=>void;
+    modalHandler:()=>void;
 };
 
 function NewTask({
     handleInputChange,
     handleSubmit,
     form,
-    handleClose
+    modalHandler
 }: NewTaskProps) {
 
   return (
@@ -40,7 +40,7 @@ function NewTask({
           <button
             type="button"
             className={Styles.closeButton}
-            onClick={handleClose}
+            onClick={modalHandler}
             aria-label="Close"
           >
             ×
@@ -122,7 +122,7 @@ function NewTask({
             <button
               type="button"
               className={Styles.cancelButton}
-              onClick={handleClose}
+              onClick={modalHandler}
             >
               Cancel
             </button>

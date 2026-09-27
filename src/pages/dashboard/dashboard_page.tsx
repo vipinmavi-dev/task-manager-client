@@ -3,19 +3,22 @@ import Style from "./dashboard_page.module.css"
 import { ROUTES } from "../../constants/routes.ts";
 import PageHeader from "../../components/pageHeader/header/pageHeader.tsx";
 import NavButton from "../../components/pageHeader/navButton/navButton.tsx";
-const navButtons = [
-    {
-        buttonText: "Sign in",
-        redirectTo: ROUTES.LOGIN,
-        className: "signIn"
-    },
-    {
-        buttonText: "Create free account",
-        redirectTo: ROUTES.SIGNUP,
-        className: "getStarted"
-    }
-]
+import { useNavigate } from "react-router-dom";
+
 function DashboardPage() {
+    const navigate = useNavigate();
+    const navButtons = [
+        {
+            buttonText: "Sign in",
+            method: ()=>navigate(ROUTES.LOGIN),
+            className: "signIn"
+        },
+        {
+            buttonText: "Create free account",
+            method: ()=>navigate(ROUTES.SIGNUP),
+            className: "getStarted"
+        }
+    ]
     return (
         <div>
             <PageHeader siteName="Task Hub" isRedirectToBackPage={false} NavButton={<NavButton navButtons={navButtons} />} />

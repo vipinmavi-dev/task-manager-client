@@ -6,7 +6,8 @@ import { getTasks, putTask, getStatus, deleteTask } from "../services/task.servi
 import { useDispatch, useSelector } from "react-redux";
 import { setTasks } from "../redux/task/task.ts";
 import { setStatus } from "../redux/status/status.redux.ts";
-import AddTask_Controller from "./addTask_controller.tsx";
+import AddTaskView from "../pages/addTask/addTask_page.tsx";
+import { addTask } from "../services/task.service.ts";
 
 interface Task<T> {
     success: boolean;
@@ -25,10 +26,22 @@ interface Data {
 function TaskListConroller() {
     const dispatch = useDispatch();
     const [showAddTask, setShowAddTask] = useState(false);
+    const [form, setForm] = useState({
+        name: "",
+        description: "",
+        priority_id: 1, // Default to Low priority
+    });
     const APItasks = useSelector((state: any) => state.Tasks.data);
     const Statuses = useSelector((state: any) => state.Status.data);
     const location = useLocation();
     const hasShown = useRef(false);
+    const navButtons = [
+        {
+          buttonText: "+ New Task",
+          method: () => {modalHandler(true)},
+          className: "getStarted"
+        }
+    ]
 
     const fetchTasks = useCallback(async () => {
         try {
@@ -88,10 +101,35 @@ function TaskListConroller() {
             hasShown.current = true;
         }
     }, [location?.state, fetchTasks, getStatuses]); // Add fetchTasks to the dependency array
-    const modalCloseHandler = () => {
-        setShowAddTask(false);
+    const modalHandler = (modelStatus:Boolean) => {
+        setShowAddTask(modelStatus);
     }
-
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        const payload = {
+            ...form,
+            priority_id: parseInt(form.priority_id, 10), // Ensure priority_id is a number
+        }
+        try {
+            await addTask(payload);
+            fetchTasks();
+            setForm({
+                name: "",
+                description: "",
+                priority_id: 1, // Reset to default Low priority
+            })
+            modalHandler(false);
+            SuccessToast("Task added successfully!");
+        } catch (error) {
+            console.error("Error adding task:", error);
+        }
+    };
+    const handleInputChange = (
+        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    ) => {
+        const { name, value } = e.target;
+        setForm({ ...form, [name]: value });
+    }
     return <TaskListPage
                 Statuses={Statuses}
                 APItasks={APItasks} 
@@ -99,8 +137,15 @@ function TaskListConroller() {
                 deleteTaskHandler={deleteTaskHandler}
                 showAddTask={showAddTask}
                 setShowAddTask={setShowAddTask}
+                modalHandler={modalHandler}
+                navButtons={navButtons}
             >
-                <AddTask_Controller modalCloseHandler={modalCloseHandler} />
+                <AddTaskView
+                    handleInputChange={handleInputChange} 
+                    handleSubmit={handleSubmit}
+                    form={form}
+                    modalHandler={()=>modalHandler(false)}
+                />
             </TaskListPage>
 }
 
