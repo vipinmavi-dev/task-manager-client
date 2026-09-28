@@ -3,9 +3,9 @@ import React from "react";
 type Type = "text" | "password" | "email" | "submit" | "number" | "date" | "file";
 export interface InputProps {
     type: Type;
-    placeholder?: string;
+    placeholder: string;
     id: string;
-    required?: boolean;
+    required: boolean;
     value: string;
     handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }

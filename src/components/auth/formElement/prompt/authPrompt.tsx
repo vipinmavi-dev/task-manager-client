@@ -7,7 +7,9 @@ interface AuthPromptProps {
     linkTo:string
 }
 
-function AuthPrompt({message, linkText, linkTo}: AuthPromptProps) {
+function AuthPrompt(
+    {message, linkText, linkTo}: AuthPromptProps) 
+{
     return (
         <div className={Style.registerText}>
             <span>{message}</span>

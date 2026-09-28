@@ -7,7 +7,9 @@ interface FormProps {
     submitHandler?: (e: React.FormEvent<HTMLFormElement>) => void
 }
 
-function Form({formContent, loginPrompt, submitHandler}: FormProps) {
+function Form(
+    {formContent, loginPrompt, submitHandler}: FormProps) 
+{
     return (
         <div className={Style.loginCard}>
             <form onSubmit={submitHandler}>

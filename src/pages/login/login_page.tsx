@@ -38,7 +38,11 @@ function LoginPage({handleChange, form, userLogin}: {
                 formContent={
                     <>
                         <InputFieldWrapper> {/* Email */}
-                            <Label htmlFor="email" text="Email address" />
+                            <Label 
+                                htmlFor="email" 
+                                text="Email address" 
+                                showRequiredSign={false}
+                            />
                             <Input 
                                 type="email" 
                                 placeholder="you@example.com" 

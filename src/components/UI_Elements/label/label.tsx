@@ -4,13 +4,14 @@ import Style from "./label.module.css";
 interface LabelProps {
     text: string;
     htmlFor: string;
-    required?: boolean;
+    showRequiredSign: boolean;
 }
 
-function Label({ htmlFor, text, required=false }: LabelProps) {
+function Label(
+    { htmlFor, text, showRequiredSign }: LabelProps) {
     return (
         <label className={Style.label} htmlFor={htmlFor}>
-            {text} {required && <span className={Style.required}>*</span>}
+            {text} {showRequiredSign && <span className={Style.required}>*</span>}
         </label>
     )
 }
