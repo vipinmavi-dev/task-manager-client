@@ -1,5 +1,8 @@
 import React from "react";
 import Styles from "./addTask.module.css";
+import FormInputFieldWrapper from "../../components/auth/formElement/InputFieldWrapper/formInputField.tsx";
+import {TextArea, Input, Label} from "../../components/UI_Elements/index.tsx";
+import Priority from "../../components/priority/priority.tsx";
 
 type NewTaskProps = {
     handleInputChange: (
@@ -15,16 +18,30 @@ type NewTaskProps = {
         description: string;
         priority_id: Number;
     }
-    modalHandler:()=>void;
+    addEditModel: {
+        status: boolean;
+        name: string;
+    }
+    modalHandler:(a)=>void;
 };
 
 function NewTask({
     handleInputChange,
     handleSubmit,
     form,
+    addEditModel,
     modalHandler
 }: NewTaskProps) {
-
+  const addTaskConst = {
+    title: "New Task",
+    submitButton: "Add Task",
+  }
+  const EditTaskConst = {
+    title: "Edit Task",
+    submitButton: "Update Task",
+  }
+  var pageConst = addEditModel.name === "addTask" ?
+  addTaskConst : EditTaskConst;
   return (
     <div className={Styles.overlay}>
       <div
@@ -35,7 +52,7 @@ function NewTask({
       >
         {/* Modal Header */}
         <header className={Styles.modalHeader}>
-          <h2 id="newTaskTitle">New Task</h2>
+          <h2 id="newTaskTitle">{pageConst.title}</h2>
 
           <button
             type="button"
@@ -53,76 +70,57 @@ function NewTask({
           onSubmit={handleSubmit}
         >
           {/* Title */}
-          <div className={Styles.formGroup}>
-            <label htmlFor="taskTitle">
-              Title <span className={Styles.required}>*</span>
-            </label>
-
-            <input
-              id="taskTitle"
-              name="name"
+          <FormInputFieldWrapper>
+            <Label
+              text="Title"
+              htmlFor="name"
+              required
+            />
+            <Input
+              id="name"
               type="text"
               placeholder="What needs to be done?"
-              className={`${Styles.input} ${Styles.titleInput}`}
-              autoFocus
               required
-              value= {form.name}
-              onChange={handleInputChange}
+              value={form.name}
+              handleChange={handleInputChange}
             />
-          </div>
+          </FormInputFieldWrapper>
 
           {/* Description */}
-          <div className={Styles.formGroup}>
-            <label htmlFor="taskDescription">
-              Description
-            </label>
 
-            <textarea
-              id="taskDescription"
-              name="description"
-              placeholder="Add details (optional)"
-              className={Styles.textarea}
-              rows={3}
-              value= {form.description}
-              onChange={handleInputChange}
+          <FormInputFieldWrapper>
+            <Label
+              text="Description"
+              htmlFor="taskTitle"
             />
-          </div>
+            <TextArea
+              required={false}
+              id="description"
+              placeholder="Add details (optional)"
+              value={form.description}
+              handleChange={handleInputChange}
+            />
+          </FormInputFieldWrapper>
 
           {/* Priority */}
-          <div className={Styles.formGroup}>
-            <span className={Styles.label}>
-              Priority
-            </span>
-
-            <div className={Styles.priorityGroup}>
-              {(["Low", "Medium", "High"]).map(
-                (item, index) => (
-                  <button
-                    key={item}
-                    type="button"
-                    name="priority_id"
-                    placeholder={index + 1+" / "+ form.priority_id +"/ "+ item}
-                    value={index+1}
-                    className={`${Styles.priorityButton} ${
-                      Number(form.priority_id) === index + 1
-                        ? Styles[item]
-                        : ""
-                    }`}
-                    onClick={handleInputChange}
-                  >
-                    {item}
-                  </button>
-                )
-              )}
-            </div>
-          </div>
+          <FormInputFieldWrapper>
+            <Label
+              text="Priority"
+              htmlFor="priority_id"
+            />
+            <Priority
+              form={form}
+              priority={form.priority_id.toString()}
+              onClick={handleInputChange}
+            />
+          </FormInputFieldWrapper>
 
           {/* Actions */}
           <div className={Styles.formActions}>
             <button
               type="button"
               className={Styles.cancelButton}
-              onClick={modalHandler}
+              onClick={()=>modalHandler({name:"", status: false})}
             >
               Cancel
             </button>
@@ -131,7 +129,7 @@ function NewTask({
               type="submit"
               className={Styles.addButton}
             >
-              Add Task
+              {pageConst.submitButton}
             </button>
           </div>
         </form>

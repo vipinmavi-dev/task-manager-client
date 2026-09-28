@@ -41,7 +41,7 @@ function TaskCard({
 
                 <div>
                   <button
-                    onClick={() => modalHandler(true)}
+                    onClick={() => modalHandler({name: "editTask", status: true, taskId: task.id})}
                     aria-label={`Edit ${task.name}`}
                     className={Style.editButton}
                   >

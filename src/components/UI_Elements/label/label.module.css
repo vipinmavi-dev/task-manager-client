@@ -1,6 +1,9 @@
 .label {
   color: #46536a;
-  font-size: 9px;
+  font-size: 12px;
   font-weight: 600;
   line-height: 1.2;
+}
+.required {
+  color: #e54848;
 }

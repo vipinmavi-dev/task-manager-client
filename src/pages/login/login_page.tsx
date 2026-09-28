@@ -13,6 +13,8 @@ import {
     Input,
     Label
 } from "../../components/UI_Elements/index.tsx";
+import {LogIn} from 'lucide-react';
+
 function LoginPage({handleChange, form, userLogin}: {
     handleChange: (e:React.ChangeEvent<HTMLInputElement>)=>void,
     form: {
@@ -52,7 +54,7 @@ function LoginPage({handleChange, form, userLogin}: {
                             handleChange={handleChange}
                             forgotPasswordProps={forgotPasswordProps} 
                         /> {/* Password */}
-                        <SubmitButton text="Sign in" icon="↪" /> {/* Sign In */}
+                        <SubmitButton text="Sign in" icon={<LogIn size={15} />} /> {/* Sign In */}
                     </>
                 }
                 loginPrompt={

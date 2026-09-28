@@ -2,6 +2,7 @@ import React from "react";
 import Style from "./formPasswordField.module.css";
 import { Input, Label } from "../../../UI_Elements/index.tsx";
 import { ForgotPassword } from "../../index.tsx";
+import { Eye, EyeOff } from "lucide-react";
 
 type ForgotPasswordProps = {
     willShow: true,
@@ -44,8 +45,11 @@ function PasswordFieldWrapper({
                     type="button"
                     className={Style.passwordToggle}
                     aria-label="Show password"
-                >
-                    ◉
+                > 
+                    {true ?
+                        <Eye size={16} />:
+                        <EyeOff size={16} />
+                    }
                 </button>
             </div>
         </div>

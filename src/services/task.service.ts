@@ -4,6 +4,9 @@ import { API_ROUTES } from '../constants/routes.ts';
 export const getTasks = async () => {
     return api.get(API_ROUTES.TASK);
 }
+export const getTask = async (id:number) => {
+    return api.get(`${API_ROUTES.TASK}/${id}`,);
+}
 export const getStatus = async () => {
     return api.get(API_ROUTES.STATUS);
 }
@@ -13,12 +16,10 @@ export const addTask = (task: { title: string; description: string, priority_id:
         task
     );
 }
-export const putTask = ({id, status_id}: {id: Number, status_id: Number }) => {
+export const putTask = (id:any, payload:any) => {
     return api.put(
         `${API_ROUTES.TASK}/${id}`,
-        {
-            status_id: status_id
-        }
+        payload
     );
 }
 export const deleteTask = (id: Number) => {

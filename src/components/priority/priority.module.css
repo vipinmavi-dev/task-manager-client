@@ -1,0 +1,61 @@
+.priorityGroup {
+    display: grid;
+    grid-template-columns:
+      repeat(3, minmax(0, 1fr));
+    gap: 7px;
+}
+.priorityButton {
+    height: 39px;
+    border: 1px solid #e1e6ed;
+    border-radius: 13px;
+    background: #f8fafc;
+    color: #68758a;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+      border-color 0.2s ease,
+      background 0.2s ease,
+      color 0.2s ease;
+  }
+.priorityButton:hover {
+    border-color: #cbd4df;
+    background: #f4f6f9;
+}
+/* =========================================
+    ACTIVE PRIORITY
+========================================= */
+  
+.Low {
+  border-color: #ace2ae;
+  background: #fffdf3;
+  color: #7fb181;
+}
+
+.Low:hover {
+  border-color: #ace2ae;
+  background: #fffdf3;
+  color: #7fb181;
+}
+.Medium {
+  border-color: #efda94;
+  background: #fffdf3;
+  color: #c66a00;
+}
+.Medium:hover {
+  border-color: #efda94;
+  background: #fffdf3;
+  color: #c66a00;
+}
+.High {
+  border-color: #f59e9e;
+  background: #fffdf3;
+  color: #f46b6b;
+}
+
+.High:hover {
+  border-color: #f59e9e;
+  background: #fffdf3;
+  color: #f46b6b;
+}

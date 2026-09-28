@@ -1,6 +1,5 @@
 import React from "react";
 import Style from "./pageHeader.module.css";
-// import NavButton from "../navButton/navButton.tsx";
 import RedirectToBackPage from "../backPageButton/backPageButton.tsx";
 import LogoWithTitle from "../logoWithTitle/logoWithTitle.tsx";
 
