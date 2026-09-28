@@ -7,7 +7,7 @@
    display: flex;
    align-items: center;
    justify-content: center;
-   gap: 6px;
+   gap: 4px;
    margin-top: 33px;
    border: none;
    border-radius: 13px;
@@ -17,7 +17,7 @@
        #9c16ed);
    color: #ffffff;
    font-family: inherit;
-   font-size: 15px;
+   font-size: 13px;
    font-weight: 600;
    cursor: pointer;
    box-shadow:
@@ -34,6 +34,14 @@
  .signInButton:active {
    transform: translateY(0);
  }
+ .signInButton:disabled {
+  background: #d1d5db;
+  cursor: not-allowed;
+  opacity: 0.7;
+  box-shadow: none;
+  transform: none;
+  color: #6b7280;
+}
  .signInButton span {
    font-size: 11px;
  }

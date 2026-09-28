@@ -1,5 +1,5 @@
 import React from "react";
-// import { ROUTES } from "../../constants/routes.ts";
+import { ROUTES } from "../../constants/routes.ts";
 import {
     Header,
     Form,
@@ -13,22 +13,34 @@ import {
     Input,
     Label
 } from "../../components/UI_Elements/index.tsx";
-
-function SingUp({ form, handleChange, signUpUser }: 
+import { UserRound } from "lucide-react";
+import { type SignUpPageProps } from "../../types/auth.ts";
+function SingUp(
     { 
-        form: any, 
-        handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
-        signUpUser: (e: React.FormEvent<HTMLFormElement>) => void
-    }) {
+        form, 
+        handleChange, 
+        signUpUser ,
+        isSubmitting,
+        showPassword,
+        makePasswordVisible,
+        makePasswordHidden
+    } : SignUpPageProps) {
     return (
         <>
-            <Header pageTitle={"Create an account"} subTitle={"Join Productivity Hub for free"} />
+            <Header 
+                pageTitle={"Create an account"} 
+                subTitle={"Join Productivity Hub for free"} 
+            />
             <Form
                 submitHandler={signUpUser}
                 formContent={
-                    <>
-                        <InputFieldWrapper> {/* Full name */}
-                            <Label htmlFor="fullName" text="Full name" />
+                    <>  {/* Full name */}
+                        <InputFieldWrapper> 
+                            <Label 
+                                htmlFor="fullName" 
+                                text="Full name"
+                                showRequiredSign={false} 
+                            />
                             <Input 
                                 type="text" 
                                 placeholder="Jane Doe" 
@@ -39,8 +51,13 @@ function SingUp({ form, handleChange, signUpUser }:
                             />
                         </InputFieldWrapper>
 
-                        <InputFieldWrapper> {/* Email */}
-                            <Label htmlFor="userEmail" text="Email address" />
+                        {/* Email */}
+                        <InputFieldWrapper> 
+                            <Label 
+                                htmlFor="userEmail" 
+                                text="Email address" 
+                                showRequiredSign={false}
+                            />
                             <Input 
                                 type="email" 
                                 placeholder="you@example.com" 
@@ -56,15 +73,26 @@ function SingUp({ form, handleChange, signUpUser }:
                             id="password"
                             form={form}
                             handleChange={handleChange}
+                            showPassword={showPassword.password}
+                            onPointerDown={makePasswordVisible}
+                            onPointerUp={makePasswordHidden}
                         /> 
-
                         {/* Confirm Password */}
                         <PasswordFieldWrapper 
                             id="confirmPassword"
                             form={form}
                             handleChange={handleChange}
+                            showPassword={showPassword.confirmPassword}
+                            onPointerDown={makePasswordVisible}
+                            onPointerUp={makePasswordHidden}
                         /> 
-                        <SubmitButton text="Create account" icon="♙" /> {/* Sign In */}
+                        {/* Sign In button */}
+                        <SubmitButton 
+                            text="Create account" 
+                            afterSubmitText="Creating..." 
+                            icon={<UserRound size={16}/>} 
+                            isSubmitting={isSubmitting}
+                        /> 
                     </>
                 }
                 loginPrompt={
@@ -73,7 +101,12 @@ function SingUp({ form, handleChange, signUpUser }:
                     </>
                 }
             />
-            <Footer /> {/* Guest */}
+            {/* Guest */}
+            <Footer 
+                labelMessage="Just browsing?"
+                linkText="Continue as Guest" 
+                linkURL={ROUTES.LIST}  
+            />
         </>
     );
 }

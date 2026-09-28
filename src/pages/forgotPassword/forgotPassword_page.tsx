@@ -21,8 +21,19 @@ function ForgotPasswordPage() {
                 formContent={
                     <>
                         <InputFieldWrapper> {/* Email */}
-                            <Label htmlFor="forgotEmail" text="Email address" />
-                            <Input type="email" placeholder="you@example.com" id="forgotEmail" required={true} />
+                            <Label 
+                                htmlFor="forgotEmail" 
+                                text="Email address" 
+                                showRequiredSign={false}
+                            />
+                            <Input 
+                                type="email" 
+                                placeholder="you@example.com" 
+                                id="forgotEmail" 
+                                required={true} 
+                                value={""}
+                                handleChange={() => {}}
+                            />
                         </InputFieldWrapper> 
                         <SubmitButton text="Continue" icon="✉️" /> {/* Sign In */}
                     </>

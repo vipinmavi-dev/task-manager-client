@@ -1,7 +1,14 @@
 import React from "react";
 import Style from "./authFooter.module.css";
 
-function Footer({linkText, linkURL, labelMessage}: {linkText: string, linkURL: string, labelMessage?: string}) {
+interface FooterProps {
+    linkText: string;
+    linkURL: string;
+    labelMessage: string;
+}
+function Footer(
+    {linkText, linkURL, labelMessage}: FooterProps) 
+{
     return (
         <div className={Style.guestText}>
             {labelMessage && <span>{labelMessage}</span>}
@@ -9,7 +16,7 @@ function Footer({linkText, linkURL, labelMessage}: {linkText: string, linkURL: s
                 {linkText}
             </a>
         </div>
-    )
+    );
 }
 
 export default Footer;

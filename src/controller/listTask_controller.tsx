@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setTasks } from "../redux/task/task.ts";
 import { setStatus } from "../redux/status/status.redux.ts";
 import AddTaskView from "../pages/addTask/addTask_page.tsx";
+import { Suspense } from "react";
 
 interface Task<T> {
     success: boolean;
@@ -51,13 +52,6 @@ function TaskListConroller() {
     useEffect(() => {
         if (addEditModel.taskId) {
             fetchTask(addEditModel.taskId);
-            // if (taskToEdit) {
-            //     setForm({
-            //         name: taskToEdit.name,
-            //         description: taskToEdit.description,
-            //         priority_id: taskToEdit.priority === "Low" ? 1 : taskToEdit.priority === "Medium" ? 2 : 3, // Map priority string to number
-            //     });
-            // }
         }
     },[addEditModel.taskId])
     const fetchTask = useCallback(async (taskId: number) => {
@@ -77,9 +71,6 @@ function TaskListConroller() {
             console.error('Error fetching task details:', error);
         }
     },[]);
-    useEffect(() => {
-        console.log('Form state updated:', form);
-    },[form])
     const fetchTasks = useCallback(async () => {
         try {
             const tasks: Task<Data[]> = await getTasks();
@@ -131,7 +122,9 @@ function TaskListConroller() {
         }
     }
     useEffect(() => {
-        fetchTasks();
+        setTimeout(() => {
+            fetchTasks();
+        }, 5000);
         getStatuses();
         if (location?.state && !hasShown.current) {
             SuccessToast(location.state.message);
@@ -171,23 +164,27 @@ function TaskListConroller() {
         const { id, value } = e.target;
         setForm({ ...form, [id]: value });
     }
-    return <TaskListPage
-                Statuses={Statuses}
-                APItasks={APItasks} 
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <TaskListPage 
+                navButtons={navButtons} 
+                tasks={APItasks} 
+                statuses={Statuses} 
                 updateTask={updateTask} 
-                deleteTaskHandler={deleteTaskHandler}
-                addEditModel={addEditModel}
+                deleteTaskHandler={deleteTaskHandler} 
                 modalHandler={modalHandler}
-                navButtons={navButtons}
-            >
+            />
+            {addEditModel.status && (
                 <AddTaskView
-                    handleInputChange={handleInputChange} 
-                    handleSubmit={handleSubmit}
                     form={form}
+                    handleInputChange={handleInputChange}
+                    handleSubmit={handleSubmit}
+                    modalHandler={modalHandler}
                     addEditModel={addEditModel}
-                    modalHandler={()=>modalHandler(false)}
                 />
-            </TaskListPage>
+            )}
+        </Suspense>
+    )
 }
 
 export default TaskListConroller;

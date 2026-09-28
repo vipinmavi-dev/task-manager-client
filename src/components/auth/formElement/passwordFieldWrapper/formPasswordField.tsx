@@ -3,37 +3,35 @@ import Style from "./formPasswordField.module.css";
 import { Input, Label } from "../../../UI_Elements/index.tsx";
 import { ForgotPassword } from "../../index.tsx";
 import { Eye, EyeOff } from "lucide-react";
+import { type PasswordFieldWrapperProps } from "../../../../types/auth.ts";
 
-type ForgotPasswordProps = {
-    willShow: true,
-    linkURL: string
-} | {
-    willShow: false
-}
-interface PasswordFieldWrapperProps {
-    id: string,
-    form: any,
-    handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
-    forgotPasswordProps?: ForgotPasswordProps
-}
 function PasswordFieldWrapper({
     id,
-    forgotPasswordProps = { willShow: false },
     form,
-    handleChange
+    handleChange,
+    forgotPasswordProps = { willShow: false },
+    showPassword,
+    onPointerDown,
+    onPointerUp
 }: PasswordFieldWrapperProps) {
     return (
         <div className={Style.formGroup}>
             {/* Forgot password button */}
             <div className={Style.passwordHeader}>
-                <Label htmlFor="password" text="Password" />
+                <Label 
+                    htmlFor="password" 
+                    text="Password" 
+                    showRequiredSign={false}
+                />
 
-                {forgotPasswordProps.willShow && <ForgotPassword linkURL={forgotPasswordProps?.linkURL} />}
+                {forgotPasswordProps.willShow && <ForgotPassword 
+                                                    linkURL={forgotPasswordProps.linkURL} 
+                                                 />}
             </div>
             {/* Password input field with show & hide toggle button */}
             <div className={Style.passwordInput}>
                 <Input
-                    type="password"
+                    type={showPassword? "text":"password"}
                     placeholder="••••••••"
                     id={id}
                     required={true}
@@ -42,9 +40,14 @@ function PasswordFieldWrapper({
                 />
 
                 <button
+                    id={id}
                     type="button"
                     className={Style.passwordToggle}
                     aria-label="Show password"
+                    onPointerDown={onPointerDown}
+                    onPointerUp={onPointerUp}
+                    onPointerLeave={onPointerUp}
+
                 > 
                     {true ?
                         <Eye size={16} />:

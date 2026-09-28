@@ -1,7 +1,7 @@
 import React from "react";
 import Style from "./formInputField.module.css";
 
-function FormInputFieldWrapper({children}: {children?: React.ReactNode}) {
+function InputFieldWrapper({children}: {children?: React.ReactNode}) {
     return (
         <div className={Style.formGroup}>
             {children}
@@ -9,4 +9,4 @@ function FormInputFieldWrapper({children}: {children?: React.ReactNode}) {
     )
 }
 
-export default FormInputFieldWrapper;
+export default InputFieldWrapper;

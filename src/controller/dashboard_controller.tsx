@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import { DashboardPage } from "../pages/index.tsx";
 
 function DashboardConroller () {
-    return <DashboardPage />
+    
+    useEffect(() => {
+    },[]);
+    return (
+        <>
+             <DashboardPage />
+        </>
+    )
 }
 
 export default DashboardConroller;
