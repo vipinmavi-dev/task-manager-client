@@ -36,7 +36,7 @@ function TaskManager(props: any) {
           modalHandler={props.modalHandler}
         />
       </div>
-      {props.addEditModel.status && props.children}
+      {props.addEditModel?.status && props.children}
     </main>
   );
 }

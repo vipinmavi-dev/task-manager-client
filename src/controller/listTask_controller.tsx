@@ -1,31 +1,18 @@
 import React,{useEffect, useRef, useCallback, useState} from "react";
 import { TaskListPage } from "../pages/index.tsx";
 import { useLocation } from "react-router-dom";
-import { SuccessToast } from "../utils/toast.ts";
+import { SuccessToast, FailedToast } from "../utils/toast.ts";
 import { getTasks, putTask, getStatus, deleteTask, getTask, addTask } from "../services/task.service.ts";
 import { useDispatch, useSelector } from "react-redux";
 import { setTasks } from "../redux/task/task.ts";
 import { setStatus } from "../redux/status/status.redux.ts";
 import AddTaskView from "../pages/addTask/addTask_page.tsx";
 import { Suspense } from "react";
+import type { Tasks, AddEditModel} from "../types/task.ts";
 
-interface Task<T> {
-    success: boolean;
-    message: string;
-    data: T;
-}
-interface Data {
-    id: number;
-    name: string;
-    description: string;
-    created_at: string;
-    updated_at: string;
-    status: string;
-    priority: string;
-}
 function TaskListConroller() {
     const dispatch = useDispatch();
-    const [addEditModel, setaddEditModel] = useState({
+    const [addEditModel, setaddEditModel] = useState<AddEditModel>({
         name: "",
         status: false,
         taskId: null
@@ -35,8 +22,8 @@ function TaskListConroller() {
         description: "",
         priority_id: 1, // Default to Low priority
     });
-    const APItasks = useSelector((state: any) => state.Tasks.data);
-    const Statuses = useSelector((state: any) => state.Status.data);
+    const APItasks = useSelector((state) => state?.Tasks.data);
+    const Statuses = useSelector((state) => state?.Status?.data);
     const location = useLocation();
     const hasShown = useRef(false);
     const navButtons = [
@@ -53,12 +40,13 @@ function TaskListConroller() {
         if (addEditModel.taskId) {
             fetchTask(addEditModel.taskId);
         }
+        console.log(APItasks);
     },[addEditModel.taskId])
     const fetchTask = useCallback(async (taskId: number) => {
         try {
-            const task: Task<Data> = await getTask(taskId);
+            const task = await getTask(taskId);
             
-            if (task.data.success) {
+            if (task?.data?.success) {
                 setForm({
                     name: task.data.data[0].name,
                     description: task.data.data[0].description,
@@ -68,29 +56,33 @@ function TaskListConroller() {
                 console.error('Failed to fetch task details');
             }
         } catch (error) {
-            console.error('Error fetching task details:', error);
+            console.error(error.message || 'Error fetching task details:');
+            FailedToast(error.message || 'Error fetching task details');
         }
     },[]);
     const fetchTasks = useCallback(async () => {
         try {
-            const tasks: Task<Data[]> = await getTasks();
-            dispatch(setTasks(tasks.data.data));
+            const tasks = await getTasks();
+            tasks?.data?.data && dispatch(setTasks(tasks.data.data));
         } catch (error) {
             console.error('Error fetching tasks:', error);
+            FailedToast(error.message || 'Error fetching tasks');
         }
     }, [dispatch]); // Add dispatch as a dependency
-    const updateTask = useCallback(async (event) => {
+    const updateTask = useCallback(async (event: React.FormEvent<HTMLFormElement>) => {
         const taskId = event.target.options[event.target.selectedIndex].getAttribute('name');
         const status_id = event.target.value;
         try {
             const response = await putTask(taskId, {status_id: status_id });
-            if (response.data.success) {
+            if (response?.data?.success) {
                 fetchTasks();
             }else{
                 console.error('Failed to get Status');
+                FailedToast(response.data.message || 'Failed to get Status');
             }
         } catch (error) {
             console.error('Error updating task:', error);
+            FailedToast(error.message || 'Error updating task');
         }
     }, [fetchTasks]); // Add fetchTasks as a dependency
     const getStatuses = useCallback(async ()=>{
@@ -122,9 +114,8 @@ function TaskListConroller() {
         }
     }
     useEffect(() => {
-        setTimeout(() => {
-            fetchTasks();
-        }, 5000);
+        
+        fetchTasks();
         getStatuses();
         if (location?.state && !hasShown.current) {
             SuccessToast(location.state.message);

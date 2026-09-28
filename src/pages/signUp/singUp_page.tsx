@@ -88,10 +88,9 @@ function SingUp(
                         /> 
                         {/* Sign In button */}
                         <SubmitButton 
-                            text="Create account" 
-                            afterSubmitText="Creating..." 
+                            text={isSubmitting? "Creating..." : "Create account" }
                             icon={<UserRound size={16}/>} 
-                            isSubmitting={isSubmitting}
+                            disabled={isSubmitting}
                         /> 
                     </>
                 }

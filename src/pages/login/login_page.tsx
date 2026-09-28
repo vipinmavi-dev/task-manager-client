@@ -14,15 +14,17 @@ import {
     Label
 } from "../../components/UI_Elements/index.tsx";
 import {LogIn} from 'lucide-react';
-
-function LoginPage({handleChange, form, userLogin}: {
-    handleChange: (e:React.ChangeEvent<HTMLInputElement>)=>void,
-    form: {
-        email: string;
-        password: string;
-    },
-    userLogin : (e: React.FormEvent<HTMLFormElement>)=>void
-}) {
+import {type LoginPageProps} from "../../types/auth.ts";
+function LoginPage({
+        handleChange, 
+        form, 
+        userLogin, 
+        isSubmitting, 
+        showPassword,
+        makePasswordVisible,
+        makePasswordHidden
+    }: LoginPageProps 
+) {
     const forgotPasswordProps = {
         willShow: true,
         linkURL: ROUTES.FORGOT_PASSWORD
@@ -57,17 +59,32 @@ function LoginPage({handleChange, form, userLogin}: {
                             form={form}
                             handleChange={handleChange}
                             forgotPasswordProps={forgotPasswordProps} 
+                            showPassword={showPassword}
+                            onPointerDown={makePasswordVisible}
+                            onPointerUp={makePasswordHidden}
                         /> {/* Password */}
-                        <SubmitButton text="Sign in" icon={<LogIn size={15} />} /> {/* Sign In */}
+                        <SubmitButton 
+                            text={isSubmitting? "Signing in..." : "Sign in" }
+                            icon={<LogIn size={15}/>} 
+                            disabled={isSubmitting}
+                        /> {/* Sign In */}
                     </>
                 }
                 loginPrompt={
                     <>
-                        <Prompt message="Don't have an account?" linkText="Create one" linkTo={ROUTES.SIGNUP} /> {/* Register */}
+                        <Prompt 
+                            message="Don't have an account?" 
+                            linkText="Create one" 
+                            linkTo={ROUTES.SIGNUP} 
+                        /> {/* Register */}
                     </>
                 }
             />
-            <Footer linkText="Continue as Guest" linkURL={ROUTES.LIST} labelMessage="Just browsing?" /> {/* Guest */}
+            <Footer 
+                linkText="Continue as Guest" 
+                linkURL={ROUTES.LIST} 
+                labelMessage="Just browsing?" 
+            /> {/* Guest */}
         </>
     )
 }

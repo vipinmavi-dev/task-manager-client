@@ -1,16 +1,14 @@
 import {api} from './apis.ts';
-interface signUpPayload {
-    name: string;
-    email: string;
-    password: string;
-}
-interface loginPayload {
-    email: string;
-    password: string;
-}
-export const signupUser = async (data: signUpPayload) => {
+import { AxiosResponse } from "axios";
+import type { 
+    LoginForm, 
+    SignupForm, 
+    LoginResponse 
+} from '../types/auth.ts';
+
+export const signupUser = async (data: Omit<SignupForm,"confirmPassword">) => {
     return api.post('/api/auth/signup', data);
 };
-export const loginUser = async (data: loginPayload) => {
+export const loginUser = async (data: LoginForm): Promise<AxiosResponse<LoginResponse>> => {
     return api.post('/api/auth/login', data);
 };

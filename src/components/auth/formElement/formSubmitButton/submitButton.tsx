@@ -2,23 +2,23 @@ import React from "react";
 import Style from "./submitButton.module.css";
 
 interface SubmitButtonProps { 
-    text: string, 
-    afterSubmitText?: string,
-    icon: React.ReactNode,
-    isSubmitting?: boolean
+    text: string;
+    icon: React.ReactNode;
+    disabled: boolean;
 }
 
 function SubmitButton(
-    { text, icon, isSubmitting, afterSubmitText }: SubmitButtonProps) 
+    { text, icon, disabled }: SubmitButtonProps) 
 {
     return (
+        
         <button
             type="submit"
             className={Style.signInButton}
-            disabled={isSubmitting}
+            disabled={disabled}
         >
             {icon}
-            {isSubmitting ? afterSubmitText : text }
+            { text }
         </button>
     )
 }

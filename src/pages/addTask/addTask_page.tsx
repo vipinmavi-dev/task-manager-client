@@ -107,6 +107,7 @@ function NewTask({
             <Label
               text="Priority"
               htmlFor="priority_id"
+              showRequiredSign={false}
             />
             <Priority
               form={form}

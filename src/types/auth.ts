@@ -1,9 +1,10 @@
 import React from "react";
-
-export interface SignupForm {
-    name: string;
+export interface LoginForm {
     email: string;
-    pasword: string;
+    password: string;
+}
+export interface SignupForm extends LoginForm {
+    name: string;
     confirmPassword: string;
 }
 type ForgotPasswordProps = {
@@ -27,10 +28,34 @@ export interface SignUpPageProps {
 }
 export interface PasswordFieldWrapperProps {
     id: string;
-    form: SignupForm;
+    form: SignupForm | LoginForm;
     handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     forgotPasswordProps?: ForgotPasswordProps;
     showPassword: boolean;
     onPointerDown: (e: React.PointerEvent<HTMLButtonElement>) => void;
     onPointerUp: (e: React.PointerEvent<HTMLButtonElement>) => void;
+}
+export interface User {
+    name: string;
+    email: string;
+    phone: string | null;
+    photo: string | null;
+}
+
+export interface LoginResponse {
+success: boolean;
+message: string;
+data: User;
+}
+export interface LoginPageProps {
+    handleChange: (e:React.ChangeEvent<HTMLInputElement>)=>void,
+    form: {
+        email: string;
+        password: string;
+    },
+    userLogin : (e: React.FormEvent<HTMLFormElement>)=>void;
+    isSubmitting: boolean;
+    showPassword: boolean;
+    makePasswordVisible: () => void;
+    makePasswordHidden: () => void;
 }

@@ -35,7 +35,10 @@ function ForgotPasswordPage() {
                                 handleChange={() => {}}
                             />
                         </InputFieldWrapper> 
-                        <SubmitButton text="Continue" icon="✉️" /> {/* Sign In */}
+                        <SubmitButton 
+                            text="Continue" 
+                            icon="✉️" /> {/* Sign In */  
+                        }
                     </>
                 }
             />

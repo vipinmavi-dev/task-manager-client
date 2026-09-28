@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import Style from "./taskCard.module.css";
 import { Pencil, Trash2 } from "lucide-react";
 
@@ -26,6 +26,11 @@ function TaskCard({
   deleteTaskHandler, 
   modalHandler
 }: any) {
+  useEffect(() => {
+    if (!APItasks || APItasks.length === 0) {
+      console.warn("No tasks available to display.", APItasks);
+    }
+  })
     return (
         <section className={Style.taskGrid}>
           {APItasks?.map((task) => (

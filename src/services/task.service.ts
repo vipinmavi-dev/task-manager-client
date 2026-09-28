@@ -1,10 +1,11 @@
 import { api } from './apis.ts';
 import { API_ROUTES } from '../constants/routes.ts';
+import { Axios, AxiosResponse } from 'axios';
 
 export const getTasks = async () => {
     return api.get(API_ROUTES.TASK);
 }
-export const getTask = async (id:number) => {
+export const getTask = async (id:number):Promise<AxiosResponse<any>> => {
     return api.get(`${API_ROUTES.TASK}/${id}`,);
 }
 export const getStatus = async () => {
