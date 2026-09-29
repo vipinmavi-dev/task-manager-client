@@ -8,7 +8,7 @@ import { setTasks } from "../redux/task/task.ts";
 import { setStatus } from "../redux/status/status.redux.ts";
 import { setPriority } from "../redux/priority/priority.redux.ts";
 import { Suspense } from "react";
-import type { AddEditModel, RootState, Task} from "../types/task.ts";
+import type { AddEditModel, RootState} from "../types/task.ts";
 import { NavButton } from "../constants/app_const.ts";
 import AddTaskController from "./addTask_controller.tsx";
 import { optmisticUpdateInTasksList } from "../utils/optimisticEditTask.ts";
