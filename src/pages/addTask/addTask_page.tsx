@@ -3,6 +3,7 @@ import Styles from "./addTask.module.css";
 import FormInputFieldWrapper from "../../components/auth/formElement/InputFieldWrapper/formInputField.tsx";
 import {TextArea, Input, Label} from "../../components/UI_Elements/index.tsx";
 import Priority from "../../components/priority/priority.tsx";
+import type { AddEditModel } from "../../types/task.ts";
 
 type NewTaskProps = {
     handleInputChange: (
@@ -18,11 +19,8 @@ type NewTaskProps = {
         description: string;
         priority_id: Number;
     }
-    addEditModel: {
-        status: boolean;
-        name: string;
-    }
-    modalHandler:(a)=>void;
+    addEditModel: AddEditModel
+    modalHandler:(a: Partial<AddEditModel>)=>void;
 };
 
 function NewTask({
@@ -121,7 +119,7 @@ function NewTask({
             <button
               type="button"
               className={Styles.cancelButton}
-              onClick={()=>modalHandler({name:"", status: false})}
+              onClick={modalHandler}
             >
               Cancel
             </button>

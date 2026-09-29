@@ -2,11 +2,20 @@ import React, { useState } from "react";
 import AddTaskView from "../pages/addTask/addTask_page.tsx";
 import { addTask } from "../services/task.service.ts";
 import { useNavigate } from "react-router-dom";
-import { SuccessToast } from "../utils/toast.ts";
+import { SuccessToast, FailedToast } from "../utils/toast.ts";
+import type { Tasks, AddEditModel} from "../types/task.ts";
 // type Priority = "Low" | "Medium" | "High";
 
-const AddTask_Controller = ({modalHandler}: {modalHandler:any}) => {
-    const navigate = useNavigate();
+const AddTask_Controller = ({
+    modalHandler,
+    addEditModel
+    }
+        : 
+    {
+        modalHandler:(a: Partial<AddEditModel>)=>void,
+        addEditModel: AddEditModel
+    }
+) => {
     const [form, setForm] = useState({
         name: "",
         description: "",
@@ -20,12 +29,15 @@ const AddTask_Controller = ({modalHandler}: {modalHandler:any}) => {
             priority_id: parseInt(form.priority_id, 10), // Ensure priority_id is a number
         }
         try {
-            await addTask(payload);
-            modalHandler(false);
-            SuccessToast("Task added successfully!");
+            let res = await addTask(payload);
+            if(res.data.success) {
+                SuccessToast(res.data.message);
+                modalHandler({status: false});
+            }else throw new Error(res.data.message);
             
         } catch (error) {
             console.log("Error adding task:", error);
+            FailedToast(error.message);
         }
     };
 
@@ -36,11 +48,13 @@ const AddTask_Controller = ({modalHandler}: {modalHandler:any}) => {
         setForm({ ...form, [id]: value });
     }
     
-    return <AddTaskView 
+    return addEditModel.status ? 
+            <AddTaskView 
                 handleInputChange={handleInputChange} 
                 handleSubmit={handleSubmit}
                 form={form}
-                modalHandler={modalHandler}
-            />
+                modalHandler={()=>modalHandler({status: false})}
+                addEditModel={addEditModel}
+            /> : null
 }
 export default AddTask_Controller;

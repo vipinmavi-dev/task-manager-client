@@ -9,57 +9,59 @@ import { setStatus } from "../redux/status/status.redux.ts";
 import AddTaskView from "../pages/addTask/addTask_page.tsx";
 import { Suspense } from "react";
 import type { Tasks, AddEditModel} from "../types/task.ts";
+import { NavButton } from "../constants/app_const.ts";
+import AddTask_Controller from "./addTask_controller.tsx";
 
 function TaskListConroller() {
     const dispatch = useDispatch();
     const [addEditModel, setaddEditModel] = useState<AddEditModel>({
-        name: "",
+        name: "addTask",
         status: false,
         taskId: null
     });
-    const [form, setForm] = useState({
-        name: "",
-        description: "",
-        priority_id: 1, // Default to Low priority
-    });
-    const APItasks = useSelector((state) => state?.Tasks.data);
-    const Statuses = useSelector((state) => state?.Status?.data);
+    const modalHandler = (modelStatus: Partial<AddEditModel>) => {
+        setaddEditModel((prev)=>(
+            {
+                ...prev,
+                ...modelStatus
+            }
+        ));
+    }
+    const navButtons = NavButton(modalHandler); // Nav button Const Object
+
+    
+    // const [form, setForm] = useState({
+    //     name: "",
+    //     description: "",
+    //     priority_id: 1, // Default to Low priority
+    // });
+    const APItasks = useSelector((state: any) => state?.Tasks?.data);
+    const Statuses = useSelector((state: any) => state?.Status?.data);
     const location = useLocation();
     const hasShown = useRef(false);
-    const navButtons = [
-        {
-          buttonText: "+ New Task",
-          method: () => {modalHandler({
-            name: "addTask",
-            status: true
-          })},
-          className: "getStarted"
-        }
-    ]
-    useEffect(() => {
-        if (addEditModel.taskId) {
-            fetchTask(addEditModel.taskId);
-        }
-        console.log(APItasks);
-    },[addEditModel.taskId])
-    const fetchTask = useCallback(async (taskId: number) => {
-        try {
-            const task = await getTask(taskId);
+    // useEffect(() => {
+    //     if (addEditModel.taskId) {
+    //         fetchTask(addEditModel.taskId);
+    //     }
+    // },[addEditModel.taskId])
+    // const fetchTask = useCallback(async (taskId: number) => {
+    //     try {
+    //         const task = await getTask(taskId);
             
-            if (task?.data?.success) {
-                setForm({
-                    name: task.data.data[0].name,
-                    description: task.data.data[0].description,
-                    priority_id: task.data.data[0].priority === "low" ? 1 : task.data.data[0].priority === "medium" ? 2 : 3, // Map priority string to number
-                });
-            } else {
-                console.error('Failed to fetch task details');
-            }
-        } catch (error) {
-            console.error(error.message || 'Error fetching task details:');
-            FailedToast(error.message || 'Error fetching task details');
-        }
-    },[]);
+    //         if (task?.data?.success) {
+    //             setForm({
+    //                 name: task.data.data[0].name,
+    //                 description: task.data.data[0].description,
+    //                 priority_id: task.data.data[0].priority === "low" ? 1 : task.data.data[0].priority === "medium" ? 2 : 3, // Map priority string to number
+    //             });
+    //         } else {
+    //             console.error('Failed to fetch task details');
+    //         }
+    //     } catch (error) {
+    //         console.error(error.message || 'Error fetching task details:');
+    //         FailedToast(error.message || 'Error fetching task details');
+    //     }
+    // },[]);
     const fetchTasks = useCallback(async () => {
         try {
             const tasks = await getTasks();
@@ -69,6 +71,7 @@ function TaskListConroller() {
             FailedToast(error.message || 'Error fetching tasks');
         }
     }, [dispatch]); // Add dispatch as a dependency
+
     const updateTask = useCallback(async (event: React.FormEvent<HTMLFormElement>) => {
         const taskId = event.target.options[event.target.selectedIndex].getAttribute('name');
         const status_id = event.target.value;
@@ -114,7 +117,6 @@ function TaskListConroller() {
         }
     }
     useEffect(() => {
-        
         fetchTasks();
         getStatuses();
         if (location?.state && !hasShown.current) {
@@ -122,39 +124,37 @@ function TaskListConroller() {
             hasShown.current = true;
         }
     }, [location?.state, fetchTasks, getStatuses]); // Add fetchTasks to the dependency array
-    const modalHandler = (modelStatus:any) => {
-        setaddEditModel(modelStatus);
-    }
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        const payload = {
-            ...form,
-            priority_id: parseInt(form.priority_id, 10), // Ensure priority_id is a number
-        }
-        try {
-            if(addEditModel.name === "addTask") await addTask(payload);
-            if(addEditModel.name === "editTask") await putTask(addEditModel.taskId, payload);
-            fetchTasks();
-            setForm({
-                name: "",
-                description: "",
-                priority_id: 1, // Reset to default Low priority
-            })
-            modalHandler({
-                name: "",
-                status: false
-            });
-            SuccessToast("Task added successfully!");
-        } catch (error) {
-            console.error("Error adding task:", error);
-        }
-    };
-    const handleInputChange = (
-        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-    ) => {
-        const { id, value } = e.target;
-        setForm({ ...form, [id]: value });
-    }
+    
+    // const handleSubmit = async (event) => {
+    //     event.preventDefault();
+    //     const payload = {
+    //         ...form,
+    //         priority_id: parseInt(form.priority_id, 10), // Ensure priority_id is a number
+    //     }
+    //     try {
+    //         if(addEditModel.name === "addTask") await addTask(payload);
+    //         if(addEditModel.name === "editTask") await putTask(addEditModel.taskId, payload);
+    //         fetchTasks();
+    //         setForm({
+    //             name: "",
+    //             description: "",
+    //             priority_id: 1, // Reset to default Low priority
+    //         })
+    //         modalHandler({
+    //             name: "",
+    //             status: false
+    //         });
+    //         SuccessToast("Task added successfully!");
+    //     } catch (error) {
+    //         console.error("Error adding task:", error);
+    //     }
+    // };
+    // const handleInputChange = (
+    //     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    // ) => {
+    //     const { id, value } = e.target;
+    //     setForm({ ...form, [id]: value });
+    // }
     return (
         <Suspense fallback={<div>Loading...</div>}>
             <TaskListPage 
@@ -165,15 +165,10 @@ function TaskListConroller() {
                 deleteTaskHandler={deleteTaskHandler} 
                 modalHandler={modalHandler}
             />
-            {addEditModel.status && (
-                <AddTaskView
-                    form={form}
-                    handleInputChange={handleInputChange}
-                    handleSubmit={handleSubmit}
-                    modalHandler={modalHandler}
-                    addEditModel={addEditModel}
-                />
-            )}
+            <AddTask_Controller
+                modalHandler={modalHandler}
+                addEditModel={addEditModel}
+            />
         </Suspense>
     )
 }

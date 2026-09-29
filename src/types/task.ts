@@ -13,7 +13,7 @@ export interface Tasks {
     data: Task;
 }
 export interface AddEditModel {
-    name: string;
-    status: string;
+    name: "addTask" | "editTask";
+    status: boolean;
     taskId: number | null;
 }
