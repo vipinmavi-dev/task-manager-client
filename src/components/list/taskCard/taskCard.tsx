@@ -1,40 +1,24 @@
-import React, {useEffect} from "react";
+import React from "react";
 import Style from "./taskCard.module.css";
 import { Pencil, Trash2 } from "lucide-react";
+import type { TaskCardProps } from "../../../types/task";
+import { 
+  StatusHash, 
+  PriorityColorHash, 
+  PriorityHash 
+} from "../../../constants/app_const.ts";
 
-const StatusHash = {
-    "todo": "To Do",
-    "in_progress": "In Progress",
-    "completed": "Completed",
-    "delayed": "Delayed",
-    "cancelled": "Cancelled",
-}
-const PriorityColorHash = {
-    low: "green",
-    medium: "yellow",
-    high: "red"
-}
-const PriorityHash = {
-    low: "Low",
-    medium: "Medium",
-    high: "High"
-}
 function TaskCard({
-  APItasks, 
+  tasks, 
   updateTask, 
   Statuses, 
   deleteTaskHandler, 
   modalHandler
-}: any) {
-  useEffect(() => {
-    if (!APItasks || APItasks.length === 0) {
-      console.warn("No tasks available to display.", APItasks);
-    }
-  })
+}: TaskCardProps) {
     return (
         <section className={Style.taskGrid}>
-          {APItasks?.map((task) => (
-            <article className={Style.taskCard} key={task.name}>
+          {tasks.length > 0 ? tasks.map((task) => (
+            <article className={Style.taskCard} key={task.id}>
               <div
                 className={`${Style.taskTopBorder} ${Style[PriorityColorHash[task.priority]]}`}
               />
@@ -46,7 +30,11 @@ function TaskCard({
 
                 <div>
                   <button
-                    onClick={() => modalHandler({name: "editTask", status: true, taskId: task.id})}
+                    onClick={() => modalHandler({
+                      name: "editTask", 
+                      status: true, 
+                      taskId: task.id
+                    })}
                     aria-label={`Edit ${task.name}`}
                     className={Style.editButton}
                   >
@@ -84,7 +72,7 @@ function TaskCard({
                           ? "↶"
                           : "◷"}
                   </span>
-
+                  
                   {StatusHash[task.status]}
                 </span>
 
@@ -110,7 +98,7 @@ function TaskCard({
                   <option value="" disabled>
                     Select status
                   </option>
-                  {Statuses.map((status, index) => (
+                  {Statuses.length > 0 && Statuses.map((status, index) => (
                       <option key={index} name={task.id} value={status.id}>
                           {StatusHash[status.name]}
                       </option>
@@ -128,7 +116,7 @@ function TaskCard({
                 </span>
               </div>
             </article>
-          ))}
+          )): "No tasks available"}
         </section>
     )
 }

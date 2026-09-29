@@ -1,26 +1,51 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import AddTaskView from "../pages/addTask/addTask_page.tsx";
-import { addTask } from "../services/task.service.ts";
-import { useNavigate } from "react-router-dom";
+import { addTask, getTask, putTask } from "../services/task.service.ts";
 import { SuccessToast, FailedToast } from "../utils/toast.ts";
-import type { Tasks, AddEditModel} from "../types/task.ts";
+import type { AddEditModel } from "../types/task.ts";
+import { optmisticUpdateInTasksList } from "../utils/optimisticEditTask.ts";
+import { setTasks } from "../redux/task/task.ts";
 // type Priority = "Low" | "Medium" | "High";
 
 const AddTask_Controller = ({
     modalHandler,
-    addEditModel
+    addEditModel,
+    fetchTasks
     }
         : 
     {
         modalHandler:(a: Partial<AddEditModel>)=>void,
-        addEditModel: AddEditModel
+        addEditModel: AddEditModel,
+        fetchTasks: () => void
     }
 ) => {
+    const dispatch = useDispatch();
+    const APItasks = useSelector((state: RootState) => state.Tasks.data);
+    const Statuses = useSelector((state: RootState) => state.Status.data);
+    const Priorityes = useSelector((state: RootState) => state.Priority.data);
     const [form, setForm] = useState({
         name: "",
         description: "",
         priority_id: 1, // Default to Low priority
     });
+
+    useEffect(() => {
+        if (addEditModel.taskId && 
+            addEditModel.status && 
+            addEditModel.name === "editTask"
+        ) {FillFormForEdit(addEditModel.taskId);}
+    },[addEditModel, addEditModel.taskId])
+
+    const FillFormForEdit = async (taskId: number) => {
+        const task = APItasks.find((task) => task.id === taskId);
+        
+        setForm({
+                name: task.name,
+                description: task.description,
+                priority_id: task.priority === "low" ? 1 : task.priority === "medium" ? 2 : 3, // Map priority string to number
+            });
+    };
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -29,15 +54,31 @@ const AddTask_Controller = ({
             priority_id: parseInt(form.priority_id, 10), // Ensure priority_id is a number
         }
         try {
-            let res = await addTask(payload);
+            var res;
+            modalHandler({status: false});
+            if(addEditModel.name === "addTask") {
+
+                res = await addTask(payload);
+            }else{
+                optmisticUpdateInTasksList(
+                    addEditModel.taskId,
+                    payload,
+                    (arg) => dispatch(setTasks(arg)),
+                    APItasks,
+                    Statuses,
+                    Priorityes
+                );
+                res = await putTask(addEditModel.taskId, payload);
+                await fetchTasks();
+            }
             if(res.data.success) {
                 SuccessToast(res.data.message);
-                modalHandler({status: false});
             }else throw new Error(res.data.message);
             
         } catch (error) {
-            console.log("Error adding task:", error);
+            console.log( error);
             FailedToast(error.message);
+            dispatch(setTasks(APItasks))
         }
     };
 

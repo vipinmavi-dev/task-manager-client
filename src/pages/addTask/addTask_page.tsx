@@ -72,7 +72,7 @@ function NewTask({
             <Label
               text="Title"
               htmlFor="name"
-              required
+              showRequiredSign={false}
             />
             <Input
               id="name"
@@ -90,6 +90,7 @@ function NewTask({
             <Label
               text="Description"
               htmlFor="taskTitle"
+              showRequiredSign={false}
             />
             <TextArea
               required={false}
@@ -109,7 +110,7 @@ function NewTask({
             />
             <Priority
               form={form}
-              priority={form.priority_id.toString()}
+              priority={form.priority_id?.toString()}
               onClick={handleInputChange}
             />
           </FormInputFieldWrapper>

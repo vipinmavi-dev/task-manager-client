@@ -24,12 +24,12 @@ function TaskManager(props: any) {
         {/* Task count */}
         <div className={styles.taskCount}>
           {/* {tasks.length} tasks */}
-          4 tasks
+          {props.tasks?.length} tasks
         </div>
 
         {/* Task Grid */}
         <TaskCard 
-          APItasks= {props.APItasks} 
+          tasks= {props.tasks} 
           updateTask={props.updateTask}
           Statuses={props.Statuses}
           deleteTaskHandler={props.deleteTaskHandler}
