@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import AddTaskView from "../pages/addTask/addTask_page.tsx";
-import { addTask, getTask, putTask } from "../services/task.service.ts";
+import { addTask, putTask } from "../services/task.service.ts";
 import { SuccessToast, FailedToast } from "../utils/toast.ts";
 import type { AddEditModel } from "../types/task.ts";
 import { optmisticUpdateInTasksList } from "../utils/optimisticEditTask.ts";
 import { setTasks } from "../redux/task/task.ts";
-// type Priority = "Low" | "Medium" | "High";
 
 const AddTask_Controller = ({
     modalHandler,
