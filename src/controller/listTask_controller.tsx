@@ -81,12 +81,24 @@ function TaskListConroller() {
         let willDelete: boolean = window.confirm("Are you sure you want to delete this task?");
         if (!willDelete) return;
         try {
+            optmisticUpdateInTasksList(
+                taskId, 
+                {
+                    commingFor: "delete",
+                    data: {}
+                },
+                (arg)=>{dispatch(setTasks(arg))},
+                APItasks,
+                Statuses,  
+                Priorityes,
+            )
             const response = await deleteTask(taskId);
             if (response.data.success) fetchTasks();
             else throw new Error(response.data.message);
         } catch (error) {
             console.error('Error deleting task:', error);
             FailedToast(error.message);
+            dispatch(setTasks(APItasks))
         }
     }
 
@@ -96,7 +108,12 @@ function TaskListConroller() {
         const status_id = parseInt(event.target.value);
         if(!taskId) return;
         try {
-            optmisticUpdateInTasksList(taskId, {status_id: status_id}, 
+            optmisticUpdateInTasksList(
+                taskId, 
+                {
+                    commingFor: "edit",
+                    data: {status_id: status_id}
+                }, 
                 (arg)=>{dispatch(setTasks(arg))},
                 APItasks,
                 Statuses,
@@ -132,10 +149,3 @@ function TaskListConroller() {
 }
 
 export default TaskListConroller;
-// name: string,
-// description: string,
-// priority: string,
-// status_id: number,
-// status: string,
-// created_at: string,
-// updated_at: string
