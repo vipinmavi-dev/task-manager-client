@@ -44,6 +44,7 @@ function TaskCard({
                     aria-label={`Delete ${task.name}`}
                     onClick={() => deleteTaskHandler(task.id)}
                     className={Style.deleteButton}
+                    // disabled={task.id=true ? true : false}
                   >
                     <Trash2 size={16}/>
                   </button>

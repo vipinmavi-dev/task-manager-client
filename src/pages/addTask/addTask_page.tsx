@@ -21,6 +21,7 @@ type NewTaskProps = {
     }
     addEditModel: AddEditModel
     modalHandler:(a: Partial<AddEditModel>)=>void;
+    isLoading: boolean;
 };
 
 function NewTask({
@@ -28,7 +29,8 @@ function NewTask({
     handleSubmit,
     form,
     addEditModel,
-    modalHandler
+    modalHandler,
+    isLoading
 }: NewTaskProps) {
   const addTaskConst = {
     title: "New Task",
@@ -48,7 +50,6 @@ function NewTask({
         aria-modal="true"
         aria-labelledby="newTaskTitle"
       >
-        {/* Modal Header */}
         <header className={Styles.modalHeader}>
           <h2 id="newTaskTitle">{pageConst.title}</h2>
 
@@ -110,7 +111,7 @@ function NewTask({
             />
             <Priority
               form={form}
-              priority={form.priority_id?.toString()}
+              priority={form.priority_id.toString()}
               onClick={handleInputChange}
             />
           </FormInputFieldWrapper>

@@ -6,6 +6,7 @@ import { SuccessToast, FailedToast } from "../utils/toast.ts";
 import type { AddEditModel } from "../types/task.ts";
 import { optmisticUpdateInTasksList } from "../utils/optimisticEditTask.ts";
 import { setTasks } from "../redux/task/task.ts";
+import type { RootState } from "../types/task.ts";
 
 const AddTask_Controller = ({
     modalHandler,
@@ -33,17 +34,30 @@ const AddTask_Controller = ({
         if (addEditModel.taskId && 
             addEditModel.status && 
             addEditModel.name === "editTask"
-        ) {FillFormForEdit(addEditModel.taskId);}
+        ) {FillFormForEditAdd(addEditModel.taskId);}
+        else if (
+            addEditModel.status && 
+            addEditModel.name === "addTask"
+        ){
+            FillFormForEditAdd();
+        }
     },[addEditModel, addEditModel.taskId])
 
-    const FillFormForEdit = async (taskId: number) => {
-        const task = APItasks.find((task) => task.id === taskId);
+    const FillFormForEditAdd = async (taskId?: number) => {
         
-        setForm({
+        if(taskId) {
+            const task = APItasks.find((task) => task.id === taskId);
+            setForm({
                 name: task.name,
                 description: task.description,
                 priority_id: task.priority === "low" ? 1 : task.priority === "medium" ? 2 : 3, // Map priority string to number
             });
+        }
+        else setForm({
+            name: "",
+            description: "",
+            priority_id: 1, // Default to Low priority
+        })
     };
 
     const handleSubmit = async (event) => {
@@ -57,23 +71,36 @@ const AddTask_Controller = ({
             modalHandler({status: false});
             if(addEditModel.name === "addTask") {
 
+                optmisticUpdateInTasksList(
+                    addEditModel.taskId,
+                    {
+                        commingFor: "add",
+                        data: payload
+                    },
+                    (arg) => dispatch(setTasks(arg)),
+                    APItasks,
+                    Statuses,
+                    Priorityes
+                );
                 res = await addTask(payload);
             }else{
                 optmisticUpdateInTasksList(
                     addEditModel.taskId,
-                    payload,
+                    {
+                        commingFor: "edit",
+                        data: payload
+                    },
                     (arg) => dispatch(setTasks(arg)),
                     APItasks,
                     Statuses,
                     Priorityes
                 );
                 res = await putTask(addEditModel.taskId, payload);
-                await fetchTasks();
             }
             if(res.data.success) {
                 SuccessToast(res.data.message);
             }else throw new Error(res.data.message);
-            
+            await fetchTasks();
         } catch (error) {
             console.log( error);
             FailedToast(error.message);
