@@ -45,6 +45,9 @@
      Tablet / iPad
   ========================= */
   @media (max-width: 1024px) {
+    .taskGrid {
+      grid-template-columns: repeat(2, 1fr);
+    }
     .container {
       width: min(92%, 900px);
     }
@@ -55,7 +58,9 @@
   ========================= */
   
   @media (max-width: 768px) {
-  
+    .taskGrid {
+      gap: 14px;
+    }
     .container {
       padding-top: 24px;
       width: calc(100% - 32px);
@@ -71,7 +76,10 @@
       width: calc(100% - 24px);
       padding: 5px 0 40px;
     }
-  
+    .taskGrid {
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
     .taskCount {
       margin-bottom: 16px;
     }
