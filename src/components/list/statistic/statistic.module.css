@@ -40,6 +40,10 @@
     color: #667085;
   }
   
+  .todo .statIcon {
+    background: #dceaff;
+    color: #aaabae;
+  }
   .in_progress .statIcon {
     background: #dceaff;
     color: #2563eb;

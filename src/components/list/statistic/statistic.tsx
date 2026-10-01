@@ -11,7 +11,7 @@ const statistics = [
       value: 1,
       label: "TO DO",
       type: "todo",
-      icon: "↶",
+      icon: "◷",
     },
     {
       value: 1,
@@ -58,7 +58,7 @@ function Statistics({APItasksCounts}: any) {
         {statisticsState.map((item) => (
           <div
             key={item.label}
-            className={`${styles.statCard} ${styles[item.type]}`} // TODO: CSS need to be fixed
+            className={`${styles.statCard} ${styles[item.type]}`}
           >
             <div className={styles.statIcon}>
               {item.icon}
