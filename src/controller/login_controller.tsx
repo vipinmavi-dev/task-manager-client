@@ -44,17 +44,18 @@ function Login_controller() {
         try {
             const user= await loginUser(form);
             
-            dispatch(loginSuccess({
-                data: user.data.data
-            }));
-            localStorage.setItem("User", JSON.stringify({
-                data: user.data.data,
-                isAuthenticated: true
-            }));
-            
-            navigate(ROUTES.LIST, {
-                state: { message: "Login successful! Welcome back."}
-            })
+            if(user.data.success){
+                dispatch(loginSuccess({
+                    data: user.data.data
+                }));
+                localStorage.setItem("User", JSON.stringify({
+                    data: user.data.data,
+                    isAuthenticated: true
+                }));
+                navigate(ROUTES.LIST, {
+                    state: { message: "Login successful! Welcome back."}
+                })
+            }else throw new Error (user.data.message);
         } catch (error) {
             let err = error?.response?.data?.message ||
                       error.message || 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import AddTaskView from "../pages/addTask/addTask_page.tsx";
 import { addTask, putTask } from "../services/task.service.ts";
@@ -29,10 +29,13 @@ const AddTask_Controller = ({
         description: "",
         priority_id: 1, // Default to Low priority
     });
-
-    const FillFormForEditAdd = useCallback(()=>async (taskId?: number) => {
+    useEffect(() => {
         
-        if(taskId) {
+        if (addEditModel.taskId && 
+            addEditModel.status && 
+            addEditModel.name === "editTask"
+        ) {
+            let taskId = addEditModel.taskId;
             const task = APItasks.find((task) => task.id === taskId);
             setForm({
                 name: task.name,
@@ -40,24 +43,18 @@ const AddTask_Controller = ({
                 priority_id: task.priority === "low" ? 1 : task.priority === "medium" ? 2 : 3, // Map priority string to number
             });
         }
-        else setForm({
-            name: "",
-            description: "",
-            priority_id: 1, // Default to Low priority
-        })
-    },[APItasks]);
-    useEffect(() => {
-        if (addEditModel.taskId && 
-            addEditModel.status && 
-            addEditModel.name === "editTask"
-        ) {FillFormForEditAdd(addEditModel.taskId);}
         else if (
             addEditModel.status && 
             addEditModel.name === "addTask"
         ){
-            FillFormForEditAdd();
+            setForm({
+                name: "",
+                description: "",
+                priority_id: 1, // Default to Low priority
+            })
         }
-    },[addEditModel, addEditModel.taskId, FillFormForEditAdd])
+
+    },[addEditModel, APItasks]);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
