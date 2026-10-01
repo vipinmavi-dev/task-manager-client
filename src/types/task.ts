@@ -24,7 +24,7 @@ export interface AddEditModel {
 export type RootState = ReturnType<typeof store.getState>;
   
 export interface TaskCardProps {
-    tasks: Task[];
+    task: Task[];
     updateTask: (event: React.ChangeEvent<HTMLSelectElement>) => void;
     Statuses: { id: number; name: string }[];
     deleteTaskHandler: (taskId: number) => void;

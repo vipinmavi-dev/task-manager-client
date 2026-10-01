@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import styles from "./taskPage.module.css";
 import {
   Statistics,
@@ -8,16 +8,29 @@ import {
 import PageHeader from "../../components/pageHeader/header/pageHeader.tsx";
 import NavButton from "../../components/pageHeader/navButton/navButton.tsx";
 
-function TaskManager(props: any) {
+function TaskManager({
+  modalHandler,
+  tasks=[],
+  updateTask,
+  Statuses,
+  deleteTaskHandler,
+  APItasksCounts,
+  navButtons,
+  addEditModel,
+  children
+}: any) {
+  
   return (
     <main className={styles.page}>
       {/* Header */}
-      <PageHeader siteName="Task Manager" NavButton={<NavButton navButtons={props.navButtons} />}/>
+      <PageHeader 
+        siteName="Task Manager" 
+        NavButton={<NavButton navButtons={navButtons} />}/>
 
       <div className={styles.container}>
         {/* Statistics */}
         <Statistics
-          APItasksCounts={props.APItasksCounts}
+          APItasksCounts={APItasksCounts}
         />
 
         {/* Search and filters */}
@@ -26,19 +39,30 @@ function TaskManager(props: any) {
         {/* Task count */}
         <div className={styles.taskCount}>
           
-          {props.tasks?.length} tasks
+          {tasks?.length} tasks
         </div>
 
         {/* Task Grid */}
-        <TaskCard 
-          tasks= {props.tasks} 
-          updateTask={props.updateTask}
-          Statuses={props.Statuses}
-          deleteTaskHandler={props.deleteTaskHandler}
-          modalHandler={props.modalHandler}
-        />
+        <section className={styles.taskGrid}>
+        {
+          tasks.map((task: any) => (
+            <TaskCard
+              key={task.id}
+              task={task}
+              updateTask={updateTask}
+              Statuses={Statuses}
+              deleteTaskHandler={() => deleteTaskHandler(task.id)}
+              modalHandler={() => modalHandler({
+                name: "editTask", 
+                status: true, 
+                taskId: task.id
+              })}
+            />
+          ))
+        }
+        </section>
       </div>
-      {props.addEditModel?.status && props.children}
+      {addEditModel?.status && children}
     </main>
   );
 }

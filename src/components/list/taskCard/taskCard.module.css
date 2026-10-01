@@ -1,11 +1,4 @@
-/* =========================
-     Task Grid
-  ========================= */
-  .taskGrid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-  }
+
 
   /* =========================
      Task Card
@@ -118,13 +111,13 @@
   .badgeIcon {
     font-size: 13px;
   }
-  .inprogress {
-    background: #dbeafe;
-    color: #2563eb;
-  }
   .todo {
     background: #f1f3f6;
     color: #64748b;
+  }
+  .in_progress {
+    background: #dbeafe;
+    color: #2563eb;
   }
   .completed {
     background: #dcfce7;
@@ -133,6 +126,10 @@
   .delayed {
     background: #fff0c2;
     color: #d97706;
+  }
+  .cancelled {
+    background: #fef2f2;
+    color: #ef4444;
   }
   .high {
     background: #fff0ef;

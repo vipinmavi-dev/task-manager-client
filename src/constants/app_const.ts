@@ -12,11 +12,26 @@ export function NavButton(modalHandler) {
     ]
 }
 export const StatusHash = {
-  "todo": "To Do",
-  "in_progress": "In Progress",
-  "completed": "Completed",
-  "delayed": "Delayed",
-  "cancelled": "Cancelled",
+  "todo": {
+    name: "To Do",
+    icon: "◷"
+  },
+  "in_progress": {
+    name: "In Progress",
+    icon: "↶"
+  },
+  "completed": {
+    name: "Completed",
+    icon: "✓"
+  },
+  "delayed": {
+    name: "Delayed",
+    icon: "!"
+  },
+  "cancelled": {
+    name: "Cancelled",
+    icon: "✗"
+  },
 }
 export const PriorityHash = {
   low: "Low",
