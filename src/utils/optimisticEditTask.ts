@@ -55,7 +55,6 @@ export const optmisticUpdateInTasksList = async (
                 updated_at: new Date().toISOString().split('T')[0]
             }
         ];
-        console.log("updatedTasks", updatedTasks);
     }
     callback(updatedTasks);
 }

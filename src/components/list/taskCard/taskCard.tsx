@@ -17,7 +17,7 @@ function TaskCard({
 }: TaskCardProps) {
     return (
         <section className={Style.taskGrid}>
-          {tasks.length > 0 ? tasks.map((task) => (
+          {tasks?.length > 0 && tasks.map((task) => (
             <article className={Style.taskCard} key={task.id}>
               <div
                 className={`${Style.taskTopBorder} ${Style[PriorityColorHash[task.priority]]}`}
@@ -44,7 +44,6 @@ function TaskCard({
                     aria-label={`Delete ${task.name}`}
                     onClick={() => deleteTaskHandler(task.id)}
                     className={Style.deleteButton}
-                    // disabled={task.id=true ? true : false}
                   >
                     <Trash2 size={16}/>
                   </button>
@@ -99,7 +98,7 @@ function TaskCard({
                   <option value="" disabled>
                     Select status
                   </option>
-                  {Statuses.length > 0 && Statuses.map((status, index) => (
+                  {Statuses?.length > 0 && Statuses.map((status, index) => (
                       <option key={index} name={task.id} value={status.id}>
                           {StatusHash[status.name]}
                       </option>
@@ -117,7 +116,7 @@ function TaskCard({
                 </span>
               </div>
             </article>
-          )): "No tasks available"}
+          ))}
         </section>
     )
 }

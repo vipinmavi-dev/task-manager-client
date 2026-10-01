@@ -16,14 +16,16 @@ function TaskManager(props: any) {
 
       <div className={styles.container}>
         {/* Statistics */}
-        <Statistics/>
+        <Statistics
+          APItasksCounts={props.APItasksCounts}
+        />
 
         {/* Search and filters */}
         <SearchFilter/>
 
         {/* Task count */}
         <div className={styles.taskCount}>
-          {/* {tasks.length} tasks */}
+          
           {props.tasks?.length} tasks
         </div>
 

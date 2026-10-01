@@ -1,28 +1,25 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-    data: []
-}
+    data: [],
+    counts: {
+        total: 0,
+        todo: 0,
+        in_progress: 0,
+        completed: 0,
+        delayed: 0,
+        cancelled: 0
+    }
+};
 
 const taskReducer = createSlice({
     name: 'tasks',
     initialState,
     reducers: {
         setTasks: (state, action) => {
-            state.data = action.payload;
+            state.data = action.payload.data;
+            state.counts = action.payload.counts;
         },
-        // addTask: (state, action) => {
-        //     state.tasks.push(action.payload);
-        // },
-        // updateTask: (state, action) => {
-        //     const index = state.tasks.findIndex(task => task.id === action.payload.id);
-        //     if (index !== -1) {
-        //         state.tasks[index] = action.payload;
-        //     }
-        // },
-        // deleteTask: (state, action) => {
-        //     state.tasks = state.tasks.filter(task => task.id !== action.payload);
-        // }
     }
 })
 

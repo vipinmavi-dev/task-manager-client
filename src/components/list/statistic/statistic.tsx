@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import styles from "./statistic.module.css";
 const statistics = [
     {
@@ -9,8 +9,14 @@ const statistics = [
     },
     {
       value: 1,
+      label: "TO DO",
+      type: "todo",
+      icon: "↶",
+    },
+    {
+      value: 1,
       label: "In Progress",
-      type: "progress",
+      type: "in_progress",
       icon: "↶",
     },
     {
@@ -28,14 +34,28 @@ const statistics = [
     {
       value: 0,
       label: "Failed",
-      type: "failed",
+      type: "cancelled",
       icon: "×",
     },
   ];
-function Statistics() {
+function Statistics({APItasksCounts}: any) {
+    var counts;
+    const [statisticsState, setStatisticsState] = useState(statistics);
+    useEffect(() => {
+      if(APItasksCounts?.total){
+        counts = statistics.map((item) => {
+          return {
+            ...item,
+            value: APItasksCounts[item.type] 
+          };
+        });
+        setStatisticsState(counts);
+      } 
+    },[APItasksCounts])
+    
     return(
         <section className={styles.statisticsGrid}>
-        {statistics.map((item) => (
+        {statisticsState.map((item) => (
           <div
             key={item.label}
             className={`${styles.statCard} ${styles[item.type]}`} // TODO: CSS need to be fixed

@@ -31,6 +31,7 @@ function TaskListConroller() {
     const navButtons = NavButton(modalHandler); // Nav button Const Object
 
     const APItasks = useSelector((state: RootState) => state.Tasks.data);
+    const APItasksCounts = useSelector((state: RootState) => state.Tasks.counts);
     const Statuses = useSelector((state: RootState) => state.Status.data);
     const Priorityes = useSelector((state: RootState) => state.Priority.data);
     const location = useLocation();
@@ -39,7 +40,7 @@ function TaskListConroller() {
     const fetchTasks = useCallback(async () => {
         try {
             const tasks = await getTasks();
-            if(tasks.data.success) dispatch(setTasks(tasks.data.data));
+            if(tasks.data.success) dispatch(setTasks({data:tasks.data.data.tasks, counts: tasks.data.data.counts}));   
             else throw new Error(tasks.data.message);
         } catch (error) {
             console.error('Error fetching tasks:', error);
@@ -138,6 +139,7 @@ function TaskListConroller() {
                 updateTask={updateTask} 
                 deleteTaskHandler={deleteTaskHandler} 
                 modalHandler={modalHandler}
+                APItasksCounts={APItasksCounts}
             />
             <AddTaskController
                 modalHandler={modalHandler}
