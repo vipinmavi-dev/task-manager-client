@@ -11,13 +11,15 @@ import type { RootState } from "../types/task.ts";
 const AddTask_Controller = ({
     modalHandler,
     addEditModel,
-    fetchTasks
+    fetchTasks,
+    APItasksCounts
     }
         : 
     {
         modalHandler:(a: Partial<AddEditModel>)=>void,
         addEditModel: AddEditModel,
-        fetchTasks: () => void
+        fetchTasks: () => void,
+        APItasksCounts: {}
     }
 ) => {
     const dispatch = useDispatch();
@@ -62,35 +64,29 @@ const AddTask_Controller = ({
             ...form,
             priority_id: parseInt(form.priority_id, 10), // Ensure priority_id is a number
         }
+        
         try {
             var res;
             modalHandler({status: false});
             if(addEditModel.name === "addTask") {
-
-                optmisticUpdateInTasksList(
-                    addEditModel.taskId,
-                    {
-                        commingFor: "add",
-                        data: payload
-                    },
-                    (arg) => dispatch(setTasks(arg)),
-                    APItasks,
-                    Statuses,
-                    Priorityes
-                );
                 res = await addTask(payload);
-            }else{
+            }else if(
+                addEditModel.name === "editTask" &&
+                addEditModel.taskId
+            ){
                 optmisticUpdateInTasksList(
                     addEditModel.taskId,
                     {
                         commingFor: "edit",
-                        data: payload
+                        data: {...payload}
                     },
                     (arg) => dispatch(setTasks(arg)),
                     APItasks,
+                    APItasksCounts,
                     Statuses,
                     Priorityes
                 );
+                 
                 res = await putTask(addEditModel.taskId, payload);
             }
             if(res.data.success) {

@@ -90,6 +90,7 @@ function TaskListConroller() {
                 },
                 (arg)=>{dispatch(setTasks(arg))},
                 APItasks,
+                APItasksCounts,
                 Statuses,  
                 Priorityes,
             )
@@ -117,6 +118,7 @@ function TaskListConroller() {
                 }, 
                 (arg)=>{dispatch(setTasks(arg))},
                 APItasks,
+                APItasksCounts,
                 Statuses,
                 Priorityes
             );
@@ -126,7 +128,7 @@ function TaskListConroller() {
 
         } catch (error) {
             console.error('Error updating task:', error);
-            dispatch(setTasks(APItasks));
+            dispatch(setTasks({data:APItasks, count: null}));
             FailedToast(error.message);
         }
     }
@@ -145,6 +147,7 @@ function TaskListConroller() {
                 modalHandler={modalHandler}
                 addEditModel={addEditModel}
                 fetchTasks={fetchTasks}
+                APItasksCounts={APItasksCounts}
             />
         </Suspense>
     )

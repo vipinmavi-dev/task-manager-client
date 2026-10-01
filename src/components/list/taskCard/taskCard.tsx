@@ -74,7 +74,7 @@ function TaskCard({
           Status
         </label>
 
-        <select onChange={ updateTask } id="status" className={Style.select} value={task.status_id}>
+        <select onChange={ updateTask } name={task.id} id="status" className={Style.select} value={task.status_id}>
           <option value="" disabled>
             Select status
           </option>
