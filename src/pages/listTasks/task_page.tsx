@@ -7,17 +7,21 @@ import {
 } from "../../components/list/index.tsx";
 import PageHeader from "../../components/pageHeader/header/pageHeader.tsx";
 import NavButton from "../../components/pageHeader/navButton/navButton.tsx";
+import { WillTaskRender } from "../../utils/FilterTasks.ts"
 
 function TaskManager({
   modalHandler,
   tasks=[],
   updateTask,
   Statuses,
+  Priorityes,
   deleteTaskHandler,
   APItasksCounts,
   navButtons,
   addEditModel,
-  children
+  children,
+  updateFilter,
+  Filter
 }: any) {
   
   return (
@@ -34,7 +38,13 @@ function TaskManager({
         />
 
         {/* Search and filters */}
-        <SearchFilter/>
+        <SearchFilter
+          Statuses={Statuses}
+          Priorityes={Priorityes}
+          updateFilter={updateFilter}
+          tasks={tasks}
+          FilterSearch={Filter.search}
+        />
 
         {/* Task count */}
         <div className={styles.taskCount}>
@@ -45,20 +55,28 @@ function TaskManager({
         {/* Task Grid */}
         <section className={styles.taskGrid}>
         {
-          tasks.map((task: any) => (
-            <TaskCard
-              key={task.id}
-              task={task}
-              updateTask={updateTask}
-              Statuses={Statuses}
-              deleteTaskHandler={() => deleteTaskHandler(task.id)}
-              modalHandler={() => modalHandler({
-                name: "editTask", 
-                status: true, 
-                taskId: task.id
-              })}
-            />
-          ))
+          tasks.map((task: any) => {
+            if (!WillTaskRender(Filter, task)) {
+                return null;
+            }
+        
+            return (
+                <TaskCard
+                    key={task.id}
+                    task={task}
+                    updateTask={updateTask}
+                    Statuses={Statuses}
+                    deleteTaskHandler={() => deleteTaskHandler(task.id)}
+                    modalHandler={() =>
+                        modalHandler({
+                            name: "editTask",
+                            status: true,
+                            taskId: task.id
+                        })
+                    }
+                />
+            );
+        })
         }
         </section>
       </div>

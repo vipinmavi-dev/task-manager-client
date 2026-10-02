@@ -30,3 +30,25 @@ export interface TaskCardProps {
     deleteTaskHandler: (taskId: number) => void;
     modalHandler: (modelStatus: Partial<AddEditModel>) => void;
 }
+
+export interface FilterBodyType {
+    key: "name" | "status" | "priority";
+    value: string;
+    isExactMatch: boolean;
+}
+export interface FiltersType {
+    status: Omit<FilterBodyType, "isExactMatch">;
+    priority: Omit<FilterBodyType, "isExactMatch">;
+    search: FilterBodyType;
+}
+export interface StatisticsProps {
+    APItasksCounts: {
+        total: number;
+        completed: number;
+        pending: number;
+    };
+}
+export interface StatusesPriorityesTypes {
+    id: number;
+    name: string;
+}

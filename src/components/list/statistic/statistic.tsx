@@ -1,32 +1,33 @@
 import React, {useEffect, useState} from "react";
 import styles from "./statistic.module.css";
+import type { StatisticsProps } from "../../../types/task.ts";
 const statistics = [
     {
-      value: 4,
+      value: 0,
       label: "Total",
       type: "total",
       icon: "☷",
     },
     {
-      value: 1,
+      value: 0,
       label: "TO DO",
       type: "todo",
       icon: "◷",
     },
     {
-      value: 1,
+      value: 0,
       label: "In Progress",
       type: "in_progress",
       icon: "↶",
     },
     {
-      value: 1,
+      value: 0,
       label: "Completed",
       type: "completed",
       icon: "✓",
     },
     {
-      value: 1,
+      value: 0,
       label: "Delayed",
       type: "delayed",
       icon: "!",
@@ -38,18 +39,17 @@ const statistics = [
       icon: "×",
     },
   ];
-function Statistics({APItasksCounts}: any) {
-    var counts;
+function Statistics({APItasksCounts}: StatisticsProps) {
     const [statisticsState, setStatisticsState] = useState(statistics);
     useEffect(() => {
       if(APItasksCounts?.total){
-        counts = statistics.map((item) => {
+        
+        setStatisticsState(()=>statistics.map((item) => {
           return {
             ...item,
             value: APItasksCounts[item.type] 
           };
-        });
-        setStatisticsState(counts);
+        }));
       } 
     },[APItasksCounts])
     

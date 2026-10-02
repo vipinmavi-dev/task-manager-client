@@ -8,7 +8,7 @@ import { setTasks } from "../redux/task/task.ts";
 import { setStatus } from "../redux/status/status.redux.ts";
 import { setPriority } from "../redux/priority/priority.redux.ts";
 import { Suspense } from "react";
-import type { AddEditModel, RootState} from "../types/task.ts";
+import type { AddEditModel, RootState, FiltersType} from "../types/task.ts";
 import { NavButton } from "../constants/app_const.ts";
 import AddTaskController from "./addTask_controller.tsx";
 import { optmisticUpdateInTasksList } from "../utils/optimisticEditTask.ts";
@@ -20,6 +20,21 @@ function TaskListConroller() {
         status: false,
         taskId: null
     });
+    const [Filter, setFilter] = useState<FiltersType>({
+        status:{
+            key: "status",
+            value: "all",
+        },
+        priority:{
+            key: "priority",
+            value: "all",
+        },
+        search:{
+            key: "name",
+            value: "",
+            isExactMatch: false
+        }
+    });
     const modalHandler = (modelStatus: Partial<AddEditModel>) => {
         setaddEditModel((prev)=>(
             {
@@ -28,6 +43,10 @@ function TaskListConroller() {
             }
         ));
     }
+    useEffect(() => {
+        console.log("Search Filter Updated:", Filter);
+    },[Filter])
+
     const navButtons = NavButton(modalHandler); // Nav button Const Object
 
     const APItasks = useSelector((state: RootState) => state.Tasks.data);
@@ -37,6 +56,12 @@ function TaskListConroller() {
     const location = useLocation();
     const hasShown = useRef(false);
     
+    const updateFilter = (filter: FiltersType) => {
+        setFilter((prev) => ({
+            ...prev,
+            ...filter
+        }));
+    }
     const fetchTasks = useCallback(async () => {
         try {
             const tasks = await getTasks();
@@ -138,10 +163,13 @@ function TaskListConroller() {
                 navButtons={navButtons} 
                 tasks={APItasks} 
                 Statuses={Statuses} 
+                Priorityes={Priorityes}
                 updateTask={updateTask} 
                 deleteTaskHandler={deleteTaskHandler} 
                 modalHandler={modalHandler}
                 APItasksCounts={APItasksCounts}
+                updateFilter={updateFilter}
+                Filter={Filter}
             />
             <AddTaskController
                 modalHandler={modalHandler}
