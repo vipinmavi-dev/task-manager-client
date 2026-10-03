@@ -3,11 +3,13 @@ import SignUpController from "./signup_controller.tsx";
 import DashboardController from "./dashboard_controller.tsx";
 import TaskListController from "./listTask_controller.tsx";
 import AddTaskController from "./addTask_controller.tsx";
+import ProfileController from "./profile_controller.tsx";
 
 export{
     LoginController,
     SignUpController,
     DashboardController,
     TaskListController,
-    AddTaskController
+    AddTaskController,
+    ProfileController
 }

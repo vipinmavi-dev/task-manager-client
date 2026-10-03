@@ -47,7 +47,7 @@ function NavButton({ navButtonsData, handleLogout }: NavButtonsProps) {
       {/* Avatar */}
       <div className={Style.profileWrapper}>
         {/* Avatar button */}
-        <button
+        {/* <button
           type="button"
           className={Style.avatarButton}
           onClick={()=>setIsProfileOpen(!isProfileOpen)}
@@ -55,13 +55,28 @@ function NavButton({ navButtonsData, handleLogout }: NavButtonsProps) {
         >
           {userName ? (
             <span className={Style.avatarInitials}>
-              {/* {getInitials(userName)} */}
               {userName.split(" ").map((n) => n[0]).join("")}
             </span>
           ) : (
             <User size={18} />
           )}
-        </button>
+        </button> */}
+        {
+            <div className={Style.profileAvatarSmall}
+            onClick={() => setIsProfileOpen(!isProfileOpen)}>
+              {userPhoto ? (
+                <img
+                  src={userPhoto}
+                  alt={userName || "User"}
+                />
+              ) : (
+                <span>
+                  {userName.split(" ").map((n) => n[0]).join("")}
+                  {/* {userName ? getInitials(userName) : <User size={28} />} */}
+                </span>
+              )}
+            </div>
+          }
 
         {/* Profile dropdown */}
         {/* {isProfileOpen && ( */}

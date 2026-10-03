@@ -173,6 +173,37 @@
      Large Profile Avatar
   ========================= */
 
+.profileAvatarSmall {
+    width: 40px;
+    height: 40px;
+    border: 1px solid black;
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    color: #ffffff;
+
+    background: linear-gradient(135deg,
+            #3b82f6,
+            #9333ea);
+}
+.profileAvatarSmall img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+.profileAvatarSmall span {
+    font-size: 18px;
+    font-weight: 700;
+}
 .profileAvatar {
     width: 56px;
     height: 56px;

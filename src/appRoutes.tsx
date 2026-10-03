@@ -12,6 +12,7 @@ import {
     DashboardController,
     LoginController,
     SignUpController,
+    ProfileController
 } from "./controller/index.tsx";
 
 function AuthLayout() {
@@ -62,7 +63,7 @@ const router = createBrowserRouter([
         loader: ()=>{},
         children: [
             { path: ROUTES.LIST, element: <TaskListController/> },
-            { path: ROUTES.PROFILE, element: <h1>Profile page</h1> },
+            { path: ROUTES.PROFILE, element: <ProfileController/> },
         ]
     }
 ]);
