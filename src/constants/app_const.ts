@@ -1,4 +1,4 @@
-export function NavButton(modalHandler) {
+export function createNavButtons(modalHandler) {
     return [
         {
           buttonText: "+ New Task",

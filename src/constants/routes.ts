@@ -9,6 +9,7 @@ export const ROUTES = {
     ADD: "/add",
     TICKET_DETAILS: "/ticket/:id",
     CREATE_TICKET: "/ticket/create",
+    PROFILE: "/profile",
     NOT_FOUND: "*"
 }as const;
 

@@ -9,7 +9,7 @@ import { setStatus } from "../redux/status/status.redux.ts";
 import { setPriority } from "../redux/priority/priority.redux.ts";
 import { Suspense } from "react";
 import type { AddEditModel, RootState, FiltersType} from "../types/task.ts";
-import { NavButton } from "../constants/app_const.ts";
+import { createNavButtons } from "../constants/app_const.ts";
 import AddTaskController from "./addTask_controller.tsx";
 import { optmisticUpdateInTasksList } from "../utils/optimisticEditTask.ts";
 
@@ -43,11 +43,8 @@ function TaskListConroller() {
             }
         ));
     }
-    useEffect(() => {
-        console.log("Search Filter Updated:", Filter);
-    },[Filter])
 
-    const navButtons = NavButton(modalHandler); // Nav button Const Object
+    const navButtonsData = createNavButtons(modalHandler); // Nav button Const Object
 
     const APItasks = useSelector((state: RootState) => state.Tasks.data);
     const APItasksCounts = useSelector((state: RootState) => state.Tasks.counts);
@@ -160,7 +157,7 @@ function TaskListConroller() {
     return (
         <Suspense fallback={<div>Loading...</div>}>
             <TaskListPage 
-                navButtons={navButtons} 
+                navButtonsData={navButtonsData} 
                 tasks={APItasks} 
                 Statuses={Statuses} 
                 Priorityes={Priorityes}

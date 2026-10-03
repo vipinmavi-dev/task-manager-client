@@ -6,30 +6,31 @@ import {
   TaskCard
 } from "../../components/list/index.tsx";
 import PageHeader from "../../components/pageHeader/header/pageHeader.tsx";
-import NavButton from "../../components/pageHeader/navButton/navButton.tsx";
+// import NavButton from "../../components/pageHeader/navButton/navButton.tsx";
 import { WillTaskRender } from "../../utils/FilterTasks.ts"
 
 function TaskManager({
   modalHandler,
-  tasks=[],
+  tasks = [],
   updateTask,
   Statuses,
   Priorityes,
   deleteTaskHandler,
   APItasksCounts,
-  navButtons,
+  navButtonsData,
   addEditModel,
   children,
   updateFilter,
   Filter
 }: any) {
-  
+
   return (
     <main className={styles.page}>
       {/* Header */}
-      <PageHeader 
-        siteName="Task Manager" 
-        NavButton={<NavButton navButtons={navButtons} />}/>
+      <PageHeader
+        siteName="Task Manager"
+        navButtonsData={navButtonsData}
+      />
 
       <div className={styles.container}>
         {/* Statistics */}
@@ -48,36 +49,36 @@ function TaskManager({
 
         {/* Task count */}
         <div className={styles.taskCount}>
-          
+
           {tasks?.length} tasks
         </div>
 
         {/* Task Grid */}
         <section className={styles.taskGrid}>
-        {
-          tasks.map((task: any) => {
-            if (!WillTaskRender(Filter, task)) {
+          {
+            tasks.map((task: any) => {
+              if (!WillTaskRender(Filter, task)) {
                 return null;
-            }
-        
-            return (
+              }
+
+              return (
                 <TaskCard
-                    key={task.id}
-                    task={task}
-                    updateTask={updateTask}
-                    Statuses={Statuses}
-                    deleteTaskHandler={() => deleteTaskHandler(task.id)}
-                    modalHandler={() =>
-                        modalHandler({
-                            name: "editTask",
-                            status: true,
-                            taskId: task.id
-                        })
-                    }
+                  key={task.id}
+                  task={task}
+                  updateTask={updateTask}
+                  Statuses={Statuses}
+                  deleteTaskHandler={() => deleteTaskHandler(task.id)}
+                  modalHandler={() =>
+                    modalHandler({
+                      name: "editTask",
+                      status: true,
+                      taskId: task.id
+                    })
+                  }
                 />
-            );
-        })
-        }
+              );
+            })
+          }
         </section>
       </div>
       {addEditModel?.status && children}

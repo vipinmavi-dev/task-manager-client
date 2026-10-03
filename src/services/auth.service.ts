@@ -12,3 +12,6 @@ export const signupUser = async (data: Omit<SignupForm,"confirmPassword">) => {
 export const loginUser = async (data: LoginForm): Promise<AxiosResponse<LoginResponse>> => {
     return api.post('/api/auth/login', data);
 };
+export const logOutUser = async () => {
+    return api.post('/api/auth/logout');
+}
