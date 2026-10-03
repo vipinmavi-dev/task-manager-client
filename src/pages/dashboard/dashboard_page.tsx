@@ -3,25 +3,32 @@ import Style from "./dashboard_page.module.css"
 import { ROUTES } from "../../constants/routes.ts";
 import PageHeader from "../../components/pageHeader/header/pageHeader.tsx";
 import NavButton from "../../components/pageHeader/navButton/navButton.tsx";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import type { DashboardPageProps } from "../../types/dashboard.ts";
 
-function DashboardPage() {
-    const navigate = useNavigate();
+function DashboardPage({
+    handleNavigate,
+}: DashboardPageProps) {
     const navButtons = [
         {
             buttonText: "Sign in",
-            method: ()=>navigate(ROUTES.LOGIN),
+            method: ()=>handleNavigate(ROUTES.LOGIN),
             className: "signIn"
         },
         {
             buttonText: "Create free account",
-            method: ()=>navigate(ROUTES.SIGNUP),
+            method: ()=>handleNavigate(ROUTES.SIGNUP),
             className: "getStarted"
         }
     ]
     return (
         <div>
-            <PageHeader siteName="Task Hub" isRedirectToBackPage={false} NavButton={<NavButton navButtons={navButtons} />} />
+            <PageHeader 
+                siteName="Task Hub" 
+                isRedirectToBackPage={false} 
+                navButtons={navButtons}
+            />
+
             <main>
 
                 {/* <!-- =========================
@@ -49,14 +56,17 @@ function DashboardPage() {
 
                         <div className={Style.heroActions}>
 
-                            <a href="/list" className={Style.primaryButton}>
+                            <span 
+                                onClick={()=>handleNavigate(ROUTES.LIST)}
+                                className={Style.primaryButton}
+                            >
                                 Try it free
                                 <span>→</span>
-                            </a>
+                            </span>
 
-                            <a href="/auth/signup" className={Style.secondaryLink}>
+                            <Link to={ROUTES.SIGNUP} className={Style.secondaryLink}>
                                 Create a free account →
-                            </a>
+                            </Link>
 
                         </div>
 
@@ -178,14 +188,15 @@ function DashboardPage() {
 
                         <div className={Style.ctaActions}>
 
-                            <a href="/auth/signup" className={Style.ctaPrimary}>
+                            <Link to={ROUTES.SIGNUP} className={Style.ctaPrimary}>
                                 Sign up — it's free
                                 <span>→</span>
-                            </a>
+                            </Link>
 
-                            <a href="/list" className={Style.ctaSecondary}>
+                            {/* <span to={ROUTES.LIST} className={Style.ctaSecondary}> */}
+                            <span className={Style.ctaSecondary}>
                                 Continue as Guest
-                            </a>
+                            </span>
 
                         </div>
 
@@ -194,11 +205,6 @@ function DashboardPage() {
                 </section>
 
             </main>
-
-
-            {/* <!-- =========================
-         Footer
-    ========================== --> */}
 
             <footer className={Style.footer}>
 

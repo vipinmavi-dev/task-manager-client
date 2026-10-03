@@ -22,7 +22,7 @@ export interface AddEditModel {
     taskId: number | null;
 }
 export type RootState = ReturnType<typeof store.getState>;
-  
+
 export interface TaskCardProps {
     task: Task[];
     updateTask: (event: React.ChangeEvent<HTMLSelectElement>) => void;
@@ -51,4 +51,14 @@ export interface StatisticsProps {
 export interface StatusesPriorityesTypes {
     id: number;
     name: string;
+}
+export interface NavButtonProps {
+    buttonText: string;
+    method: () => void;
+    className: string;
+    // className: "signIn" | "getStarted"; TODO: will work on this letter as its throw error
+}
+export interface NavButtonsProps {
+    navButtonsData: NavButtonProps[];
+    handleLogout: () => void;
 }

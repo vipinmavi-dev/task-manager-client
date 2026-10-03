@@ -31,6 +31,7 @@
     align-items: center;
     justify-content: center;
 }
+
 /* =========================
    Get Started button
 ========================= */
@@ -45,11 +46,9 @@
 
     border-radius: 10px;
 
-    background: linear-gradient(
-        135deg,
-        #315efb,
-        #9b2cff
-    );
+    background: linear-gradient(135deg,
+            #315efb,
+            #9b2cff);
     white-space: nowrap;
     color: #ffffff;
 
@@ -69,4 +68,277 @@
     transform: translateY(-1px);
 
     box-shadow: 0 6px 14px rgba(49, 94, 251, 0.3);
+}
+
+.userProfile {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* =========================
+   Profile Wrapper
+========================= */
+
+.profileWrapper {
+    position: relative;
+    display: inline-flex;
+}
+
+
+/* =========================
+     Header Avatar
+  ========================= */
+
+.avatarButton {
+    width: 36px;
+    height: 36px;
+
+    padding: 0;
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    color: #ffffff;
+
+    background: linear-gradient(135deg,
+            #3b82f6,
+            #9333ea);
+
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+.avatarButton:hover {
+    transform: scale(1.04);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.16);
+}
+
+.avatarInitials {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+
+/* =========================
+     Profile Dropdown
+  ========================= */
+
+.profileDropdown {
+    position: absolute;
+
+    top: calc(100% + 10px);
+    right: 0;
+
+    width: 280px;
+
+    padding: 16px;
+
+    background: #ffffff;
+
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.10),
+        0 4px 10px rgba(0, 0, 0, 0.05);
+
+    z-index: 1000;
+
+    animation: profileDropdownIn 0.15s ease-out;
+}
+
+
+/* =========================
+     Profile Information
+  ========================= */
+
+.profileInfo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+
+/* =========================
+     Large Profile Avatar
+  ========================= */
+
+.profileAvatar {
+    width: 56px;
+    height: 56px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    color: #ffffff;
+
+    background: linear-gradient(135deg,
+            #3b82f6,
+            #9333ea);
+}
+
+.profileAvatar img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+.profileAvatar span {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+
+/* =========================
+     Name & Email
+  ========================= */
+
+.profileDetails {
+    min-width: 0;
+    flex: 1;
+}
+
+.profileName {
+    font-size: 15px;
+    font-weight: 600;
+
+    color: #111827;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.profileEmail {
+    margin-top: 3px;
+
+    font-size: 12px;
+
+    color: #6b7280;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+/* =========================
+     Divider
+  ========================= */
+
+.profileDivider {
+    height: 1px;
+
+    margin: 14px 0;
+
+    background: #e5e7eb;
+}
+
+
+/* =========================
+     Actions
+  ========================= */
+
+.profileActions {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.profileAction {
+    width: 100%;
+
+    min-height: 40px;
+
+    padding: 0 10px;
+
+    border: none;
+    border-radius: 8px;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    background: transparent;
+
+    color: #374151;
+
+    font-size: 14px;
+    font-weight: 500;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.15s ease,
+        color 0.15s ease;
+}
+
+.profileAction:hover {
+    background: #f3f4f6;
+}
+
+.profileAction svg {
+    flex-shrink: 0;
+}
+
+
+/* =========================
+     Logout
+  ========================= */
+
+.logoutAction {
+    color: #dc2626;
+}
+
+.logoutAction:hover {
+    background: #fef2f2;
+}
+
+
+/* =========================
+     Animation
+  ========================= */
+
+@keyframes profileDropdownIn {
+    from {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================
+     Mobile
+  ========================= */
+
+@media (max-width: 480px) {
+    .profileDropdown {
+        width: 260px;
+        right: -8px;
+    }
 }
