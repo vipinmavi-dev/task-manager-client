@@ -13,7 +13,6 @@ function Input(
         required={required}
         placeholder={placeholder}
         value={value}
-        autoFocus={false}
         onChange={handleChange}
     />
 }

@@ -1,5 +1,6 @@
 import React from "react";
 import Style from "./changePasswordModel.module.css";
+import { Input, Label } from "../UI_Elements/index.tsx";
 import {
     X,
     Eye,
@@ -11,11 +12,21 @@ import {
 interface ChangePasswordModalProps {
     isOpen: boolean;
     onClose: () => void;
+    changePasswordData: {
+        currentPassword: string;
+        newPassword: string;
+        confirmNewPassword: string;
+    };
+    handleChangePasswordData: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    handleChangePasswordSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
 }
 
 function ChangePasswordModal({
     isOpen,
     onClose,
+    changePasswordData,
+    handleChangePasswordData,
+    handleChangePasswordSubmit
 }: ChangePasswordModalProps) {
 
     if (!isOpen) return null;
@@ -59,127 +70,142 @@ function ChangePasswordModal({
                     </button>
 
                 </div>
+                <form onSubmit={handleChangePasswordSubmit}>
+                    {/* Body */}
+                    <div className={Style.modalBody}>
 
-                {/* Body */}
-                <div className={Style.modalBody}>
-
-                    {/* Current Password */}
-                    <div className={Style.formGroup}>
-                        <label htmlFor="currentPassword">
-                            Current Password
-                        </label>
-
-                        <div className={Style.inputWrapper}>
-                            <LockKeyhole size={17} />
-
-                            <input
-                                id="currentPassword"
-                                type="password"
-                                placeholder="Enter current password"
+                        {/* Current Password */}
+                        <div className={Style.formGroup}>
+                            <Label 
+                                htmlFor="currentPassword"
+                                text="Current Password"
+                                showRequiredSign={true}
                             />
 
-                            <button
-                                type="button"
-                                className={Style.passwordToggle}
-                                aria-label="Show password"
-                            >
-                                <Eye size={17} />
-                            </button>
+                            <div className={Style.inputWrapper}>
+                                <LockKeyhole size={17} />
+                                <Input
+                                    id="currentPassword"
+                                    type="password"
+                                    placeholder="Enter current password"
+                                    value={changePasswordData.currentPassword}
+                                    required={true}
+                                    handleChange={handleChangePasswordData}
+                                />
+
+                                <button
+                                    type="button"
+                                    className={Style.passwordToggle}
+                                    aria-label="Show password"
+                                >
+                                    <Eye size={17} />
+                                </button>
+                            </div>
                         </div>
-                    </div>
 
 
-                    {/* New Password */}
-                    <div className={Style.formGroup}>
-                        <label htmlFor="newPassword">
-                            New Password
-                        </label>
-
-                        <div className={Style.inputWrapper}>
-                            <LockKeyhole size={17} />
-
-                            <input
-                                id="newPassword"
-                                type="password"
-                                placeholder="Enter new password"
+                        {/* New Password */}
+                        <div className={Style.formGroup}>
+                            <Label 
+                                htmlFor="newPassword"
+                                text="New Password"
+                                showRequiredSign={true}
                             />
 
-                            <button
-                                type="button"
-                                className={Style.passwordToggle}
-                                aria-label="Show password"
-                            >
-                                <Eye size={17} />
-                            </button>
+                            <div className={Style.inputWrapper}>
+                                <LockKeyhole size={17} />
+
+                                <Input 
+                                    id="newPassword"
+                                    type="password"
+                                    placeholder="Enter new password"
+                                    value={changePasswordData.newPassword}
+                                    required={true}
+                                    handleChange={handleChangePasswordData}
+                                />
+
+                                <button
+                                    type="button"
+                                    className={Style.passwordToggle}
+                                    aria-label="Show password"
+                                >
+                                    <Eye size={17} />
+                                </button>
+                            </div>
                         </div>
-                    </div>
 
 
-                    {/* Confirm Password */}
-                    <div className={Style.formGroup}>
-                        <label htmlFor="confirmPassword">
-                            Confirm New Password
-                        </label>
-
-                        <div className={Style.inputWrapper}>
-                            <LockKeyhole size={17} />
-
-                            <input
-                                id="confirmPassword"
-                                type="password"
-                                placeholder="Confirm new password"
+                        {/* Confirm Password */}
+                        <div className={Style.formGroup}>
+                            <Label
+                                htmlFor="confirmNewPassword"
+                                text="Confirm New Password"
+                                showRequiredSign={true}
                             />
 
-                            <button
-                                type="button"
-                                className={Style.passwordToggle}
-                                aria-label="Show password"
-                            >
-                                <Eye size={17} />
-                            </button>
+                            <div className={Style.inputWrapper}>
+                                <LockKeyhole size={17} />
+
+                                <Input 
+                                    id="confirmNewPassword"
+                                    type="password"
+                                    placeholder="Confirm new password"
+                                    value={changePasswordData.confirmNewPassword}
+                                    required={true}
+                                    handleChange={handleChangePasswordData}
+                                />
+
+                                <button
+                                    type="button"
+                                    className={Style.passwordToggle}
+                                    aria-label="Show password"
+                                >
+                                    <Eye size={17} />
+                                </button>
+                            </div>
                         </div>
+
+
+                        {/* Password Requirements */}
+                        <div className={Style.passwordRequirements}>
+
+                            <div className={Style.requirementTitle}>
+                                <CheckCircle2 size={15} />
+                                Password requirements
+                            </div>
+
+                            <ul>
+                                <li>At least 8 characters</li>
+                                <li>At least one uppercase & lowercase letter</li>
+                                <li>At least one number</li>
+                                <li>At least one special symbole</li>
+                            </ul>
+
+                        </div>
+
                     </div>
 
 
-                    {/* Password Requirements */}
-                    <div className={Style.passwordRequirements}>
+                    {/* Footer */}
+                    <div className={Style.modalFooter}>
 
-                        <div className={Style.requirementTitle}>
-                            <CheckCircle2 size={15} />
-                            Password requirements
-                        </div>
+                        <button
+                            type="button"
+                            className={Style.cancelButton}
+                            onClick={onClose}
+                        >
+                            Cancel
+                        </button>
 
-                        <ul>
-                            <li>At least 8 characters</li>
-                            <li>At least one uppercase letter</li>
-                            <li>At least one number</li>
-                        </ul>
+                        <button
+                            type="submit"
+                            className={Style.updateButton}
+                        >
+                            Update Password
+                        </button>
 
                     </div>
-
-                </div>
-
-
-                {/* Footer */}
-                <div className={Style.modalFooter}>
-
-                    <button
-                        type="button"
-                        className={Style.cancelButton}
-                        onClick={onClose}
-                    >
-                        Cancel
-                    </button>
-
-                    <button
-                        type="button"
-                        className={Style.updateButton}
-                    >
-                        Update Password
-                    </button>
-
-                </div>
-
+                </form>
             </div>
 
         </div>

@@ -1,6 +1,9 @@
 import React from 'react';
 import Style from "./Profile.module.css";
 import PageHeader from "../../components/pageHeader/header/pageHeader.tsx";
+import type { ProfilePageProps } from '../../types/profile.ts';
+import { Input } from "../../components/UI_Elements/index.tsx";
+import { Save } from "lucide-react";
 import {
     Camera,
     Mail,
@@ -11,28 +14,19 @@ import {
     Pencil,
     ShieldCheck,
 } from "lucide-react";
-interface ProfilePageProps {
-    user: {
-        name: string;
-        email: string;
-        phone: string;
-        photo: string;
-        status?: string;
-        accountType?: string;
-    };
-    tasksCount: {
-        total: number;
-        completed: number;
-        in_progress: number;
-        todo: number;
-        delayed: number;
-        cancelled: number;
-    };
-    displayModal: () => void;
-}
+
 function ProfilePage(
-    { user, tasksCount, displayModal }:
-        ProfilePageProps
+    { 
+        user, 
+        tasksCount, 
+        displayModal, 
+        handleFormChange, 
+        makeFormEditable,
+        isEditable,
+        editProfileData,
+        handleProfileSubmit,
+        handleLogout
+    }: ProfilePageProps
 ) {
     return (
         <>
@@ -69,6 +63,7 @@ function ProfilePage(
                                     type="button"
                                     className={Style.cameraButton}
                                     title="Change profile photo"
+                                    onClick={()=> alert("Under Development")}
                                 >
                                     <Camera size={16} />
                                 </button>
@@ -99,10 +94,21 @@ function ProfilePage(
 
                                 <button
                                     type="button"
-                                    className={Style.editButton}
+                                    className={ isEditable ? Style.updateButton : Style.editButton}
+                                    onClick={isEditable ? handleProfileSubmit : makeFormEditable}
                                 >
-                                    <Pencil size={16} />
-                                    <span>Edit</span>
+                                    {
+                                        isEditable ? 
+                                        <>
+                                        <Save size={16} />
+                                        <span>Update</span>
+                                        </>
+                                        :
+                                        <>
+                                            <Pencil size={16} />
+                                            <span>Edit</span>
+                                        </>
+                                    }
                                 </button>
                             </div>
 
@@ -113,7 +119,17 @@ function ProfilePage(
 
                                     <div className={Style.inputWrapper}>
                                         <UserRound size={17} />
-                                        <span>{user.name}</span>
+                                        { isEditable ?
+                                            <Input id="name" 
+                                                type="text" 
+                                                placeholder='Enter name'
+                                                required = {false}
+                                                value={editProfileData.name}
+                                                handleChange={handleFormChange}
+                                            />
+                                        :
+                                            <span>{user.name}</span>
+                                        }
                                     </div>
                                 </div>
 
@@ -122,7 +138,17 @@ function ProfilePage(
 
                                     <div className={Style.inputWrapper}>
                                         <Mail size={17} />
-                                        <span>{user.email}</span>
+                                        { isEditable ?
+                                            <Input id="email" 
+                                                type="email" 
+                                                placeholder='jhonsmith@gmail.com'
+                                                required = {false}
+                                                value={editProfileData.email}
+                                                handleChange={handleFormChange}
+                                            />
+                                        :
+                                            <span>{user.email}</span>
+                                        }
                                     </div>
                                 </div>
 
@@ -131,7 +157,18 @@ function ProfilePage(
 
                                     <div className={Style.inputWrapper}>
                                         <Phone size={17} />
-                                        <span>{user.phone || "Not provided"}</span>
+                                        { isEditable ?
+                                            <Input id="phone" 
+                                                type="text" 
+                                                placeholder='+919876543210'
+                                                required = {false}
+                                                value={editProfileData.phone}
+                                                handleChange={handleFormChange}
+                                            />
+                                        :
+                                            <span>{user.phone || "Not provided"}</span>
+                                        }
+                                        
                                     </div>
                                 </div>
 
@@ -240,6 +277,7 @@ function ProfilePage(
                             <button
                                 type="button"
                                 className={Style.logoutButton}
+                                onClick={handleLogout}
                             >
                                 <LogOut size={17} />
                                 Logout
