@@ -11,7 +11,7 @@ import NavButton from "../navButton/navButton.tsx";
 import type { NavButtonProps } from "../../../types/task.ts";
 
 function PageHeader({ isRedirectToBackPage = true, siteName, navButtonsData }: 
-  { isRedirectToBackPage?: boolean, siteName: string, navButtonsData?: NavButtonProps[] }) {
+  { isRedirectToBackPage?: boolean, siteName: string, navButtonsData: NavButtonProps[] }) {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const handleLogout = async () => {

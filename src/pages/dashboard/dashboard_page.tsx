@@ -2,7 +2,7 @@ import React from "react"
 import Style from "./dashboard_page.module.css"
 import { ROUTES } from "../../constants/routes.ts";
 import PageHeader from "../../components/pageHeader/header/pageHeader.tsx";
-import NavButton from "../../components/pageHeader/navButton/navButton.tsx";
+// import NavButton from "../../components/pageHeader/navButton/navButton.tsx";
 import { Link } from "react-router-dom";
 import type { DashboardPageProps } from "../../types/dashboard.ts";
 
@@ -26,7 +26,7 @@ function DashboardPage({
             <PageHeader 
                 siteName="Task Hub" 
                 isRedirectToBackPage={false} 
-                navButtons={navButtons}
+                navButtonsData={navButtons}
             />
 
             <main>

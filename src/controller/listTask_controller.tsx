@@ -66,7 +66,7 @@ function TaskListConroller() {
             else throw new Error(tasks.data.message);
         } catch (error) {
             console.error('Error fetching tasks:', error);
-            FailedToast(error.message);
+            FailedToast("Something went wrong!: Try Refresh "+error.status);
         }
     },[dispatch]);
     const getStatuses =  useCallback(async ()=>{
@@ -76,7 +76,7 @@ function TaskListConroller() {
             else throw new Error(response.data.message);
         } catch (error) {
             console.error('Failed to fetch statuses', error);
-            FailedToast(error.message);
+            FailedToast("Something went wrong!: Try Refresh "+error.status);
         }
     },[dispatch]);
     const getPrioritys =  useCallback(async ()=>{
@@ -86,7 +86,7 @@ function TaskListConroller() {
             else throw new Error(response.data.message);
         } catch (error) {
             console.error('Failed to fetch statuses', error);
-            FailedToast(error.message);
+            FailedToast("Something went wrong!: Try Refresh "+error.status);
         }
     },[dispatch]);
 
@@ -121,7 +121,7 @@ function TaskListConroller() {
             else throw new Error(response.data.message);
         } catch (error) {
             console.error('Error deleting task:', error);
-            FailedToast(error.message);
+            FailedToast("Something went wrong!: Try Refresh "+error.status);
             dispatch(setTasks(APItasks))
         }
     }
@@ -151,7 +151,7 @@ function TaskListConroller() {
         } catch (error) {
             console.error('Error updating task:', error);
             dispatch(setTasks({data:APItasks, count: null}));
-            FailedToast(error.message);
+            FailedToast("Something went wrong!: Try Refresh "+error.status);
         }
     }
     return (

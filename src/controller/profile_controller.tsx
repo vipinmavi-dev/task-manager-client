@@ -10,7 +10,13 @@ function ProfileController() {
     const [userData, setUserData] = useState();
     const [ showModel, setShowModel] = useState(false);
 
-
+    const handleFormChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = event.target;
+        setUserData((prevData) => ({
+            ...prevData,
+            [name]: value,
+        }));
+    }
     useEffect(() => {
         console.log("UserProfile in ProfileController:", UserProfile);
     }, [userData]);
@@ -21,6 +27,7 @@ function ProfileController() {
                 user={UserProfile}
                 tasksCount={tasksCount} // Fix the Value comming form API
                 displayModal={() => { setShowModel(true); }}
+                handleFormChange={handleFormChange}
             />
             {<ChangerPasswordModal
                 isOpen={showModel}

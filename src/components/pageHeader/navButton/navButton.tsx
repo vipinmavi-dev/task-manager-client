@@ -9,8 +9,10 @@ import { useSelector } from "react-redux";
 import type { RootState, NavButtonsProps } from "../../../types/task.ts";
 import { Link } from "react-router-dom";
 import { ROUTES } from "../../../constants/routes.ts";
+import { useLocation } from "react-router-dom";
 
 function NavButton({ navButtonsData, handleLogout }: NavButtonsProps) {
+  const location = useLocation();
   const [isProfileOpen, setIsProfileOpen] = React.useState(false);
   const userProfile:{ name: string, email: string} | null = useSelector((state: RootState) => state.User.data);
   const userName = userProfile?.name;
@@ -45,7 +47,8 @@ function NavButton({ navButtonsData, handleLogout }: NavButtonsProps) {
         </span>
       ))}
       {/* Avatar */}
-      <div className={Style.profileWrapper}>
+
+      {(location.pathname === ROUTES.LIST) && <div className={Style.profileWrapper}>
         {/* Avatar button */}
         {/* <button
           type="button"
@@ -139,7 +142,7 @@ function NavButton({ navButtonsData, handleLogout }: NavButtonsProps) {
 
           </div>
         )}
-      </div>
+      </div>}
     </div>
   )
 }
