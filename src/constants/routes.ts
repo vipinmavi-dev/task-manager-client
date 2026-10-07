@@ -15,6 +15,8 @@ export const ROUTES = {
 
 export const API_ROUTES = {
     TASK: "/api/tasks",
-    STATUS: "/api/status",
-    PRIORITY: "/api/priority",
+    STATUS: "/api/helper/statues",
+    PRIORITY: "/api/helper/priority",
+    CHANGE_PASSWORD: "/api/helper/change-password",
+    PROFILE_UPDATE: "/api/helper/update-profile",
 }

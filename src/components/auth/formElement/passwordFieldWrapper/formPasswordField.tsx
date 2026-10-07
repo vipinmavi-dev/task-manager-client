@@ -49,7 +49,7 @@ function PasswordFieldWrapper({
                     onPointerLeave={onPointerUp}
 
                 > 
-                    {true ?
+                    {showPassword ?
                         <Eye size={16} />:
                         <EyeOff size={16} />
                     }

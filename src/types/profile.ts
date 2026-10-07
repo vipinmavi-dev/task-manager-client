@@ -28,4 +28,5 @@ export interface ProfilePageProps {
     };
     handleProfileSubmit: (arg: React.FormEvent<HTMLFormElement>) => void;
     handleLogout: () => void;
+    cancelProfileChanges: () => void;
 }

@@ -3,284 +3,296 @@
 ========================= */
 
 .profilePage {
-    width: 100%;
-    max-width: 1200px;
+  width: 100%;
+  max-width: 1200px;
 
-    margin: 0 auto;
-    padding: 28px 24px 40px;
+  margin: 0 auto;
+  padding: 28px 24px 40px;
 
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
-
 
 /* =========================
      Page Header
   ========================= */
 
 .pageHeader {
-    margin-bottom: 24px;
+  margin-bottom: 24px;
 }
 
 .pageTitle {
-    margin: 0;
+  margin: 0;
 
-    font-size: 26px;
-    line-height: 1.2;
-    font-weight: 700;
+  font-size: 26px;
+  line-height: 1.2;
+  font-weight: 700;
 
-    color: #111827;
+  color: #111827;
 }
 
 .pageSubtitle {
-    margin: 7px 0 0;
+  margin: 7px 0 0;
 
-    font-size: 14px;
-    line-height: 1.5;
+  font-size: 14px;
+  line-height: 1.5;
 
-    color: #6b7280;
+  color: #6b7280;
 }
-
 
 /* =========================
      Main Layout
   ========================= */
 
 .profileLayout {
-    display: grid;
+  display: grid;
 
-    grid-template-columns: minmax(0, 1fr) 300px;
+  grid-template-columns: minmax(0, 1fr) 300px;
 
-    gap: 20px;
+  gap: 20px;
 
-    align-items: start;
+  align-items: start;
 }
-
 
 /* =========================
      Main Profile Card
   ========================= */
 
 .profileCard {
-    background: #ffffff;
+  background: #ffffff;
 
-    border: 1px solid #e5e7eb;
-    border-radius: 14px;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
 
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 
-    overflow: hidden;
+  overflow: hidden;
 }
-
 
 /* =========================
      Profile Top
   ========================= */
 
 .profileTop {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 
-    gap: 18px;
+  gap: 18px;
 
-    padding: 24px;
+  padding: 24px;
 }
-
 
 /* =========================
      Profile Photo
   ========================= */
 
 .profilePhotoWrapper {
-    position: relative;
+  position: relative;
 
-    width: 82px;
-    height: 82px;
+  width: 82px;
+  height: 82px;
 
-    flex-shrink: 0;
+  flex-shrink: 0;
 }
 
 .profilePhoto {
-    width: 82px;
-    height: 82px;
+  width: 82px;
+  height: 82px;
 
-    border-radius: 50%;
+  border-radius: 50%;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    background: linear-gradient(135deg,
-            #3b82f6,
-            #9333ea);
+  background: linear-gradient(135deg, #3b82f6, #9333ea);
 
-    color: #ffffff;
+  color: #ffffff;
 
-    border: 3px solid #ffffff;
+  border: 3px solid #ffffff;
 
-    box-shadow:
-        0 2px 8px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
 }
 
 .profilePhoto span {
-    font-size: 25px;
-    font-weight: 700;
+  font-size: 25px;
+  font-weight: 700;
 }
-
 
 /* Camera Button */
 
 .cameraButton {
-    position: absolute;
+  position: absolute;
 
-    right: -2px;
-    bottom: -2px;
+  right: -2px;
+  bottom: -2px;
 
-    width: 28px;
-    height: 28px;
+  width: 28px;
+  height: 28px;
 
-    border: 2px solid #ffffff;
-    border-radius: 50%;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    background: #2563eb;
-    color: #ffffff;
+  background: #2563eb;
+  color: #ffffff;
 
-    cursor: pointer;
+  cursor: pointer;
 
-    transition: transform 0.15s ease;
+  transition: transform 0.15s ease;
 }
 
 .cameraButton:hover {
-    transform: scale(1.08);
+  transform: scale(1.08);
 }
-
 
 /* =========================
      Identity
   ========================= */
 
 .profileIdentity {
-    min-width: 0;
+  min-width: 0;
 }
 
 .profileIdentity h2 {
-    margin: 0;
+  margin: 0;
 
-    font-size: 20px;
-    font-weight: 650;
+  font-size: 20px;
+  font-weight: 650;
 
-    color: #111827;
+  color: #111827;
 }
 
 .profileIdentity p {
-    margin: 5px 0 9px;
+  margin: 5px 0 9px;
 
-    font-size: 13px;
+  font-size: 13px;
 
-    color: #6b7280;
+  color: #6b7280;
 
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
-
 
 /* =========================
      Account Badge
   ========================= */
 
 .accountBadge {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
 
-    padding: 4px 8px;
+  padding: 4px 8px;
 
-    border-radius: 999px;
+  border-radius: 999px;
 
-    font-size: 11px;
-    font-weight: 600;
+  font-size: 11px;
+  font-weight: 600;
 
-    color: #166534;
-    background: #f0fdf4;
+  color: #166534;
+  background: #f0fdf4;
 }
-
 
 /* =========================
      Divider
   ========================= */
 
 .divider {
-    height: 1px;
+  height: 1px;
 
-    background: #e5e7eb;
+  background: #e5e7eb;
 }
-
 
 /* =========================
      Section
   ========================= */
 
 .section {
-    padding: 24px;
+  padding: 24px;
 }
 
 .sectionHeader {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
 
-    gap: 15px;
+  gap: 15px;
 
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .sectionHeader h3 {
-    margin: 0;
+  margin: 0;
 
-    font-size: 16px;
-    font-weight: 650;
+  font-size: 16px;
+  font-weight: 650;
 
-    color: #111827;
+  color: #111827;
 }
 
 .sectionHeader p {
-    margin: 4px 0 0;
+  margin: 4px 0 0;
 
-    font-size: 12px;
+  font-size: 12px;
 
-    color: #6b7280;
+  color: #6b7280;
 }
 
+/* =========================s
+     Cancel Button
+  ========================= */
 
+.cancelButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  padding: 7px 11px;
+
+  border: 1px solid #f7bbbb;
+  border-radius: 7px;
+
+  background: #fdf0f0;
+  color: #a31616;
+
+  font-size: 12px;
+  font-weight: 600;
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+.cancelButton:hover {
+  background: #fcdcdc;
+}
 /* =========================
      Update Button
   ========================= */
 
 .updateButton {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 
-    padding: 7px 11px;
+  padding: 7px 11px;
 
-    border: 1px solid #bbf7d0;
-    border-radius: 7px;
+  border: 1px solid #bbf7d0;
+  border-radius: 7px;
 
-    background: #f0fdf4;
-    color: #16a34a;
+  background: #f0fdf4;
+  color: #16a34a;
 
-    font-size: 12px;
-    font-weight: 600;
+  font-size: 12px;
+  font-weight: 600;
 
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .updateButton:hover {
-    background: #dcfce7;
+  background: #dcfce7;
 }
 
 /* =========================
@@ -288,466 +300,461 @@
   ========================= */
 
 .editButton {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 
-    padding: 7px 11px;
+  padding: 7px 11px;
 
-    border: 1px solid #dbeafe;
-    border-radius: 7px;
+  border: 1px solid #dbeafe;
+  border-radius: 7px;
 
-    background: #eff6ff;
-    color: #2563eb;
+  background: #eff6ff;
+  color: #2563eb;
 
-    font-size: 12px;
-    font-weight: 600;
+  font-size: 12px;
+  font-weight: 600;
 
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .editButton:hover {
-    background: #dbeafe;
+  background: #dbeafe;
 }
-
 
 /* =========================
      Form Grid
   ========================= */
 
 .formGrid {
-    display: grid;
+  display: grid;
 
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 
-    gap: 18px;
+  gap: 18px;
 }
 
 .formGroup {
-    min-width: 0;
+  min-width: 0;
 }
 
 .formGroup label {
-    display: block;
+  display: block;
 
-    margin-bottom: 7px;
+  margin-bottom: 7px;
 
-    font-size: 12px;
-    font-weight: 600;
+  font-size: 12px;
+  font-weight: 600;
 
-    color: #4b5563;
+  color: #4b5563;
 }
-
 
 /* =========================
      Input-like Fields
   ========================= */
 
 .inputWrapper {
-    min-height: 42px;
+  min-height: 42px;
 
-    padding: 0 12px;
+  padding: 0 12px;
 
-    box-sizing: border-box;
+  box-sizing: border-box;
 
-    display: flex;
-    align-items: center;
-    gap: 9px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
 
-    border: 1px solid #e5e7eb;
-    border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
 
-    background: #f9fafb;
+  background: #f9fafb;
 
-    color: #374151;
+  color: #374151;
 
-    font-size: 13px;
+  font-size: 13px;
 
-    overflow: hidden;
+  overflow: hidden;
 }
 
 .inputWrapper svg {
-    flex-shrink: 0;
-    color: #9ca3af;
+  flex-shrink: 0;
+  color: #9ca3af;
 }
 
 .inputWrapper span {
-    overflow: hidden;
+  overflow: hidden;
 
-    white-space: nowrap;
-    text-overflow: ellipsis;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
-
 
 /* =========================
      Security Action
   ========================= */
 
 .securityAction {
-    width: 100%;
+  width: 100%;
 
-    padding: 12px;
+  padding: 12px;
 
-    border: 1px solid #e5e7eb;
-    border-radius: 9px;
+  border: 1px solid #e5e7eb;
+  border-radius: 9px;
 
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 
-    gap: 12px;
+  gap: 12px;
 
-    background: #ffffff;
+  background: #ffffff;
 
-    text-align: left;
+  text-align: left;
 
-    cursor: pointer;
+  cursor: pointer;
 
-    transition:
-        background-color 0.15s ease,
-        border-color 0.15s ease;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
 }
 
 .securityAction:hover {
-    background: #f9fafb;
-    border-color: #d1d5db;
+  background: #f9fafb;
+  border-color: #d1d5db;
 }
 
 .actionIcon {
-    width: 36px;
-    height: 36px;
+  width: 36px;
+  height: 36px;
 
-    flex-shrink: 0;
+  flex-shrink: 0;
 
-    border-radius: 8px;
+  border-radius: 8px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    background: #f3f4f6;
-    color: #4b5563;
+  background: #f3f4f6;
+  color: #4b5563;
 }
 
 .actionContent {
-    min-width: 0;
-    flex: 1;
+  min-width: 0;
+  flex: 1;
 }
 
 .actionContent strong {
-    display: block;
+  display: block;
 
-    font-size: 13px;
-    font-weight: 600;
+  font-size: 13px;
+  font-weight: 600;
 
-    color: #374151;
+  color: #374151;
 }
 
 .actionContent span {
-    display: block;
+  display: block;
 
-    margin-top: 3px;
+  margin-top: 3px;
 
-    font-size: 11px;
+  font-size: 11px;
 
-    color: #9ca3af;
+  color: #9ca3af;
 
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .actionArrow {
-    font-size: 22px;
+  font-size: 22px;
 
-    color: #9ca3af;
+  color: #9ca3af;
 }
-
 
 /* =========================
      Right Column
   ========================= */
 
 .sideColumn {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 
-    gap: 20px;
+  gap: 20px;
 }
-
 
 /* =========================
      Summary Card
   ========================= */
 
 .summaryCard {
-    padding: 20px;
+  padding: 20px;
 
-    background: #ffffff;
+  background: #ffffff;
 
-    border: 1px solid #e5e7eb;
-    border-radius: 14px;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
 
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
 .summaryCard h3 {
-    margin: 0 0 15px;
+  margin: 0 0 15px;
 
-    font-size: 15px;
-    font-weight: 650;
+  font-size: 15px;
+  font-weight: 650;
 
-    color: #111827;
+  color: #111827;
 }
 
 .summaryItem {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-    padding: 11px 0;
+  padding: 11px 0;
 
-    border-bottom: 1px solid #f3f4f6;
+  border-bottom: 1px solid #f3f4f6;
 }
 
 .summaryItem:last-child {
-    border-bottom: none;
+  border-bottom: none;
 }
 
 .summaryItem span {
-    font-size: 12px;
+  font-size: 12px;
 
-    color: #6b7280;
+  color: #6b7280;
 }
 
 .summaryItem strong {
-    font-size: 14px;
+  font-size: 14px;
 
-    color: #111827;
+  color: #111827;
 }
-
 
 /* =========================
      Account Actions
   ========================= */
 
 .dangerCard {
-    padding: 20px;
+  padding: 20px;
 
-    background: #ffffff;
+  background: #ffffff;
 
-    border: 1px solid #fee2e2;
-    border-radius: 14px;
+  border: 1px solid #fee2e2;
+  border-radius: 14px;
 }
 
 .dangerHeader {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 
-    gap: 10px;
+  gap: 10px;
 
-    margin-bottom: 15px;
+  margin-bottom: 15px;
 }
 
 .dangerIcon {
-    width: 34px;
-    height: 34px;
+  width: 34px;
+  height: 34px;
 
-    flex-shrink: 0;
+  flex-shrink: 0;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    border-radius: 8px;
+  border-radius: 8px;
 
-    color: #dc2626;
-    background: #fef2f2;
+  color: #dc2626;
+  background: #fef2f2;
 }
 
 .dangerHeader h3 {
-    margin: 0;
+  margin: 0;
 
-    font-size: 14px;
-    font-weight: 650;
+  font-size: 14px;
+  font-weight: 650;
 
-    color: #111827;
+  color: #111827;
 }
 
 .dangerHeader p {
-    margin: 3px 0 0;
+  margin: 3px 0 0;
 
-    font-size: 11px;
+  font-size: 11px;
 
-    color: #9ca3af;
+  color: #9ca3af;
 }
-
 
 /* =========================
      Logout
   ========================= */
 
 .logoutButton {
-    width: 100%;
+  width: 100%;
 
-    min-height: 40px;
+  min-height: 40px;
 
-    border: 1px solid #fecaca;
-    border-radius: 8px;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    gap: 7px;
+  gap: 7px;
 
-    background: #ffffff;
-    color: #dc2626;
+  background: #ffffff;
+  color: #dc2626;
 
-    font-size: 13px;
-    font-weight: 600;
+  font-size: 13px;
+  font-weight: 600;
 
-    cursor: pointer;
+  cursor: pointer;
 
-    transition:
-        background-color 0.15s ease,
-        border-color 0.15s ease;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
 }
 
 .logoutButton:hover {
-    background: #fef2f2;
-    border-color: #fca5a5;
+  background: #fef2f2;
+  border-color: #fca5a5;
 }
-
 
 /* =========================
      Tablet
   ========================= */
 
 @media (max-width: 900px) {
+  .profileLayout {
+    grid-template-columns: 1fr;
+  }
 
-    .profileLayout {
-        grid-template-columns: 1fr;
-    }
+  .sideColumn {
+    display: grid;
 
-    .sideColumn {
-        display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
 
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-
-        align-items: start;
-    }
+    align-items: start;
+  }
 }
-
 
 /* =========================
      Mobile
   ========================= */
 
 @media (max-width: 600px) {
+  .profilePage {
+    padding: 20px 14px 30px;
+  }
 
-    .profilePage {
-        padding: 20px 14px 30px;
-    }
+  .pageTitle {
+    font-size: 22px;
+  }
 
-    .pageTitle {
-        font-size: 22px;
-    }
+  .pageSubtitle {
+    font-size: 13px;
+  }
 
-    .pageSubtitle {
-        font-size: 13px;
-    }
+  .profileTop {
+    padding: 20px;
 
-    .profileTop {
-        padding: 20px;
+    align-items: flex-start;
+  }
 
-        align-items: flex-start;
-    }
+  .profilePhotoWrapper,
+  .profilePhoto {
+    width: 68px;
+    height: 68px;
+  }
 
-    .profilePhotoWrapper,
-    .profilePhoto {
-        width: 68px;
-        height: 68px;
-    }
+  .profilePhoto span {
+    font-size: 20px;
+  }
 
-    .profilePhoto span {
-        font-size: 20px;
-    }
+  .profileIdentity h2 {
+    font-size: 17px;
+  }
 
-    .profileIdentity h2 {
-        font-size: 17px;
-    }
+  .profileIdentity p {
+    font-size: 12px;
+  }
 
-    .profileIdentity p {
-        font-size: 12px;
-    }
+  .section {
+    padding: 20px;
+  }
 
-    .section {
-        padding: 20px;
-    }
+  .formGrid {
+    grid-template-columns: 1fr;
 
-    .formGrid {
-        grid-template-columns: 1fr;
+    gap: 15px;
+  }
 
-        gap: 15px;
-    }
-
-    .sideColumn {
-        grid-template-columns: 1fr;
-    }
+  .sideColumn {
+    grid-template-columns: 1fr;
+  }
 }
-
 
 /* =========================
      Small Mobile
   ========================= */
 
 @media (max-width: 400px) {
+  .profilePage {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
 
-    .profilePage {
-        padding-left: 10px;
-        padding-right: 10px;
-    }
+  .profileTop {
+    gap: 12px;
+  }
 
-    .profileTop {
-        gap: 12px;
-    }
+  .profilePhotoWrapper,
+  .profilePhoto {
+    width: 60px;
+    height: 60px;
+  }
 
-    .profilePhotoWrapper,
-    .profilePhoto {
-        width: 60px;
-        height: 60px;
-    }
+  .profilePhoto span {
+    font-size: 18px;
+  }
 
-    .profilePhoto span {
-        font-size: 18px;
-    }
+  .sectionHeader {
+    align-items: center;
+  }
 
-    .sectionHeader {
-        align-items: center;
-    }
+  .editButton span {
+    display: none;
+  }
 
-    .editButton span {
-        display: none;
-    }
+  .editButton {
+    width: 32px;
+    height: 32px;
 
-    .editButton {
-        width: 32px;
-        height: 32px;
+    padding: 0;
 
-        padding: 0;
+    justify-content: center;
+  }
+  .updateButton span {
+    display: none;
+  }
 
-        justify-content: center;
-    }
-    .updateButton span {
-        display: none;
-    }
+  .updateButton {
+    width: 32px;
+    height: 32px;
 
-    .updateButton {
-        width: 32px;
-        height: 32px;
+    padding: 0;
 
-        padding: 0;
+    justify-content: center;
+  }
+  .cancelButton span {
+    display: none;
+  }
 
-        justify-content: center;
-    }
+  .cancelButton {
+    width: 32px;
+    height: 32px;
+
+    padding: 0;
+
+    justify-content: center;
+  }
 }

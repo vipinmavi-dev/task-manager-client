@@ -2,34 +2,34 @@
    Right side navigation
 ========================= */
 .navActions {
-    display: flex;
-    align-items: center;
-    gap: 16px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
 }
 
 /* =========================
    Sign in
 ========================= */
 .signIn {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    color: #374151;
-    font-size: 16px;
-    font-weight: 500;
-    text-decoration: none;
-    transition: color 0.2s ease;
-    white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #374151;
+  font-size: 16px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  white-space: nowrap;
 }
 
 .signIn:hover {
-    color: #111827;
+  color: #111827;
 }
 
 .signInIcon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* =========================
@@ -37,43 +37,39 @@
 ========================= */
 
 .getStarted {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    min-height: 40px;
-    padding: 0 18px;
+  min-height: 40px;
+  padding: 0 18px;
 
-    border-radius: 10px;
+  border-radius: 10px;
 
-    background: linear-gradient(135deg,
-            #315efb,
-            #9b2cff);
-    white-space: nowrap;
-    color: #ffffff;
+  background: linear-gradient(135deg, #315efb, #9b2cff);
+  white-space: nowrap;
+  color: #ffffff;
 
-    font-size: 15px;
-    font-weight: 600;
+  font-size: 15px;
+  font-weight: 600;
 
-    text-decoration: none;
+  text-decoration: none;
 
-    box-shadow: 0 4px 10px rgba(49, 94, 251, 0.25);
+  box-shadow: 0 4px 10px rgba(49, 94, 251, 0.25);
 
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .getStarted:hover {
-    transform: translateY(-1px);
+  transform: translateY(-1px);
 
-    box-shadow: 0 6px 14px rgba(49, 94, 251, 0.3);
+  box-shadow: 0 6px 14px rgba(49, 94, 251, 0.3);
 }
 
 .userProfile {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 /* =========================
@@ -81,295 +77,283 @@
 ========================= */
 
 .profileWrapper {
-    position: relative;
-    display: inline-flex;
+  position: relative;
+  display: inline-flex;
 }
-
 
 /* =========================
      Header Avatar
   ========================= */
 
 .avatarButton {
-    width: 36px;
-    height: 36px;
+  width: 36px;
+  height: 36px;
 
-    padding: 0;
-    border: 2px solid #ffffff;
-    border-radius: 50%;
+  padding: 0;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    cursor: pointer;
+  cursor: pointer;
 
-    color: #ffffff;
+  color: #ffffff;
 
-    background: linear-gradient(135deg,
-            #3b82f6,
-            #9333ea);
+  background: linear-gradient(135deg, #3b82f6, #9333ea);
 
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
 
-    transition:
-        transform 0.15s ease,
-        box-shadow 0.15s ease;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
 .avatarButton:hover {
-    transform: scale(1.04);
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.16);
+  transform: scale(1.04);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.16);
 }
 
 .avatarInitials {
-    font-size: 13px;
-    font-weight: 700;
-    text-transform: uppercase;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
 }
-
 
 /* =========================
      Profile Dropdown
   ========================= */
 
 .profileDropdown {
-    position: absolute;
+  position: absolute;
 
-    top: calc(100% + 10px);
-    right: 0;
+  top: calc(100% + 10px);
+  right: 0;
 
-    width: 280px;
+  width: 280px;
 
-    padding: 16px;
+  padding: 16px;
 
-    background: #ffffff;
+  background: #ffffff;
 
-    border: 1px solid #e5e7eb;
-    border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
 
-    box-shadow:
-        0 10px 25px rgba(0, 0, 0, 0.10),
-        0 4px 10px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1), 0 4px 10px rgba(0, 0, 0, 0.05);
 
-    z-index: 1000;
+  z-index: 1000;
 
-    animation: profileDropdownIn 0.15s ease-out;
+  animation: profileDropdownIn 0.15s ease-out;
 }
-
 
 /* =========================
      Profile Information
   ========================= */
 
 .profileInfo {
-    display: flex;
-    align-items: center;
-    gap: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
-
 
 /* =========================
      Large Profile Avatar
   ========================= */
 
 .profileAvatarSmall {
-    width: 40px;
-    height: 40px;
-    border: 1px solid black;
-    flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border: 1px solid black;
+  flex-shrink: 0;
 
-    border-radius: 50%;
+  border-radius: 50%;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    overflow: hidden;
+  overflow: hidden;
 
-    color: #ffffff;
+  color: #ffffff;
 
-    background: linear-gradient(135deg,
-            #3b82f6,
-            #9333ea);
+  background: linear-gradient(135deg, #3b82f6, #9333ea);
 }
 .profileAvatarSmall img {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 
-    object-fit: cover;
+  object-fit: cover;
 }
 
 .profileAvatarSmall span {
-    font-size: 18px;
-    font-weight: 700;
+  font-size: 18px;
+  font-weight: 700;
 }
 .profileAvatar {
-    width: 56px;
-    height: 56px;
+  width: 56px;
+  height: 56px;
 
-    flex-shrink: 0;
+  flex-shrink: 0;
 
-    border-radius: 50%;
+  border-radius: 50%;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    overflow: hidden;
+  overflow: hidden;
 
-    color: #ffffff;
+  color: #ffffff;
 
-    background: linear-gradient(135deg,
-            #3b82f6,
-            #9333ea);
+  background: linear-gradient(135deg, #3b82f6, #9333ea);
 }
 
 .profileAvatar img {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 
-    object-fit: cover;
+  object-fit: cover;
 }
 
 .profileAvatar span {
-    font-size: 18px;
-    font-weight: 700;
+  font-size: 18px;
+  font-weight: 700;
 }
-
 
 /* =========================
      Name & Email
   ========================= */
 
 .profileDetails {
-    min-width: 0;
-    flex: 1;
+  min-width: 0;
+  flex: 1;
 }
 
 .profileName {
-    font-size: 15px;
-    font-weight: 600;
+  font-size: 15px;
+  font-weight: 600;
 
-    color: #111827;
+  color: #111827;
 
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .profileEmail {
-    margin-top: 3px;
+  margin-top: 3px;
 
-    font-size: 12px;
+  font-size: 12px;
 
-    color: #6b7280;
+  color: #6b7280;
 
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
-
 
 /* =========================
      Divider
   ========================= */
 
 .profileDivider {
-    height: 1px;
+  height: 1px;
 
-    margin: 14px 0;
+  margin: 14px 0;
 
-    background: #e5e7eb;
+  background: #e5e7eb;
 }
-
 
 /* =========================
      Actions
   ========================= */
 
 .profileActions {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .profileAction {
-    width: 100%;
+  width: 100%;
 
-    min-height: 40px;
+  min-height: 40px;
 
-    padding: 0 10px;
+  padding: 0 10px;
 
-    border: none;
-    border-radius: 8px;
+  border: none;
+  border-radius: 8px;
 
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 
-    background: transparent;
+  background: transparent;
 
-    color: #374151;
+  color: #374151;
 
-    font-size: 14px;
-    font-weight: 500;
+  font-size: 14px;
+  font-weight: 500;
 
-    text-align: left;
+  text-align: left;
 
-    cursor: pointer;
+  cursor: pointer;
 
-    transition:
-        background-color 0.15s ease,
-        color 0.15s ease;
+  transition: background-color 0.15s ease, color 0.15s ease;
 }
 
 .profileAction:hover {
-    background: #f3f4f6;
+  background: #f3f4f6;
 }
 
 .profileAction svg {
-    flex-shrink: 0;
+  flex-shrink: 0;
 }
-
 
 /* =========================
      Logout
   ========================= */
 
 .logoutAction {
-    color: #dc2626;
+  color: #dc2626;
 }
 
 .logoutAction:hover {
-    background: #fef2f2;
+  background: #fef2f2;
 }
-
+.mobileText {
+  display: none;
+}
 
 /* =========================
      Animation
   ========================= */
 
 @keyframes profileDropdownIn {
-    from {
-        opacity: 0;
-        transform: translateY(-4px);
-    }
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
 
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
-
 
 /* =========================
      Mobile
   ========================= */
 
 @media (max-width: 480px) {
-    .profileDropdown {
-        width: 260px;
-        right: -8px;
-    }
+  .desktopText {
+    display: none;
+  }
+
+  .mobileText {
+    display: inline;
+  }
+  .profileDropdown {
+    width: 260px;
+    right: -8px;
+  }
 }

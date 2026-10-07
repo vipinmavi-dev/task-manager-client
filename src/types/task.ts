@@ -54,6 +54,7 @@ export interface StatusesPriorityesTypes {
 }
 export interface NavButtonProps {
     buttonText: string;
+    mobileButtonText: string;
     method: () => void;
     className: string;
     // className: "signIn" | "getStarted"; TODO: will work on this letter as its throw error

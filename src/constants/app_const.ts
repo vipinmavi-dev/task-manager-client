@@ -2,6 +2,7 @@ export function createNavButtons(modalHandler) {
     return [
         {
           buttonText: "+ New Task",
+          mobileButtonText: "+ Task",
           method: () => {modalHandler({
             name: "addTask",
             status: true,

@@ -43,7 +43,13 @@ function NavButton({ navButtonsData, handleLogout }: NavButtonsProps) {
           onClick={button.method}
           className={Style[button.className]}
         >
-          {button.buttonText}
+          <span className={Style.desktopText}>
+            {button.buttonText}
+          </span>
+
+          <span className={Style.mobileText}>
+              {button.mobileButtonText}
+          </span>
         </span>
       ))}
       {/* Avatar */}

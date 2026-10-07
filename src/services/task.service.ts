@@ -31,3 +31,15 @@ export const deleteTask = (id: Number) => {
         `${API_ROUTES.TASK}/${id}`
     );
 }
+export const updateUserProfile = (payload) => {
+    return api.post(
+        API_ROUTES.PROFILE_UPDATE,
+        payload
+    );
+}
+export const changePassword = (payload) => {
+    return api.post(
+        API_ROUTES.CHANGE_PASSWORD,
+        payload
+    );
+}

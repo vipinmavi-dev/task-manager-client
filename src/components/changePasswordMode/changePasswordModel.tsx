@@ -19,6 +19,12 @@ interface ChangePasswordModalProps {
     };
     handleChangePasswordData: (event: React.ChangeEvent<HTMLInputElement>) => void;
     handleChangePasswordSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
+    showPassword: {
+        currentPassword: boolean;
+        newPassword: boolean;
+        confirmNewPassword: boolean;
+    };
+    ShowPasswordToUser: (arg)=> void;
 }
 
 function ChangePasswordModal({
@@ -26,7 +32,9 @@ function ChangePasswordModal({
     onClose,
     changePasswordData,
     handleChangePasswordData,
-    handleChangePasswordSubmit
+    handleChangePasswordSubmit,
+    showPassword,
+    ShowPasswordToUser
 }: ChangePasswordModalProps) {
 
     if (!isOpen) return null;
@@ -86,7 +94,7 @@ function ChangePasswordModal({
                                 <LockKeyhole size={17} />
                                 <Input
                                     id="currentPassword"
-                                    type="password"
+                                    type={showPassword.currentPassword ? "text" : "password"}
                                     placeholder="Enter current password"
                                     value={changePasswordData.currentPassword}
                                     required={true}
@@ -97,8 +105,11 @@ function ChangePasswordModal({
                                     type="button"
                                     className={Style.passwordToggle}
                                     aria-label="Show password"
+                                    onPointerDown={()=>ShowPasswordToUser({"currentPassword": true})}
+                                    onPointerUp={()=>ShowPasswordToUser({"currentPassword": false})}
+                                    onPointerLeave={()=>ShowPasswordToUser({"currentPassword": false})}
                                 >
-                                    <Eye size={17} />
+                                    {showPassword.currentPassword ? <Eye size={17} /> : <EyeOff size={17}/>}
                                 </button>
                             </div>
                         </div>
@@ -117,7 +128,7 @@ function ChangePasswordModal({
 
                                 <Input 
                                     id="newPassword"
-                                    type="password"
+                                    type={showPassword.newPassword ? "text" : "password"}
                                     placeholder="Enter new password"
                                     value={changePasswordData.newPassword}
                                     required={true}
@@ -128,8 +139,11 @@ function ChangePasswordModal({
                                     type="button"
                                     className={Style.passwordToggle}
                                     aria-label="Show password"
+                                    onPointerDown={()=>ShowPasswordToUser({"newPassword": true})}
+                                    onPointerUp={()=>ShowPasswordToUser({"newPassword": false})}
+                                    onPointerLeave={()=>ShowPasswordToUser({"newPassword": false})}
                                 >
-                                    <Eye size={17} />
+                                    {showPassword.newPassword ? <Eye size={17} /> : <EyeOff size={17}/>}
                                 </button>
                             </div>
                         </div>
@@ -148,7 +162,7 @@ function ChangePasswordModal({
 
                                 <Input 
                                     id="confirmNewPassword"
-                                    type="password"
+                                    type={showPassword.confirmNewPassword ? "text" : "password"}
                                     placeholder="Confirm new password"
                                     value={changePasswordData.confirmNewPassword}
                                     required={true}
@@ -159,8 +173,11 @@ function ChangePasswordModal({
                                     type="button"
                                     className={Style.passwordToggle}
                                     aria-label="Show password"
+                                    onPointerDown={()=>ShowPasswordToUser({"confirmNewPassword": true})}
+                                    onPointerUp={()=>ShowPasswordToUser({"confirmNewPassword": false})}
+                                    onPointerLeave={()=>ShowPasswordToUser({"confirmNewPassword": false})}
                                 >
-                                    <Eye size={17} />
+                                    {showPassword.confirmNewPassword ? <Eye size={17} /> : <EyeOff size={17}/>}
                                 </button>
                             </div>
                         </div>

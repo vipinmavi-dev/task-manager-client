@@ -15,3 +15,6 @@ export const loginUser = async (data: LoginForm): Promise<AxiosResponse<LoginRes
 export const logOutUser = async () => {
     return api.post('/api/auth/logout');
 }
+export const mySelf = async ()=>{
+    return api.get('/api/auth/me');
+}

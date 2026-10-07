@@ -12,11 +12,13 @@ function DashboardPage({
     const navButtons = [
         {
             buttonText: "Sign in",
+            mobileButtonText: "Sign in",
             method: ()=>handleNavigate(ROUTES.LOGIN),
             className: "signIn"
         },
         {
             buttonText: "Create free account",
+            mobileButtonText: "Create free account",
             method: ()=>handleNavigate(ROUTES.SIGNUP),
             className: "getStarted"
         }
