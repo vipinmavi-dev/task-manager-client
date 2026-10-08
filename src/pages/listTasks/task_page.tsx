@@ -21,6 +21,7 @@ function TaskManager({
   children,
   updateFilter,
   Filter,
+  isLogin,
 }: any) {
   return (
     <main className={styles.page}>
@@ -29,6 +30,9 @@ function TaskManager({
 
       <div className={styles.container}>
         {/* Statistics */}
+        {/* <div className={isLogin ? "" : styles.welcomeMessage}>
+          {isLogin || <h3>Welcome Guest </h3>}
+        </div> */}
         <Statistics APItasksCounts={APItasksCounts} />
 
         {/* Search and filters */}
@@ -45,10 +49,13 @@ function TaskManager({
 
         {/* Task Grid */}
         <section className={styles.taskGrid}>
-          {tasks.map((task: any) => {
-            if (!WillTaskRender(Filter, task)) {
-              return null;
-            } else
+          {tasks.filter((task: any) => WillTaskRender(Filter, task)).length >
+          0 ? (
+            tasks.map((task: any) => {
+              if (!WillTaskRender(Filter, task)) {
+                return null;
+              }
+
               return (
                 <TaskCard
                   key={task.id}
@@ -65,7 +72,18 @@ function TaskManager({
                   }
                 />
               );
-          })}
+            })
+          ) : (
+            <div className={styles.noTasks}>
+              <div className={styles.noTasksIcon}>📋</div>
+              <h3>{isLogin || <span>Welcome Guest, </span>}No tasks found</h3>
+              <p>
+                {tasks.length === 0
+                  ? "You don't have any tasks yet."
+                  : "No tasks match your current search or filter."}
+              </p>
+            </div>
+          )}
         </section>
       </div>
       {addEditModel?.status && children}

@@ -1,10 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import Style from "./navButton.module.css";
-import {
-  User,
-  UserRound,
-  LogOut
-} from "lucide-react";
+import { User, UserRound, LogOut } from "lucide-react";
 import { useSelector } from "react-redux";
 import type { RootState, NavButtonsProps } from "../../../types/task.ts";
 import { Link } from "react-router-dom";
@@ -14,9 +10,15 @@ import { useLocation } from "react-router-dom";
 function NavButton({ navButtonsData, handleLogout }: NavButtonsProps) {
   const location = useLocation();
   const [isProfileOpen, setIsProfileOpen] = React.useState(false);
-  const userProfile:{ name: string, email: string} | null = useSelector((state: RootState) => state.User.data);
-  const userName = userProfile?.name;
-  const userPhoto = "https://avatars.githubusercontent.com/u/12345678?v=4";
+  const user: { data: any; isAuthenticated: boolean } = useSelector(
+    (state: RootState) => state.User
+  );
+
+  const userProfile = (user as any)?.data;
+  const isLogin = (user as any)?.isAuthenticated;
+
+  const userName = userProfile?.name || "Guest";
+  const userPhoto = userProfile?.photo;
   const userEmail = userProfile?.email;
   const profileRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
@@ -28,9 +30,9 @@ function NavButton({ navButtonsData, handleLogout }: NavButtonsProps) {
         setIsProfileOpen(false);
       }
     };
-  
+
     document.addEventListener("mousedown", handleClickOutside);
-  
+
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
@@ -43,20 +45,17 @@ function NavButton({ navButtonsData, handleLogout }: NavButtonsProps) {
           onClick={button.method}
           className={Style[button.className]}
         >
-          <span className={Style.desktopText}>
-            {button.buttonText}
-          </span>
+          <span className={Style.desktopText}>{button.buttonText}</span>
 
-          <span className={Style.mobileText}>
-              {button.mobileButtonText}
-          </span>
+          <span className={Style.mobileText}>{button.mobileButtonText}</span>
         </span>
       ))}
       {/* Avatar */}
 
-      {(location.pathname === ROUTES.LIST) && <div className={Style.profileWrapper}>
-        {/* Avatar button */}
-        {/* <button
+      {location.pathname === ROUTES.LIST && (
+        <div className={Style.profileWrapper}>
+          {/* Avatar button */}
+          {/* <button
           type="button"
           className={Style.avatarButton}
           onClick={()=>setIsProfileOpen(!isProfileOpen)}
@@ -70,87 +69,93 @@ function NavButton({ navButtonsData, handleLogout }: NavButtonsProps) {
             <User size={18} />
           )}
         </button> */}
-        {
-            <div className={Style.profileAvatarSmall}
-            onClick={() => setIsProfileOpen(!isProfileOpen)}>
-              {userPhoto ? (
-                <img
-                  src={userPhoto}
-                  alt={userName || "User"}
-                />
-              ) : (
-                <span>
-                  {userName.split(" ").map((n) => n[0]).join("")}
-                  {/* {userName ? getInitials(userName) : <User size={28} />} */}
-                </span>
-              )}
-            </div>
-          }
-
-        {/* Profile dropdown */}
-        {/* {isProfileOpen && ( */}
-        { isProfileOpen && (
-          <div ref={profileRef}  className={Style.profileDropdown}>
-
-            {/* Profile information */}
-            <div className={Style.profileInfo}>
-
-              <div className={Style.profileAvatar}>
-                {userPhoto ? (
-                  <img
-                    src={userPhoto}
-                    alt={userName || "User"}
-                  />
+          {
+            <>
+              <div
+                className={Style.profileAvatarSmall}
+                onClick={() => setIsProfileOpen(!isProfileOpen)}
+              >
+                {isLogin ? (
+                  userPhoto ? (
+                    <img src={userPhoto} alt={userName} />
+                  ) : (
+                    <span>
+                      {userName
+                        ?.split(" ")
+                        .map((n) => n[0])
+                        .join("")}
+                    </span>
+                  )
                 ) : (
-                  <span>
-                    {userName ? "VKM" : <User size={28} />}
-                    {/* {userName ? getInitials(userName) : <User size={28} />} */}
-                  </span>
+                  <User size={28} />
                 )}
               </div>
+            </>
+          }
 
-              <div className={Style.profileDetails}>
-                <div className={Style.profileName}>
-                  {userName || "Guest"}
+          {/* Profile dropdown */}
+          {/* {isProfileOpen && ( */}
+          {isProfileOpen && (
+            <div ref={profileRef} className={Style.profileDropdown}>
+              {/* Profile information */}
+              <div className={Style.profileInfo}>
+                <div className={Style.profileAvatar}>
+                  {isLogin ? (
+                    userPhoto ? (
+                      <img src={userPhoto} alt={userName} />
+                    ) : (
+                      <span>
+                        {userName
+                          ?.split(" ")
+                          .map((n) => n[0])
+                          .join("")}
+                      </span>
+                    )
+                  ) : (
+                    <User size={28} />
+                  )}
                 </div>
 
-                <div className={Style.profileEmail}>
-                  {userEmail || "No email available"}
+                <div className={Style.profileDetails}>
+                  <div className={Style.profileName}>{userName || "Guest"}</div>
+
+                  <div className={Style.profileEmail}>
+                    {userEmail || "No email available"}
+                  </div>
                 </div>
               </div>
 
+              {/* Divider */}
+              <div className={Style.profileDivider} />
+
+              {/* Actions */}
+              <div className={Style.profileActions}>
+                <Link
+                  to={isLogin ? ROUTES.PROFILE : "#"}
+                  className={`${Style.profileAction} ${
+                    !isLogin ? Style.disabledAction : ""
+                  }`}
+                >
+                  <UserRound size={18} />
+                  <span>Manage Profile</span>
+                </Link>
+
+                <button
+                  disabled={!isLogin}
+                  type="button"
+                  className={`${Style.profileAction} ${Style.logoutAction}`}
+                  onClick={isLogin ? handleLogout : () => {}}
+                >
+                  <LogOut size={18} />
+                  <span>Logout</span>
+                </button>
+              </div>
             </div>
-
-            {/* Divider */}
-            <div className={Style.profileDivider} />
-
-            {/* Actions */}
-            <div className={Style.profileActions}>
-
-              <Link
-                to={ROUTES.PROFILE}
-                className={Style.profileAction}
-              >
-                <UserRound size={18} />
-                <span>Manage Profile</span>
-              </Link>
-
-              <button
-                type="button"
-                className={`${Style.profileAction} ${Style.logoutAction}`}
-                onClick={handleLogout}
-              >
-                <LogOut size={18} />
-                <span>Logout</span>
-              </button>
-
-            </div>
-
-          </div>
-        )}
-      </div>}
+          )}
+        </div>
+      )}
     </div>
-  )
+  );
 }
 
 export default NavButton;
