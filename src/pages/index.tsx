@@ -2,14 +2,16 @@ import LoginPage from "./login/login_page.tsx";
 import SingUpPage from "./signUp/singUp_page.tsx";
 import DashboardPage from "./dashboard/dashboard_page.tsx";
 import TaskListPage from "./listTasks/task_page.tsx";
-import NewTaskPage from "./addTask/addTask_page.tsx";   
+import NewTaskPage from "./addTask/addTask_page.tsx";
 import ForgotPasswordPage from "./forgotPassword/forgotPassword_page.tsx";
+import ResetPasswordPage from "./resetPassword/resetPassword_page.tsx";
 
 export {
-    LoginPage,
-    SingUpPage,
-    DashboardPage,
-    TaskListPage,
-    NewTaskPage,
-    ForgotPasswordPage
-}
+  LoginPage,
+  SingUpPage,
+  DashboardPage,
+  TaskListPage,
+  NewTaskPage,
+  ForgotPasswordPage,
+  ResetPasswordPage,
+};

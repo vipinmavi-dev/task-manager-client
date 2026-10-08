@@ -6,57 +6,54 @@ import { Eye, EyeOff } from "lucide-react";
 import { type PasswordFieldWrapperProps } from "../../../../types/auth.ts";
 
 function PasswordFieldWrapper({
-    id,
-    form,
-    handleChange,
-    forgotPasswordProps = { willShow: false },
-    showPassword,
-    onPointerDown,
-    onPointerUp
+  id,
+  form,
+  handleChange,
+  forgotPasswordProps = { willShow: false },
+  showPassword,
+  onPointerDown,
+  onPointerUp,
+  labelText,
 }: PasswordFieldWrapperProps) {
-    return (
-        <div className={Style.formGroup}>
-            {/* Forgot password button */}
-            <div className={Style.passwordHeader}>
-                <Label 
-                    htmlFor="password" 
-                    text="Password" 
-                    showRequiredSign={false}
-                />
+  return (
+    <div className={Style.formGroup}>
+      {/* Forgot password button */}
+      <div className={Style.passwordHeader}>
+        <Label
+          htmlFor={id}
+          text={labelText || "Password"}
+          showRequiredSign={false}
+        />
 
-                {forgotPasswordProps.willShow && <ForgotPassword 
-                                                    linkURL={forgotPasswordProps.linkURL} 
-                                                 />}
-            </div>
-            {/* Password input field with show & hide toggle button */}
-            <div className={Style.passwordInput}>
-                <Input
-                    type={showPassword? "text":"password"}
-                    placeholder="••••••••"
-                    id={id}
-                    required={true}
-                    value={form?.[id]} 
-                    handleChange={handleChange} 
-                />
+        {forgotPasswordProps.willShow && (
+          <ForgotPassword linkURL={forgotPasswordProps.linkURL} />
+        )}
+      </div>
+      {/* Password input field with show & hide toggle button */}
+      <div className={Style.passwordInput}>
+        <Input
+          type={showPassword ? "text" : "password"}
+          placeholder="••••••••"
+          id={id}
+          required={true}
+          value={form?.[id]}
+          handleChange={handleChange}
+        />
 
-                <button
-                    id={id}
-                    type="button"
-                    className={Style.passwordToggle}
-                    aria-label="Show password"
-                    onPointerDown={onPointerDown}
-                    onPointerUp={onPointerUp}
-                    onPointerLeave={onPointerUp}
-
-                > 
-                    {showPassword ?
-                        <Eye size={16} />:
-                        <EyeOff size={16} />
-                    }
-                </button>
-            </div>
-        </div>
-    )
+        <button
+          id={id}
+          type="button"
+          className={Style.passwordToggle}
+          aria-label="Show password"
+          onPointerDown={onPointerDown}
+          onPointerUp={onPointerUp}
+          onPointerLeave={onPointerUp}
+        >
+          {showPassword ? <Eye size={16} /> : <EyeOff size={16} />}
+        </button>
+      </div>
+    </div>
+  );
 }
 
 export default PasswordFieldWrapper;

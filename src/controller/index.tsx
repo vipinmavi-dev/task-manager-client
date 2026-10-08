@@ -4,12 +4,16 @@ import DashboardController from "./dashboard_controller.tsx";
 import TaskListController from "./listTask_controller.tsx";
 import AddTaskController from "./addTask_controller.tsx";
 import ProfileController from "./profile_controller.tsx";
+import ForgotPasswordController from "./forgotPassword_controller.tsx";
+import ResetPasswordController from "./resetPassword_controller.tsx";
 
-export{
-    LoginController,
-    SignUpController,
-    DashboardController,
-    TaskListController,
-    AddTaskController,
-    ProfileController
-}
+export {
+  LoginController,
+  SignUpController,
+  DashboardController,
+  TaskListController,
+  AddTaskController,
+  ProfileController,
+  ForgotPasswordController,
+  ResetPasswordController,
+};

@@ -9,13 +9,14 @@ import {
 import { Layout } from "./components/auth/index.tsx";
 import { ROUTES } from "./constants/routes.ts";
 import { loginSuccess } from "./redux/auth/auth.ts";
-import { ForgotPasswordPage } from "./pages/index.tsx";
 import {
   TaskListController,
   DashboardController,
   LoginController,
   SignUpController,
   ProfileController,
+  ForgotPasswordController,
+  ResetPasswordController,
 } from "./controller/index.tsx";
 
 function AuthLayout() {
@@ -32,13 +33,13 @@ function ProtectFromLogedUser() {
   }
   return <Outlet />;
 }
-function ProtectFromUnLogedUser() {
-  const isLogin = useSelector((state: any) => state.User.isAuthenticated);
-  if (!isLogin) {
-    return <Navigate to={ROUTES.LOGIN} replace />;
-  }
-  return <Outlet />;
-}
+// function ProtectFromUnLogedUser() {
+//   const isLogin = useSelector((state: any) => state.User.isAuthenticated);
+//   if (!isLogin) {
+//     return <Navigate to={ROUTES.LOGIN} replace />;
+//   }
+//   return <Outlet />;
+// }
 
 const router = createBrowserRouter([
   {
@@ -56,7 +57,11 @@ const router = createBrowserRouter([
           { index: true, element: <Navigate to={ROUTES.LOGIN} replace /> },
           { path: ROUTES.LOGIN, element: <LoginController /> },
           { path: ROUTES.SIGNUP, element: <SignUpController /> },
-          { path: ROUTES.FORGOT_PASSWORD, element: <ForgotPasswordPage /> },
+          {
+            path: ROUTES.FORGOT_PASSWORD,
+            element: <ForgotPasswordController />,
+          },
+          { path: ROUTES.RESET_PASSWORD, element: <ResetPasswordController /> },
         ],
       },
     ],
@@ -64,7 +69,7 @@ const router = createBrowserRouter([
   {
     // Private route, accessible only after authentication
     path: ROUTES.DEFAULT,
-    element: <ProtectFromUnLogedUser />,
+    // element: <ProtectFromUnLogedUser />,
     loader: () => {},
     children: [
       { path: ROUTES.LIST, element: <TaskListController /> },
