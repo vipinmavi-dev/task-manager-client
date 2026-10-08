@@ -320,8 +320,21 @@
 .logoutAction:hover {
   background: #fef2f2;
 }
+.logoutAction:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: transparent;
+}
+
+.logoutAction:disabled:hover {
+  background: transparent;
+}
 .mobileText {
   display: none;
+}
+.disabledAction {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 /* =========================

@@ -2,13 +2,6 @@ import React, { useEffect, useRef, useState, useCallback } from "react";
 import { TaskListPage } from "../pages/index.tsx";
 import { useLocation } from "react-router-dom";
 import { SuccessToast, FailedToast } from "../utils/toast.ts";
-import {
-  getTasks,
-  putTask,
-  getStatus,
-  deleteTask,
-  getPriority,
-} from "../services/task.service.ts";
 import { useDispatch, useSelector } from "react-redux";
 import { setTasks } from "../redux/task/task.ts";
 import { setStatus } from "../redux/status/status.redux.ts";
@@ -18,9 +11,20 @@ import type { AddEditModel, RootState, FiltersType } from "../types/task.ts";
 import { createNavButtons } from "../constants/app_const.ts";
 import AddTaskController from "./addTask_controller.tsx";
 import { optmisticUpdateInTasksList } from "../utils/optimisticEditTask.ts";
+import GuestModeModal from "../components/guestWarningModel/GuestWarningModel.tsx";
+
+import {
+  getTasks,
+  putTask,
+  getStatus,
+  deleteTask,
+  getPriority,
+} from "../services/task.service.ts";
 
 function TaskListConroller() {
   const dispatch = useDispatch();
+  const isLogin = useSelector((state: RootState) => state.User.isAuthenticated);
+  const [showGuestModal, setShowGuestModal] = useState(true); // Guest User Model
   const [addEditModel, setaddEditModel] = useState<AddEditModel>({
     name: "addTask",
     status: false,
@@ -76,7 +80,7 @@ function TaskListConroller() {
       else throw new Error(tasks.data.message);
     } catch (error) {
       console.error("Error fetching tasks:", error);
-      FailedToast("Something went wrong!: Try Refresh " + error.status);
+      FailedToast(error.message);
     }
   }, [dispatch]);
   const getStatuses = useCallback(async () => {
@@ -86,7 +90,7 @@ function TaskListConroller() {
       else throw new Error(response.data.message);
     } catch (error) {
       console.error("Failed to fetch statuses", error);
-      FailedToast("Something went wrong!: Try Refresh " + error.status);
+      FailedToast(error.message);
     }
   }, [dispatch]);
   const getPrioritys = useCallback(async () => {
@@ -96,19 +100,22 @@ function TaskListConroller() {
       else throw new Error(response.data.message);
     } catch (error) {
       console.error("Failed to fetch statuses", error);
-      FailedToast("Something went wrong!: Try Refresh " + error.status);
+      FailedToast(error.message);
     }
   }, [dispatch]);
 
   useEffect(() => {
-    fetchTasks();
-    getStatuses();
-    getPrioritys();
+    if (isLogin) {
+      fetchTasks();
+      getStatuses();
+      getPrioritys();
+    }
+
     if (location?.state && !hasShown.current) {
       SuccessToast(location.state.message);
       hasShown.current = true;
     }
-  }, [location?.state, fetchTasks, getStatuses, getPrioritys]);
+  }, [location?.state, fetchTasks, getStatuses, getPrioritys, isLogin]);
 
   const deleteTaskHandler = async (taskId: number) => {
     let willDelete: boolean = window.confirm(
@@ -135,7 +142,7 @@ function TaskListConroller() {
       else throw new Error(response.data.message);
     } catch (error) {
       console.error("Error deleting task:", error);
-      FailedToast("Something went wrong!: Try Refresh " + error.status);
+      FailedToast(error.message);
       dispatch(setTasks(APItasks));
     }
   };
@@ -167,9 +174,10 @@ function TaskListConroller() {
     } catch (error) {
       console.error("Error updating task:", error);
       dispatch(setTasks({ data: APItasks, count: null }));
-      FailedToast("Something went wrong!: Try Refresh " + error.status);
+      FailedToast(error.message);
     }
   };
+
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <TaskListPage
@@ -183,6 +191,7 @@ function TaskListConroller() {
         APItasksCounts={APItasksCounts}
         updateFilter={updateFilter}
         Filter={Filter}
+        isLogin={isLogin}
       />
       <AddTaskController
         modalHandler={modalHandler}
@@ -190,6 +199,12 @@ function TaskListConroller() {
         fetchTasks={fetchTasks}
         APItasksCounts={APItasksCounts}
       />
+      {!isLogin && showGuestModal && (
+        <GuestModeModal
+          onClose={() => setShowGuestModal(false)}
+          onContinue={() => setShowGuestModal(false)}
+        />
+      )}
     </Suspense>
   );
 }
