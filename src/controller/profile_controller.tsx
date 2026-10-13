@@ -18,8 +18,10 @@ function ProfileController() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const UserProfile = useSelector<RootState>((state) => state.User.data);
-  const tasksCount = useSelector<RootState>((state) => state.Tasks.counts);
+  const User = useSelector((state: RootState) => state.User);
+  const UserProfile = User.data;
+  const Tasks = useSelector((state: RootState) => state.Tasks);
+  const tasksCount = Tasks.counts;
   const [isEditable, setIsEditable] = useState(false);
   const [editProfileData, setEditProfileData] = useState(UserProfile);
   const [showPassword, setShowPassword] = useState({
@@ -68,8 +70,8 @@ function ProfileController() {
   ) => {
     try {
       event.preventDefault();
-      const res = await updateUserProfile(editProfileData);
       setIsEditable(false);
+      const res = await updateUserProfile(editProfileData);
       if (res.data.success) {
         const user = await mySelf();
         dispatch(

@@ -6,10 +6,13 @@ import { logOutUser } from "../../../services/auth.service.ts";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logout } from "../../../redux/auth/auth.ts";
+import { setTasks } from "../../../redux/task/task.ts";
 import { ROUTES } from "../../../constants/routes.ts";
 import NavButton from "../navButton/navButton.tsx";
 import type { NavButtonProps } from "../../../types/task.ts";
 import { FailedToast } from "../../../utils/toast.ts";
+import { useSelector } from "react-redux";
+import type { RootState } from "../../../types/task.ts";
 
 function PageHeader({
   isRedirectToBackPage = true,
@@ -22,6 +25,8 @@ function PageHeader({
 }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const User = useSelector((state: RootState) => state.User);
+  const isGuest = User?.data?.auth_type_id === 0 ? true : false;
   const handleLogout = async () => {
     let confirmLogout = window.confirm("Are you sure you want to logout?");
     if (!confirmLogout) return;
@@ -30,7 +35,8 @@ function PageHeader({
       if (res.data.success) {
         localStorage.removeItem("User");
         dispatch(logout());
-        navigate(ROUTES.LOGIN);
+        dispatch(setTasks({ data: [], counts: {} }));
+        navigate(ROUTES.DEFAULT);
       } else throw new Error(res.data.message);
     } catch (error) {
       console.error(error);
@@ -53,6 +59,7 @@ function PageHeader({
           <NavButton
             navButtonsData={navButtonsData}
             handleLogout={handleLogout}
+            isGuest={isGuest}
           />
         )}
       </div>

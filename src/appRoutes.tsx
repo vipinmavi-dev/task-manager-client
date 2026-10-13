@@ -27,19 +27,25 @@ function AuthLayout() {
   );
 }
 function ProtectFromLogedUser() {
-  const isLogin = useSelector((state: any) => state.User.isAuthenticated);
-  if (isLogin) {
+  const User = useSelector((state: any) => state.User);
+  const isLogin = User.isAuthenticated;
+
+  if (isLogin && User.data.auth_type_id !== 0) {
+    // if (isLogin) {
     return <Navigate to={ROUTES.LIST} replace />;
   }
   return <Outlet />;
 }
-// function ProtectFromUnLogedUser() {
-//   const isLogin = useSelector((state: any) => state.User.isAuthenticated);
-//   if (!isLogin) {
-//     return <Navigate to={ROUTES.LOGIN} replace />;
-//   }
-//   return <Outlet />;
-// }
+function ProtectFromUnLogedUser() {
+  // const isLogin = useSelector((state: any) => state.User.isAuthenticated);
+  const localStorageUser = localStorage.getItem("User");
+  const parsedUser = localStorageUser ? JSON.parse(localStorageUser) : null;
+  const isLocalStorageUserAuthenticated = parsedUser?.isAuthenticated;
+  if (!isLocalStorageUserAuthenticated) {
+    return <Navigate to={ROUTES.LOGIN} replace />;
+  }
+  return <Outlet />;
+}
 
 const router = createBrowserRouter([
   {
@@ -69,7 +75,7 @@ const router = createBrowserRouter([
   {
     // Private route, accessible only after authentication
     path: ROUTES.DEFAULT,
-    // element: <ProtectFromUnLogedUser />,
+    element: <ProtectFromUnLogedUser />,
     loader: () => {},
     children: [
       { path: ROUTES.LIST, element: <TaskListController /> },

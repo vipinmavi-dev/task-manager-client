@@ -12,7 +12,6 @@ import { createNavButtons } from "../constants/app_const.ts";
 import AddTaskController from "./addTask_controller.tsx";
 import { optmisticUpdateInTasksList } from "../utils/optimisticEditTask.ts";
 import GuestModeModal from "../components/guestWarningModel/GuestWarningModel.tsx";
-
 import {
   getTasks,
   putTask,
@@ -23,7 +22,10 @@ import {
 
 function TaskListConroller() {
   const dispatch = useDispatch();
-  const isLogin = useSelector((state: RootState) => state.User.isAuthenticated);
+  const User = useSelector((state: RootState) => state.User);
+  const isGuest = User?.data?.auth_type_id === 0 ? true : false;
+  const isLogin = User?.isAuthenticated;
+
   const [showGuestModal, setShowGuestModal] = useState(true); // Guest User Model
   const [addEditModel, setaddEditModel] = useState<AddEditModel>({
     name: "addTask",
@@ -105,7 +107,8 @@ function TaskListConroller() {
   }, [dispatch]);
 
   useEffect(() => {
-    if (isLogin) {
+    if (isLogin && !isGuest) {
+      setShowGuestModal(false);
       fetchTasks();
       getStatuses();
       getPrioritys();
@@ -199,7 +202,7 @@ function TaskListConroller() {
         fetchTasks={fetchTasks}
         APItasksCounts={APItasksCounts}
       />
-      {!isLogin && showGuestModal && (
+      {isGuest && showGuestModal && (
         <GuestModeModal
           onClose={() => setShowGuestModal(false)}
           onContinue={() => setShowGuestModal(false)}

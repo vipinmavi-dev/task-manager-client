@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { ROUTES } from "../../../constants/routes.ts";
 import { useLocation } from "react-router-dom";
 
-function NavButton({ navButtonsData, handleLogout }: NavButtonsProps) {
+function NavButton({ navButtonsData, handleLogout, isGuest }: NavButtonsProps) {
   const location = useLocation();
   const [isProfileOpen, setIsProfileOpen] = React.useState(false);
   const user: { data: any; isAuthenticated: boolean } = useSelector(
@@ -55,20 +55,6 @@ function NavButton({ navButtonsData, handleLogout }: NavButtonsProps) {
       {location.pathname === ROUTES.LIST && (
         <div className={Style.profileWrapper}>
           {/* Avatar button */}
-          {/* <button
-          type="button"
-          className={Style.avatarButton}
-          onClick={()=>setIsProfileOpen(!isProfileOpen)}
-          title={userName || "Guest"}
-        >
-          {userName ? (
-            <span className={Style.avatarInitials}>
-              {userName.split(" ").map((n) => n[0]).join("")}
-            </span>
-          ) : (
-            <User size={18} />
-          )}
-        </button> */}
           {
             <>
               <div
@@ -131,9 +117,9 @@ function NavButton({ navButtonsData, handleLogout }: NavButtonsProps) {
               {/* Actions */}
               <div className={Style.profileActions}>
                 <Link
-                  to={isLogin ? ROUTES.PROFILE : "#"}
+                  to={!isGuest ? ROUTES.PROFILE : "#"}
                   className={`${Style.profileAction} ${
-                    !isLogin ? Style.disabledAction : ""
+                    isGuest ? Style.disabledAction : ""
                   }`}
                 >
                   <UserRound size={18} />
@@ -141,10 +127,10 @@ function NavButton({ navButtonsData, handleLogout }: NavButtonsProps) {
                 </Link>
 
                 <button
-                  disabled={!isLogin}
+                  disabled={isGuest}
                   type="button"
                   className={`${Style.profileAction} ${Style.logoutAction}`}
-                  onClick={isLogin ? handleLogout : () => {}}
+                  onClick={!isGuest ? handleLogout : () => {}}
                 >
                   <LogOut size={18} />
                   <span>Logout</span>
